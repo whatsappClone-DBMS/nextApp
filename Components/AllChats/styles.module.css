@@ -1,0 +1,9 @@
+.container {
+  width: 30vw;
+  height: 100%;
+  overflow-y: scroll;
+}
+.header {
+  padding: 1.5rem;
+  background-color: #202c33;
+}
