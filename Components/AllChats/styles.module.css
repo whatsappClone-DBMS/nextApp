@@ -10,11 +10,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #2a3942;
+  border-right: 1px solid #3b4f5c;
   position: absolute;
   z-index: 100;
   width: 30vw;
   min-width: 300px;
+  height: 4rem;
 }
 
 .chatsContainer {
@@ -24,7 +25,7 @@
   color: #aebac1;
   max-height: 100vh;
   overflow-y: scroll;
-  border: 1px solid #3b4f5c;
+  border-right: 1px solid #3b4f5c;
 }
 
 .component {
