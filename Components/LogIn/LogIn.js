@@ -8,19 +8,25 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 function LogIn() {
   return (
     <div className={styles.container}>
-        <h1>Log In</h1>
-        <div className={styles.input}>
-            <h3>Username</h3>
-            <input className={styles.inputBox} placeholder="Username">
-                <PersonOutlineIcon/>
-            </input>
-        </div>
-        <div className={styles.input}>
-            <h3>Password</h3>
-            <input className={styles.inputBox} placeholder="Password">
-                <LockIcon/>
-                <VisibilityIcon/>
-            </input>
+        <div className={styles.wrapper}>
+            <h1>Login</h1>
+            <div className={styles.input}>
+                <h3>Username</h3>
+                <div className={styles.inputBox}>
+                    <PersonOutlineIcon sx={{fontSize:"1.5rem"}}/>
+                    <input placeholder="Username"></input>
+                </div>
+            </div>
+            <div className={styles.input}>
+                <h3>Password</h3>
+                <div className={styles.inputBox}>
+                    <LockIcon sx={{fontSize:"1.5rem"}}/>
+                    <input placeholder="Password" type="password"></input>
+                    <VisibilityIcon sx={{fontSize:"1.5rem"}}/>
+                </div>
+            </div>
+            <p>Don't Have An Account? <span><a>Sign Up</a></span></p>
+            <button className={styles.button}><h3>Login</h3></button>
         </div>
     </div>
   )
