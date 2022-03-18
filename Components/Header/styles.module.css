@@ -1,4 +1,7 @@
 .container{
+    padding-left: 1rem;
     background-color: #202C33;
-    height: 7vh;
+    display: flex;
+    align-items: center;
+    height: 9vh;
 }

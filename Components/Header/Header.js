@@ -5,7 +5,8 @@ import styles from './styles.module.css'
 function Header() {
   return (
     <div className={styles.container}>
-        Header
+      <img src='/assets/Icon.svg' height="50px"></img>
+      <h1 style={{marginLeft:"5px"}}>WhatsApp</h1>
     </div>
   )
 }
