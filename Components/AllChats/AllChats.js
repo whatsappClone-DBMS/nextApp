@@ -6,7 +6,7 @@ function AllChats() {
   return (
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
-      <div style={{ paddingTop: 70 }}>
+      <div style={{ paddingTop: 80 }}>
         <Chats />
         <Chats />
         <Chats />

@@ -87,20 +87,20 @@
 
 /* width */
 .chatsContainer::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
 .chatsContainer::-webkit-scrollbar-track {
-  background: #ebebeb;
+  background: #111b21;
 }
 
 /* Handle */
 .chatsContainer::-webkit-scrollbar-thumb {
-  background: #1868b2;
+  background: #2a3942;
 }
 
 /* Handle on hover */
 .chatsContainer::-webkit-scrollbar-thumb:hover {
-  background: #1868b2;
+  background: #2a3942;
 }
