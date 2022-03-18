@@ -64,6 +64,11 @@
     border-radius: 10px;
 }
 
+.button h3{
+    font-weight: 600;
+}
+
+
 .button:hover{
     cursor: pointer;
     background-color: #02b38d;

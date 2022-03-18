@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import ChatIcon from "@mui/icons-material/Chat";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+
 
 function AllChatsHeader() {
   return (
