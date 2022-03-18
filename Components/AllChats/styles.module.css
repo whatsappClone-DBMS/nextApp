@@ -1,5 +1,5 @@
 .container {
-  width: 30vw;
+  width: 40vw;
   min-width: 300px;
   height: 100%;
   position: relative;
@@ -13,13 +13,13 @@
   border-right: 1px solid #3b4f5c;
   position: absolute;
   z-index: 100;
-  width: 30vw;
+  width: 40vw;
   min-width: 300px;
   height: 4rem;
 }
 
 .chatsContainer {
-  width: 30vw;
+  width: 40vw;
   min-width: 300px;
   background-color: #111b21;
   color: #aebac1;

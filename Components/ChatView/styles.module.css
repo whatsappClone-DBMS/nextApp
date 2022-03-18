@@ -19,6 +19,37 @@
 .ChatViewContainer {
   background-image: url("/assets/ChatBackground.png");
   height: 100vh;
-  width: 70vw;
+  width: 60vw;
   z-index: 100;
+}
+
+.messageContainer{
+  padding-left: 1rem;
+  background-color: #202c33;
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  position: absolute;
+  z-index: 100;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+}
+
+.textMessage{
+  width: 85%;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  outline: none;
+  padding: 0.8rem;
+  background-color: #2A3942;
+}
+
+.textMessage::placeholder{
+  color: #fff;
+  opacity: 0.7;
+  font-size: 0.9rem;
 }
