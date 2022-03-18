@@ -6,18 +6,20 @@ function AllChats() {
   return (
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
-      <Chats />
+      <div style={{ paddingTop: 70 }}>
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+        <Chats />
+      </div>
     </div>
   );
 }
