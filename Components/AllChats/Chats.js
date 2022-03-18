@@ -7,7 +7,7 @@ function Chats() {
       <Avatar
         alt="Remy Sharp"
         src="http://sc01.alicdn.com/kf/HTB1jA_RXrj1gK0jSZFuq6ArHpXab.jpg"
-        sx={{ width: 56, height: 56 }}
+        sx={{ width: 45, height: 45 }}
         style={{ marginRight: 15 }}
       />
       <div className={styles.nameFlex}>

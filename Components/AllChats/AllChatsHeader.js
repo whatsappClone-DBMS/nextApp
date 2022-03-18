@@ -4,8 +4,7 @@ import Avatar from "@mui/material/Avatar";
 import ChatIcon from "@mui/icons-material/Chat";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-
+import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 
 function AllChatsHeader() {
   return (
@@ -19,6 +18,9 @@ function AllChatsHeader() {
       <div style={{ display: "flex", alignItems: "center" }}>
         <IconButton style={{ color: "#AEBAC1" }}>
           <ChatIcon />
+        </IconButton>
+        <IconButton style={{ color: "#AEBAC1" }}>
+          <CircleOutlinedIcon />
         </IconButton>
         <IconButton style={{ color: "#AEBAC1" }}>
           <KeyboardArrowDownIcon />

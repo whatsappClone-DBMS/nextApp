@@ -5,7 +5,7 @@
   position: relative;
 }
 .header {
-  padding: 0.5rem;
+  padding: 0.1rem;
   background-color: #202c33;
   display: flex;
   justify-content: space-between;
@@ -30,7 +30,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.7rem;
+  padding: 0.4rem;
   border-bottom: 1px solid #2a3942;
   cursor: pointer;
 }
