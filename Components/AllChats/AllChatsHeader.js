@@ -14,12 +14,14 @@ function AllChatsHeader() {
           src="http://sc01.alicdn.com/kf/HTB1jA_RXrj1gK0jSZFuq6ArHpXab.jpg"
         />
       </IconButton>
-      <IconButton style={{ color: "#AEBAC1" }}>
-        <ChatIcon />
-      </IconButton>
-      <IconButton style={{ color: "#AEBAC1" }}>
-        <KeyboardArrowDownIcon />
-      </IconButton>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <IconButton style={{ color: "#AEBAC1" }}>
+          <ChatIcon />
+        </IconButton>
+        <IconButton style={{ color: "#AEBAC1" }}>
+          <KeyboardArrowDownIcon />
+        </IconButton>
+      </div>
     </div>
   );
 }
