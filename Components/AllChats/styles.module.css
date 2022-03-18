@@ -24,6 +24,7 @@
   color: #aebac1;
   max-height: 100vh;
   overflow-y: scroll;
+  border: 1px solid #3b4f5c;
 }
 
 .component {

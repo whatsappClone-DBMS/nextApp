@@ -1,7 +1,12 @@
 import React from "react";
+import ChatViewHeader from "./ChatViewHeader";
 
 function ChatView() {
-  return <div>ChatView</div>;
+  return(
+    <div>
+      <ChatViewHeader/>
+    </div>
+  )
 }
 
 export default ChatView;
