@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import LogIn from '../Components/LogIn/LogIn'
 import styles from '../styles/Home.module.css'
 
