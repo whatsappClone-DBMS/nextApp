@@ -1,0 +1,28 @@
+.container {
+  padding-top: 65px;
+  height: 200vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.receiverBubble {
+  width: fit-content;
+  margin: 2rem;
+  display: block;
+  margin-right: auto;
+  background-color: #2a3942;
+  padding: 0.5rem;
+  border-radius: 5px;
+  max-width: 45vw;
+}
+
+.senderBubble {
+  width: fit-content;
+  display: block;
+  margin: 2rem;
+  margin-left: auto;
+  background-color: #025d4b;
+  padding: 0.5rem;
+  border-radius: 5px;
+  max-width: 45vw;
+}

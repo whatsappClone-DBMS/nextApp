@@ -18,12 +18,13 @@
 
 .ChatViewContainer {
   background-image: url("/assets/ChatBackground.png");
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: scroll;
   width: 60vw;
   z-index: 100;
 }
 
-.messageContainer{
+.messageContainer {
   padding-left: 1rem;
   background-color: #202c33;
   display: flex;
@@ -38,17 +39,17 @@
   bottom: 0;
 }
 
-.textMessage{
+.textMessage {
   width: 85%;
   border: none;
   border-radius: 10px;
   color: #fff;
   outline: none;
   padding: 0.8rem;
-  background-color: #2A3942;
+  background-color: #2a3942;
 }
 
-.textMessage::placeholder{
+.textMessage::placeholder {
   color: #fff;
   opacity: 0.7;
   font-size: 0.9rem;
