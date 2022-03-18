@@ -20,7 +20,7 @@
   background-image: url("/assets/ChatBackground.png");
   min-height: 100vh;
   overflow-y: scroll;
-  width: 60vw;
+  width: 70vw;
   z-index: 100;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .textMessage {
-  width: 85%;
+  flex: 1;
   border: none;
   border-radius: 10px;
   color: #fff;
