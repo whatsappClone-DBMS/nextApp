@@ -12,6 +12,36 @@ function MessageWindow() {
       <SenderBubble message="hi" time="12:09 am" />
       <ReceiverBubble message="hi" time="12:09 am" />
       <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
+      <ReceiverBubble message="hi" time="12:09 am" />
+      <SenderBubble message="hi" time="12:09 am" />
     </div>
   );
 }

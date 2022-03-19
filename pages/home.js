@@ -6,7 +6,7 @@ import styles from "../styles/Home2.module.css";
 export default function HomeAfterLogin() {
   return (
     <div className={styles.container}>
-      <Profile/>
+      <Profile />
       <ChatView />
     </div>
   );

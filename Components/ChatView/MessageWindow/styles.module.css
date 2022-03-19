@@ -1,8 +1,9 @@
 .container {
   padding-top: 65px;
-  height: 200vh;
+  height: auto;
   width: 100%;
   overflow-y: scroll;
+  padding-bottom: 50px;
 }
 
 .receiverBubble {
