@@ -7,9 +7,8 @@ function Header() {
       <img
         src="/assets/Icon.svg"
         height="50px"
-        style={{ marginRight: 20, marginLeft: 20 }}
       ></img>
-      <h1 style={{ marginLeft: "5px" }}>WhatsApp</h1>
+      <h1 style={{ marginLeft: "10px" }}>WhatsApp</h1>
     </div>
   );
 }

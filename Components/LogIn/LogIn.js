@@ -25,7 +25,7 @@ function LogIn() {
                     <VisibilityIcon sx={{fontSize:"1.5rem"}}/>
                 </div>
             </div>
-            <p>Don't Have An Account? <span><a>Sign Up</a></span></p>
+            <p>Don't Have An Account? <span><a style={{textDecoration:"underline 1px"}}>Sign Up</a></span></p>
             <button className={styles.button}><h3>Login</h3></button>
         </div>
     </div>

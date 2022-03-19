@@ -1,0 +1,32 @@
+.chatsContainer {
+    width: 30vw;
+    min-width: 300px;
+    background-color: #111b21;
+    color: #aebac1;
+    max-height: 100vh;
+    overflow-y: scroll;
+    border-right: 1px solid #3b4f5c;
+}
+
+.header{
+    background-color: #202C33;
+    height: 7rem;
+}
+
+.headerInfo{
+    margin-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin-top: 3rem;
+}
+
+.body{
+    padding: 2rem;
+}
+
+.editInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
