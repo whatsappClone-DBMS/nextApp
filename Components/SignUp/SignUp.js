@@ -51,14 +51,18 @@ function SignUp() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        {/* <h1>Sign Up</h1>
+        <h1>Sign Up</h1>
         <div className={styles.input}>
           <h3>Full Name</h3>
           <div className={styles.inputBox}>
             <PersonIcon sx={{ fontSize: "1.5rem" }} />
-            <input placeholder="Full Name"></input>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+            ></input>
           </div>
-        </div> */}
+        </div>
         <div className={styles.input}>
           <h3>Mobile Number</h3>
           <div className={styles.inputBox}>
