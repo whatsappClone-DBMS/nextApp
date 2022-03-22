@@ -16,7 +16,7 @@ const createUser = async (req, res, mobileNumber, password) => {
     `INSERT into Users(mobileNumber,password) Values(${mobileNumber},${password})`,
     []
   );
-  res.send(users);
+  res.status(200).send(users);
 };
 
 export { getAllUsers, getUserDetails, createUser };
