@@ -10,5 +10,13 @@ const getUserDetails = async (req, res, uid) => {
     `select * from UserData where uID = ${uid}`, []);
   res.send(users);
 };
+const createUser = async (req, res, mobileNumber, password) => {
+  console.log("mobileNumber", mobileNumber);
+  let users = await executeQuery(
+    `INSERT into Users(mobileNumber,password) Values(${mobileNumber},${password})`,
+    []
+  );
+  res.send(users);
+};
 
-export { getAllUsers, getUserDetails };
+export { getAllUsers, getUserDetails, createUser };
