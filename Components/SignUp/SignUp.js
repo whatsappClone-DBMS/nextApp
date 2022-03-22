@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 function SignUp() {
   const [mobileNumber, setMobileNumber] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,14 +22,21 @@ function SignUp() {
           const response = await fetch(
             `http://localhost:3000/api/signup?mobileNumber=${mobileNumber}&password=${password}`
           );
-          if (response.status == 200) {
-            router.push("/");
-          }
+
           const data = await response.json();
           console.log("signupppp", data);
 
-          if (data.status == 200) {
-            router.push("/");
+          if (data[0]) {
+            const response2 = await fetch(
+              `http://localhost:3000/api/userData?uid=${data[0].uid}&name=${name}`
+            );
+            const data2 = await response2.json();
+            if (data2) {
+              router.push(`/home?uid=${data[0].uid}`);
+              setError("");
+            } else {
+              setError("Something went wrong.");
+            }
           } else {
             setError("Failed to create a new account!");
           }
