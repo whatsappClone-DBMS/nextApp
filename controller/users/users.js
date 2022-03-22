@@ -1,8 +1,8 @@
-import {executeQuery} from "../../config/db";
+import { executeQuery } from "../../config/db";
 
-const getAllUsers = async (req,res) => {
-    let user = await executeQuery('select * from Users',[])
-    res.send(user);
-}
+const getAllUsers = async (req, res) => {
+  let users = await executeQuery("select * from Users", []);
+  res.send(users);
+};
 
-export {getAllUsers};
+export { getAllUsers };
