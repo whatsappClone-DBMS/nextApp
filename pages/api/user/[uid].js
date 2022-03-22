@@ -4,7 +4,7 @@ import { getUser } from "../../../controller/users/users";
 function Handler(req, res) {
   const Handler = nc();
   const { uid } = req.query;
-  Handler.get(getUser(req, res, uid));
+  Handler.get(getUserDetails(req, res, uid));
   return Handler;
 }
 

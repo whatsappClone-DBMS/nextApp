@@ -4,9 +4,12 @@ const getAllUsers = async (req, res) => {
   let users = await executeQuery("select * from Users", []);
   res.send(users);
 };
-const getUser = async (req, res, uid) => {
-  console.log("hi", uid);
-  let users = await executeQuery(`select * from Users where uid = ${uid}`, []);
+const getUserDetails = async (req, res, uid) => {
+  console.log("hi2", uid);
+  let users = await executeQuery(
+    `select * from UserData where uID = ${uid}`,
+    []
+  );
   res.send(users);
 };
 

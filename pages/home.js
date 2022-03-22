@@ -16,22 +16,18 @@ export default function HomeAfterLogin({ data }) {
   //   }
   // }, [data]);
 
-  useEffect(() => {
-    console.log("uid", uid);
-  }, [uid]);
-
   return (
     <div className={styles.container}>
-      <AllChats />
-      {/* <Profile/> */}
+      {/* <AllChats /> */}
+      <Profile uid={uid} />
       <ChatView />
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const response = await fetch("http://localhost:3000/api/user/users");
-  const data = await response.json();
-  return { props: { data } };
-}
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const response = await fetch("http://localhost:3000/api/user/users");
+//   const data = await response.json();
+//   return { props: { data } };
+// }
