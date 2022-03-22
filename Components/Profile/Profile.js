@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Avatar } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -39,13 +39,16 @@ function Profile({ uid }) {
       <div className={styles.body}>
         <Avatar
           alt="Remy Sharp"
-          src={user.imgSrc}
+          src={
+            user?.imgSrc ??
+            "http://sc01.alicdn.com/kf/HTB1jA_RXrj1gK0jSZFuq6ArHpXab.jpg"
+          }
           sx={{ width: 200, height: 200, cursor: "pointer" }}
           style={{ marginLeft: "auto", marginRight: "auto" }}
         />
         <p style={{ color: "#025D4B" }}>Your name</p>
         <div className={styles.editInfo}>
-          {user.name}
+          {user?.name ?? "Aryan Teng"}
           <EditIcon sx={{ cursor: "pointer" }} />
         </div>
         <p
@@ -61,7 +64,7 @@ function Profile({ uid }) {
         </p>
         <p style={{ color: "#025D4B" }}>About</p>
         <div className={styles.editInfo}>
-          {user.status}
+          {user?.status ?? "Hi There! I'm Using Whatsapp!"}
           <EditIcon sx={{ cursor: "pointer" }} />
         </div>
       </div>
