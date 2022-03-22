@@ -11,16 +11,28 @@ function LogIn() {
   const [error, setError] = useState("");
   const router = useRouter();
   const handleLogin = async () => {
-    const response = await fetch(
-      `http://localhost:3000/api/login/${mobileNumber}`
-    );
-    const data = await response.json();
-    console.log(data);
-    if (data[0].password == password) {
-      console.log("Login Successful");
-      router.push("/home");
+    if (mobileNumber != "" && password != "") {
+      if (mobileNumber.length == 10) {
+        const response = await fetch(
+          `http://localhost:3000/api/login/${mobileNumber}`
+        );
+        const data = await response.json();
+        console.log(data);
+
+        if (!data) {
+          setError("User Does Not Exist. Please Sign Up!");
+        }
+        if (data[0].password == password) {
+          router.push("/home");
+          setError("");
+        } else {
+          setError("Incorrect Password!");
+        }
+      } else {
+        setError("Your Mobile Number needs to be exactly 10 digits long!");
+      }
     } else {
-      setError("Incorrect Password");
+      setError("Please Enter your credentials!");
     }
   };
   return (
@@ -60,7 +72,7 @@ function LogIn() {
         <button className={styles.button} onClick={handleLogin}>
           <h3>Login</h3>
         </button>
-        <h1 style={{ color: "Red" }}>{error}</h1>
+        <p style={{ textAlign: "center", color: "#08A684" }}>{error}</p>
       </div>
     </div>
   );
