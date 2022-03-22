@@ -15,13 +15,13 @@ function LogIn() {
       `http://localhost:3000/api/login/${mobileNumber}`
     );
     const data = await response.json();
-    if (data.password == password) {
+    console.log(data);
+    if (data[0].password == password) {
       console.log("Login Successful");
       router.push("/home");
     } else {
       setError("Incorrect Password");
     }
-    router.push("/home");
   };
   return (
     <div className={styles.container}>
