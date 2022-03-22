@@ -28,11 +28,11 @@ function SignUp() {
 
           if (data[0]) {
             const response2 = await fetch(
-              `http://localhost:3000/api/userData?uid=${data[0].uid}&name=${name}`
+              `http://localhost:3000/api/userData?uid=${data[0].uID}&name=${name}`
             );
             const data2 = await response2.json();
             if (data2) {
-              router.push(`/home?uid=${data[0].uid}`);
+              router.push(`/home?uid=${data[0].uID}`);
               setError("");
             } else {
               setError("Something went wrong.");

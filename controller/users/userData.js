@@ -2,7 +2,7 @@ import { executeQuery } from "../../config/db";
 
 const createUserData = async (req, res, uid, name) => {
   let users = await executeQuery(
-    `INSERT into UserData(uID, name) Values(${name}) `,
+    `INSERT into UserData(uID, name) Values(${uid}, ${name}) `,
     []
   );
   let user = await executeQuery(
