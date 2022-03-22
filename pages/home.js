@@ -4,14 +4,21 @@ import ChatView from "../Components/ChatView/ChatView";
 import styles from "../styles/Home2.module.css";
 
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function HomeAfterLogin({ data }) {
+  const router = useRouter();
+  const { uid } = router.query;
+  // useEffect(() => {
+  //   if (data) {
+  //     console.log("Dataaaa");
+  //     console.log(data);
+  //   }
+  // }, [data]);
+
   useEffect(() => {
-    if (data) {
-      console.log("Dataaaa");
-      console.log(data);
-    }
-  }, [data]);
+    console.log("uid", uid);
+  }, [uid]);
 
   return (
     <div className={styles.container}>

@@ -23,7 +23,7 @@ function LogIn() {
           setError("User Does Not Exist. Please Sign Up!");
         }
         if (data[0].password == password) {
-          router.push("/home");
+          router.push(`/home/uid=${data[0].uid}`);
           setError("");
         } else {
           setError("Incorrect Password!");
