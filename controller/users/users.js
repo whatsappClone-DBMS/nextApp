@@ -13,4 +13,4 @@ const getUserDetails = async (req, res, uid) => {
   res.send(users);
 };
 
-export { getAllUsers, getUser };
+export { getAllUsers, getUserDetails };
