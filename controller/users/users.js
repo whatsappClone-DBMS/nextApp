@@ -7,9 +7,7 @@ const getAllUsers = async (req, res) => {
 const getUserDetails = async (req, res, uid) => {
   console.log("hi2", uid);
   let users = await executeQuery(
-    `select * from UserData where uID = ${uid}`,
-    []
-  );
+    `select * from UserData where uID = ${uid}`, []);
   res.send(users);
 };
 const createUser = async (req, res, mobileNumber, password) => {
@@ -18,11 +16,7 @@ const createUser = async (req, res, mobileNumber, password) => {
     `INSERT into Users(mobileNumber,password) Values(${mobileNumber},${password})`,
     []
   );
-  let user = await executeQuery(
-    `select * from Users where mobileNumber = ${mobileNumber}`,
-    []
-  );
-  res.status(200).send(user);
+  res.status(200).send(users);
 };
 
 export { getAllUsers, getUserDetails, createUser };

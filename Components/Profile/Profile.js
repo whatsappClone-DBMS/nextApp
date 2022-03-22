@@ -64,7 +64,7 @@ function Profile({ uid }) {
         </p>
         <p style={{ color: "#025D4B" }}>About</p>
         <div className={styles.editInfo}>
-          {user?.status ?? "Hi There! I'm Using Whatsapp!"}
+          {user?.status ?? "Hi There! I'm Using WhatsApp!"}
           <EditIcon sx={{ cursor: "pointer" }} />
         </div>
       </div>
