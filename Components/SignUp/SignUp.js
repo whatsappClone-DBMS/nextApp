@@ -1,14 +1,23 @@
 import React from 'react'
+import PersonIcon from '@mui/icons-material/Person';
 import styles from './styles.module.css'
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 
-function LogIn() {
+
+function SignUp() {
   return (
     <div className={styles.container}>
         <div className={styles.wrapper}>
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
+            <div className={styles.input}>
+                <h3>Full Name</h3>
+                <div className={styles.inputBox}>
+                    <PersonIcon sx={{fontSize:"1.5rem"}}/>
+                    <input placeholder="Full Name"></input>
+                </div>
+            </div>
             <div className={styles.input}>
                 <h3>Mobile Number</h3>
                 <div className={styles.inputBox}>
@@ -24,11 +33,18 @@ function LogIn() {
                     <VisibilityIcon sx={{fontSize:"1.5rem"}}/>
                 </div>
             </div>
-            <p>Don't Have An Account? <span><a style={{textDecoration:"underline 1px"}}>Sign Up</a></span></p>
-            <button className={styles.button}><h3>Login</h3></button>
+            <div className={styles.input}>
+                <h3>Confirm Password</h3>
+                <div className={styles.inputBox}>
+                    <LockIcon sx={{fontSize:"1.5rem"}}/>
+                    <input placeholder="Confirm Password" type="password"></input>
+                    <VisibilityIcon sx={{fontSize:"1.5rem"}}/>
+                </div>
+            </div>
+            <button style={{marginTop:"2rem"}} className={styles.button}><h3>Sign Up</h3></button>
         </div>
     </div>
   )
 }
 
-export default LogIn
+export default SignUp
