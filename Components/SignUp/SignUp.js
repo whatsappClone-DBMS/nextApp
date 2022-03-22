@@ -21,11 +21,16 @@ function SignUp() {
           const response = await fetch(
             `http://localhost:3000/api/signup?mobileNumber=${mobileNumber}&password=${password}`
           );
+          if (response.status == 200) {
+            router.push("/");
+          }
           const data = await response.json();
           console.log("signupppp", data);
 
-          if (!data) {
-            setError("User Does Not Exist. Please Sign Up!");
+          if (data.status == 200) {
+            router.push("/");
+          } else {
+            setError("Failed to create a new account!");
           }
         } else {
           setError("Your Mobile Number needs to be exactly 10 digits long!");
