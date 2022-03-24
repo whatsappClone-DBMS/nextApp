@@ -4,6 +4,7 @@ import Chats from "./Chats";
 import styles from "./styles.module.css";
 function AllChats({ uid }) {
   const [chats, setChats] = useState();
+  var personUid = 0;
   const getChats = async () => {
     if (uid) {
       const response = await fetch(
@@ -23,18 +24,14 @@ function AllChats({ uid }) {
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
       <div style={{ paddingTop: 65 }}>
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
-        <Chats />
+        {chats.map((chat) => {
+          {
+            chat.uid1 == uid
+              ? (personUid = chat.uid2)
+              : (personUid = chat.uid1);
+            <Chats uid={personUid} />;
+          }
+        })}
       </div>
     </div>
   );
