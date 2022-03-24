@@ -8,3 +8,17 @@
 
   height: 100vh;
 }
+
+.storyContainer {
+  width: 30vw;
+  min-width: 300px;
+  background-color: #1E262B;
+  color: #aebac1;
+  max-height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid #3b4f5c;
+}
+
+.storyHeader {
+
+}

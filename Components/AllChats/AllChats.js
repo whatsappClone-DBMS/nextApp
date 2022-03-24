@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import AllChatsHeader from "./AllChatsHeader";
 import Chats from "./Chats";
 import styles from "./styles.module.css";
+
+
 function AllChats({ uid }) {
   const [chats, setChats] = useState();
   var personUid = 0;
@@ -24,7 +26,7 @@ function AllChats({ uid }) {
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
       <div style={{ paddingTop: 65 }}>
-        {chats.map((chat) => {
+        {chats?.map((chat) => {
           {
             chat.uid1 == uid
               ? (personUid = chat.uid2)
