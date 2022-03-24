@@ -3,12 +3,13 @@ import ChatView from "../Components/ChatView/ChatView";
 import Profile from "../Components/Profile/Profile";
 import styles from "../styles/Home2.module.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function HomeAfterLogin({ data }) {
   const router = useRouter();
   const { uid } = router.query;
+  const [selectedChat, setSelectedChat] = useState("");
   // useEffect(() => {
   //   if (data) {
   //     console.log("Dataaaa");
@@ -18,9 +19,13 @@ export default function HomeAfterLogin({ data }) {
 
   return (
     <div className={styles.container}>
-      <AllChats uid={uid} />
+      <AllChats
+        uid={uid}
+        selectedChat={selectedChat}
+        setSelectedChat={setSelectedChat}
+      />
       {/* <Profile uid={uid} /> */}
-      <ChatView />
+      <ChatView selectedChat={selectedChat} />
     </div>
   );
 }

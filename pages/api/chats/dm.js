@@ -1,11 +1,16 @@
 import nc from "next-connect";
-import { dm } from "../../../controller/chats";
-import { login } from "../../../controller/login";
+import { allDMs } from "../../../controller/chats";
 
 function Handler(req, res) {
   const Handler = nc();
-  const { uid } = req.query;
-  Handler.get(dm(req, res, uid));
+  const { uid, dmId } = req.query;
+
+  if (uid) {
+    Handler.get(allDMs(req, res, uid));
+  } else if (dmId) {
+    Handler.get(oneDM(req, res, dmId));
+  }
+
   return Handler;
 }
 

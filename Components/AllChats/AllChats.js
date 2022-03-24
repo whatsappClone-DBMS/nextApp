@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../Loading";
 import AllChatsHeader from "./AllChatsHeader";
 import Chats from "./Chats";
 import styles from "./styles.module.css";
 
-
-function AllChats({ uid }) {
+function AllChats({ uid, selectedChat, setSelectedChat }) {
   const [chats, setChats] = useState();
   var personUid = 0;
   const getChats = async () => {
@@ -26,10 +26,23 @@ function AllChats({ uid }) {
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
       <div style={{ paddingTop: 65 }}>
-        {chats.map((chat) => {
-          chat.uid1 == uid ? (personUid = chat.uid2) : (personUid = chat.uid1);
-          return <Chats uid={personUid} />;
-        })}
+        {chats ? (
+          <Loading />
+        ) : (
+          chats?.map((chat) => {
+            chat?.uid1 == uid
+              ? (personUid = chat.uid2)
+              : (personUid = chat.uid1);
+            return (
+              <Chats
+                uid={personUid}
+                onClick={() => {
+                  setSelectedChat(chat?.dmID);
+                }}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { executeQuery } from "../config/db";
 
-const dm = async (req, res, uid) => {
+const allDMs = async (req, res, uid) => {
   console.log("uiddddd", uid);
   let userCredentials = await executeQuery(
     "SELECT * FROM DM WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
@@ -9,4 +9,22 @@ const dm = async (req, res, uid) => {
   res.send(userCredentials);
 };
 
-export { dm };
+const oneDM = async (req, res, dmId) => {
+  console.log("uiddddd", uid);
+  let userCredentials = await executeQuery(
+    "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
+    []
+  );
+  res.send(userCredentials);
+};
+
+const allMessages = async (req, res, mId) => {
+  console.log("middddd", mId);
+  let userCredentials = await executeQuery(
+    "SELECT * FROM Messages WHERE mID= " + `${mId}`,
+    []
+  );
+  res.send(userCredentials);
+};
+
+export { allDMs, oneDM, allMessages };
