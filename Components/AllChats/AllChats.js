@@ -26,7 +26,7 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
     <div className={styles.chatsContainer}>
       <AllChatsHeader />
       <div style={{ paddingTop: 65 }}>
-        {chats ? (
+        {!chats ? (
           <Loading />
         ) : (
           chats?.map((chat) => {

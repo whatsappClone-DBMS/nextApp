@@ -1,7 +1,8 @@
-import React from "react";
 import styles from "./styles.module.css";
 import ReceiverBubble from "./ReceiverBubble";
 import SenderBubble from "./SenderBubble";
+import React, { useEffect, useState } from "react";
+
 
 function MessageWindow({ dmId }) {
   const [messages, setMessages] = useState();
@@ -23,10 +24,10 @@ function MessageWindow({ dmId }) {
     }
   };
 
-  useEffect(() => {
-    console.log("uid", uid);
-    getChats();
-  }, [uid]);
+  // useEffect(() => {
+  //   console.log("uid", dmId);
+  //   getChats();
+  // }, [dmId]);
 
   return (
     <div className={styles.container}>
