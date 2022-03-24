@@ -5,10 +5,32 @@
     padding: 0.4rem;
     border-bottom: 1px solid #2a3942;
     cursor: pointer;
+    margin-top: 0.5rem;
   }
-
   
   .component:hover {
     background-color: #2a3942;
     transition: all 0.1s;
+  }
+  
+  .nameFlex {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .name {
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: left;
+    margin: 0;
+    margin-bottom: 2px;
+  }
+  
+
+  .message {
+    color: #aebac1;
+    margin: 0;
+    text-align: left;
+    font-size: 0.8rem;
   }

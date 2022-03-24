@@ -2,7 +2,7 @@ import React from 'react'
 import Avatar from "@mui/material/Avatar";
 import styles from '../styles/Home.module.css'
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
-
+import StoryComponent from "../Components/Story/StoryComponent"
 
 function Story() {
   return (
@@ -15,7 +15,11 @@ function Story() {
                 sx={{ width: 40, height: 40, cursor: "pointer" }}/>
                 <p style={{marginLeft:"0.5rem"}}>My Status</p>
             </div>
+            <div>
+                <StoryComponent/>
+            </div>
         </div>
+        <div style={{marginTop:"1rem"}}></div>
         <div className={styles.storyPage}>
             <div style={{
                 display:"flex",
