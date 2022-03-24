@@ -9,16 +9,31 @@
   height: 100vh;
 }
 
+
+.wrapper{
+  display: flex;
+}
+
+
 .storyContainer {
   width: 30vw;
+  min-height: 100vw;
   min-width: 300px;
   background-color: #1E262B;
-  color: #aebac1;
+  color: #fff;
   max-height: 100vh;
   overflow-y: scroll;
-  border-right: 1px solid #3b4f5c;
 }
 
 .storyHeader {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
 
+.storyPage{
+  min-height: 100vh;
+  width: 70vw;
+  z-index: 100;
 }
