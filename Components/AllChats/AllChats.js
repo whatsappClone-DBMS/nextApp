@@ -25,12 +25,8 @@ function AllChats({ uid }) {
       <AllChatsHeader />
       <div style={{ paddingTop: 65 }}>
         {chats.map((chat) => {
-          {
-            chat.uid1 == uid
-              ? (personUid = chat.uid2)
-              : (personUid = chat.uid1);
-            <Chats uid={personUid} />;
-          }
+          chat.uid1 == uid ? (personUid = chat.uid2) : (personUid = chat.uid1);
+          return <Chats uid={personUid} />;
         })}
       </div>
     </div>
