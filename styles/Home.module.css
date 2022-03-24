@@ -27,9 +27,11 @@
 
 .storyHeader {
   margin-left: 1rem;
+  margin-right: 1rem;
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #6D7275;
 }
 
 .storyPage{
