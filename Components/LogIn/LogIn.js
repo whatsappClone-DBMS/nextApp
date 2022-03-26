@@ -23,11 +23,14 @@ function LogIn() {
         if (!data) {
           setError("User Does Not Exist. Please Sign Up!");
         }
-        if (data[0].password == password) {
+        if (data[0]?.password == password) {
           router.push(`/home?uid=${data[0].uID}`);
           setError("");
         } else {
           setError("Incorrect Password!");
+        }
+        if (!data[0]) {
+          setError("User Does Not Exist. Please Sign Up!");
         }
       } else {
         setError("Your Mobile Number needs to be exactly 10 digits long!");

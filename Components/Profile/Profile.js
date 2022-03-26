@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 import { useRouter } from "next/router";
@@ -25,13 +25,13 @@ function Profile({ uid }) {
     <div className={styles.chatsContainer}>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          <Button
+          <IconButton
             onClick={() => {
               router.push(`/home?uid=${uid}`);
             }}
           >
             <ArrowBackIcon sx={{ cursor: "pointer" }} />
-          </Button>
+          </IconButton>
           <p
             style={{
               marginLeft: "1rem",
@@ -46,7 +46,7 @@ function Profile({ uid }) {
       </div>
       <div className={styles.body}>
         <Avatar
-          alt="Remy Sharp"
+          alt={user?.name ?? "Your Name"}
           src={
             user?.imgSrc ??
             "http://sc01.alicdn.com/kf/HTB1jA_RXrj1gK0jSZFuq6ArHpXab.jpg"
