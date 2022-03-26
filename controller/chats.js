@@ -10,7 +10,7 @@ const allDMs = async (req, res, uid) => {
 };
 
 const oneDM = async (req, res, dmId) => {
-  console.log("uiddddd", uid);
+  console.log("uiddddd", dmId);
   let userCredentials = await executeQuery(
     "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
     []

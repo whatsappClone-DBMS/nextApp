@@ -26,7 +26,7 @@ function AllChats({ uid }) {
   }, [uid]);
   return (
     <div className={styles.chatsContainer}>
-      <AllChatsHeader />
+      <AllChatsHeader  uid={uid}/>
       <div style={{ paddingTop: 65 }}>
         {!chats ? (
           <Loading />
@@ -38,7 +38,7 @@ function AllChats({ uid }) {
             return (
               <div
                 onClick={() => {
-                  router.push(`/home?uid=${uid}&dmID=${chat?.dmID}`);
+                  router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
                 }}
               >
                 <Chats uid={personUid} />

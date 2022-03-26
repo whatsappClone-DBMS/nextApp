@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./styles.module.css";
 import { Avatar } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
 
-function ContactInfo() {
+function ContactInfo({uid2}) {
+  const [user, setUser] = useState();
+
   return (
     <div className={styles.container}>
         <div className={styles.navbar}>

@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { allDMs } from "../../../controller/chats";
+import { allDMs, oneDM } from "../../../controller/chats";
 
 function Handler(req, res) {
   const Handler = nc();

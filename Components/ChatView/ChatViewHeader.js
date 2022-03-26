@@ -9,17 +9,31 @@ import { useRouter } from "next/router";
 function ChatViewHeader({ uid, dmId }) {
   const [user, setUser] = useState({});
   const router = useRouter();
+
   const getUserDetails = async () => {
     if (dmId) {
       const responseDM = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
       );
       const DMdata = await responseDM.json();
-      const uid2 = uid == DMdata[0].uid1 ? DMdata[0].uid2 : DMdata[0].uid1;
+      console.log("hi2", DMdata);
+      var uid2;
+      // if (DMdata[0]){
+      //   if(uid === DMdata[0].uid1){
+      //     uid2 = DMdata[0].uid2;
+      //   }
+      //   else{
+      //     uid2 = DMdata[0].uid1;
+      //   }
+      // }
+      DMdata[0]?.uid1 == uid
+              ? (uid2 = DMdata[0]?.uid2)
+              : (uid2 = DMdata[0]?.uid1);
+      // const uid2 = (uid == DMdata[0]?.uid1 ? DMdata[0]?.uid2 : DMdata[0]?.uid1);
       if (uid2) {
-        const response = await fetch(`http://localhost:3000/api/user/${uid}`);
+        const response = await fetch(`http://localhost:3000/api/user/${uid2}`);
         const data = await response.json();
-        console.log("User Detailsss", data);
+        console.log("hi", data);
         setUser(data[0]);
       }
     }
@@ -28,7 +42,7 @@ function ChatViewHeader({ uid, dmId }) {
   useEffect(() => {
     console.log("uid", uid);
     getUserDetails();
-  }, [uid]);
+  }, [dmId]);
 
   return (
     <div className={styles.container}>
