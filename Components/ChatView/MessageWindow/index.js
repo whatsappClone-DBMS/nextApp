@@ -30,7 +30,7 @@ function MessageWindow({ dmId, user }) {
 
   useEffect(() => {
     if (dmId) {
-      console.log("uid", dmId);
+      console.log("uid123", dmId);
       getChats();
     }
   }, [dmId]);
