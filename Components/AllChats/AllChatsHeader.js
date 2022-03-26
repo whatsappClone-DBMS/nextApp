@@ -5,6 +5,8 @@ import ChatIcon from "@mui/icons-material/Chat";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import RateReviewIcon from '@mui/icons-material/RateReview';
+
 
 function AllChatsHeader() {
   return (
@@ -17,13 +19,13 @@ function AllChatsHeader() {
       </IconButton>
       <div style={{ display: "flex", alignItems: "center" }}>
         <IconButton style={{ color: "#AEBAC1" }}>
-          <ChatIcon />
-        </IconButton>
-        <IconButton style={{ color: "#AEBAC1" }}>
           <CircleOutlinedIcon />
         </IconButton>
         <IconButton style={{ color: "#AEBAC1" }}>
-          <KeyboardArrowDownIcon />
+          <RateReviewIcon/>
+        </IconButton>
+        <IconButton style={{ color: "#AEBAC1" }}>
+          <KeyboardArrowDownIcon sx={{fontSize:"1.8rem"}}/>
         </IconButton>
       </div>
     </div>
