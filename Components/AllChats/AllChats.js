@@ -1,3 +1,5 @@
+import { Router } from "@mui/icons-material";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Loading from "../Loading";
 import AllChatsHeader from "./AllChatsHeader";
@@ -6,6 +8,7 @@ import styles from "./styles.module.css";
 
 function AllChats({ uid, selectedChat, setSelectedChat }) {
   const [chats, setChats] = useState();
+  const router = useRouter();
   var personUid = 0;
   const getChats = async () => {
     if (uid) {
@@ -38,6 +41,7 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
                 onClick={() => {
                   console.log("dmID", chat);
                   setSelectedChat(chat?.dmID);
+                  router.push("/home?dmID=" + chat?.dmID);
                 }}
               >
                 <Chats
