@@ -7,6 +7,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import RateReviewIcon from "@mui/icons-material/RateReview";
 
 function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
@@ -38,10 +39,10 @@ function AllChatsHeader({ uid }) {
       </IconButton>
       <div style={{ display: "flex", alignItems: "center" }}>
         <IconButton style={{ color: "#AEBAC1" }}>
-          <ChatIcon />
+          <CircleOutlinedIcon />
         </IconButton>
         <IconButton style={{ color: "#AEBAC1" }}>
-          <CircleOutlinedIcon />
+          <RateReviewIcon />
         </IconButton>
         <div className={styles.dropdown}>
           <IconButton style={{ color: "#AEBAC1" }}>

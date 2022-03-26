@@ -1,0 +1,42 @@
+.container{
+    min-height: 200vh;
+    width: 70vw;
+    overflow-y: scroll;
+    z-index: 100;
+    background-color: #0B1317;
+}
+
+
+.container h1{
+    font-size: 1.5rem;
+}
+
+.container h3{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: #1F2C33;
+    height: 4rem;
+}
+
+.box1{
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #111B21;
+}
+
+.box2{
+    margin-top: 1rem;
+    padding-left: 2rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background-color: #111B21;
+}
