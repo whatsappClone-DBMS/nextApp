@@ -34,13 +34,18 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
               ? (personUid = chat.uid2)
               : (personUid = chat.uid1);
             return (
-              <Chats
-                uid={personUid}
+              <div
                 onClick={() => {
-                  console.log("dmID", chat);
+                  console.log("dmID0", chat);
                   setSelectedChat(chat?.dmID);
                 }}
-              />
+              >
+                <Chats
+                  uid={personUid}
+                  setSelectedChat={setSelectedChat}
+                  selectedChat={selectedChat}
+                />
+              </div>
             );
           })
         )}
