@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
+import { useRouter } from "next/router";
 
 function Profile({ uid }) {
   const [user, setUser] = useState({});
+  const router = useRouter();
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -23,7 +25,13 @@ function Profile({ uid }) {
     <div className={styles.chatsContainer}>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          <ArrowBackIcon sx={{ cursor: "pointer" }} />
+          <Button
+            onClick={() => {
+              router.push(`/home?uid=${uid}`);
+            }}
+          >
+            <ArrowBackIcon sx={{ cursor: "pointer" }} />
+          </Button>
           <p
             style={{
               marginLeft: "1rem",

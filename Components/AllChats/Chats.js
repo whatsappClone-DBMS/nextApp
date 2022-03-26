@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid, selectedChat, setSelectedChat }) {
+function Chats({ uid }) {
   const [user, setUser] = useState({});
   const getUserDetails = async () => {
     if (uid) {
@@ -21,7 +21,6 @@ function Chats({ uid, selectedChat, setSelectedChat }) {
       className={styles.component}
       onClick={() => {
         console.log("dmID");
-        // setSelectedChat(chat?.dmID);
       }}
     >
       <Avatar

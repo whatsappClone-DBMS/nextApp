@@ -3,11 +3,11 @@ import ChatViewHeader from "./ChatViewHeader";
 import MessageBox from "./MessageBox";
 import MessageWindow from "./MessageWindow";
 import styles from "./styles.module.css";
-function ChatView({ selectedChat }) {
+function ChatView({ dmId, uid }) {
   return (
     <div className={styles.ChatViewContainer}>
       <ChatViewHeader />
-      <MessageWindow dmId={selectedChat} />
+      <MessageWindow dmId={dmId} user={uid} />
       <MessageBox />
     </div>
   );

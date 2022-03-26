@@ -6,7 +6,7 @@ import AllChatsHeader from "./AllChatsHeader";
 import Chats from "./Chats";
 import styles from "./styles.module.css";
 
-function AllChats({ uid, selectedChat, setSelectedChat }) {
+function AllChats({ uid }) {
   const [chats, setChats] = useState();
   const router = useRouter();
   var personUid = 0;
@@ -22,7 +22,6 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
   };
 
   useEffect(() => {
-    console.log("uid", uid);
     getChats();
   }, [uid]);
   return (
@@ -39,16 +38,10 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
             return (
               <div
                 onClick={() => {
-                  console.log("dmID", chat);
-                  setSelectedChat(chat?.dmID);
-                  router.push("/home?dmID=" + chat?.dmID);
+                  router.push(`/home?uid=${uid}&dmID=${chat?.dmID}`);
                 }}
               >
-                <Chats
-                  uid={personUid}
-                  setSelectedChat={setSelectedChat}
-                  selectedChat={selectedChat}
-                />
+                <Chats uid={personUid} />
               </div>
             );
           })
