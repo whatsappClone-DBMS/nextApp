@@ -15,9 +15,16 @@ function Story() {
                 sx={{ width: 40, height: 40, cursor: "pointer" }}/>
                 <p style={{marginLeft:"0.5rem"}}>My Status</p>
             </div>
-            <div>
-                <StoryComponent/>
-            </div>
+            <p style={{marginLeft:"0.5rem"}}>Recent</p>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
+            <StoryComponent/>
         </div>
         <div style={{marginTop:"1rem"}}></div>
         <div className={styles.storyPage}>
