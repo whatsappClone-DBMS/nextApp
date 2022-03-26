@@ -9,17 +9,11 @@ export default function HomeAfterLogin() {
   const router = useRouter();
   const { uid, dmId } = router.query;
 
-  useEffect(() => {
-    // if (!uid) {
-    //   router.push("/");
-    // }
-  }, [uid]);
-
   return (
     <div className={styles.container}>
       <AllChats uid={uid} />
-      <ContactInfo />
-      {/* <ChatView dmId={dmId} uid={uid} /> */}
+      {/* <ContactInfo /> */}
+      <ChatView dmId={dmId ?? -1000} uid={uid} />
     </div>
   );
 }
