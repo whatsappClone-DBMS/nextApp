@@ -37,6 +37,7 @@ function AllChats({ uid, selectedChat, setSelectedChat }) {
               <Chats
                 uid={personUid}
                 onClick={() => {
+                  console.log("dmID", chat);
                   setSelectedChat(chat?.dmID);
                 }}
               />
