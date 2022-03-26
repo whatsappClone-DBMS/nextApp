@@ -4,6 +4,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function LogIn() {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -63,12 +64,14 @@ function LogIn() {
             <VisibilityIcon sx={{ fontSize: "1.5rem" }} />
           </div>
         </div>
-        <p>
-          Don't Have An Account?{" "}
-          <span>
-            <a style={{ textDecoration: "underline 1px" }}>Sign Up</a>
-          </span>
-        </p>
+        <Link href="/signup">
+          <p>
+            Don't Have An Account?{" "}
+            <span>
+              <a style={{ textDecoration: "underline 1px" }}>Sign Up</a>
+            </span>
+          </p>
+        </Link>
         <button className={styles.button} onClick={handleLogin}>
           <h3>Login</h3>
         </button>
