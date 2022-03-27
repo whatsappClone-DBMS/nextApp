@@ -15,7 +15,7 @@ const createUserData = async (req, res, uid, name) => {
 const updateProfileData = async (req, res, uid, name, status) => {
   console.log("blah blah blah", name, status);
   let users = await executeQuery(
-    `UPDATE userData SET name = ${name} , status = ${status} WHERE uID = ${uid} `,
+    `UPDATE userData SET name = "${name}", status = "${status}" WHERE uID = "${uid}"`,
     []
   );
   let user = await executeQuery(

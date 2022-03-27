@@ -3,7 +3,7 @@
     min-width: 300px;
     background-color: #111b21;
     color: #aebac1;
-    max-height: 100vh;
+    min-height: 100vh;
     overflow-y: scroll;
     border-right: 1px solid #3b4f5c;
 }

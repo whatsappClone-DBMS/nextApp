@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { Avatar, IconButton } from "@mui/material";
 import Input from "@mui/material/Input";
-import { withStyles } from "@material-ui/core/styles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
@@ -141,15 +140,14 @@ function Profile({ uid }) {
             }}
           >
             <ArrowBackIcon
-              sx={{ cursor: "pointer", color: "#fff", opacity: "0.6" }}
+              sx={{ cursor: "pointer", color: "#D9DEE0"}}
             />
           </IconButton>
           <p
             style={{
               marginLeft: "1rem",
               fontSize: "1.2rem",
-              color: "#fff",
-              opacity: "0.6",
+              color: "#D9DEE0"
             }}
           >
             Profile
