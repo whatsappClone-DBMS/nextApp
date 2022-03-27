@@ -21,10 +21,27 @@ function Profile({ uid }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Detailsss", data);
+      console.log("User Details", data);
       setUser(data[0]);
       setName(data[0]?.name ?? "Avi");
       setStatus(data[0]?.status);
+    }
+  };
+
+  const updateProfileData = async () => {
+    if (name != "" && status != "") {
+      const response = await fetch(
+        `http://localhost:3000/api/profileData?uid=${user?.uID}&name=${name}&status=${status}`
+      );
+      const data = await response.json();
+      if (data) {
+        setUser(data[0]);
+      } else {
+        alert("Something went wrong.");
+      }
+    } else {
+      setName(user?.name);
+      setStatus(user?.status);
     }
   };
 
@@ -90,6 +107,7 @@ function Profile({ uid }) {
           <IconButton
             onClick={() => {
               setDisabled(!disabled);
+              updateProfileData();
             }}
           >
             {disabled ? (
@@ -135,6 +153,7 @@ function Profile({ uid }) {
           <IconButton
             onClick={() => {
               setDisabled2(!disabled2);
+              updateProfileData();
             }}
           >
             {disabled2 ? (
