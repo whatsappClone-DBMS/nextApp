@@ -20,20 +20,13 @@ function ContactInfo({uid2}) {
       const response = await fetch(`http://localhost:3000/api/user/users`);
       const data = await response.json();
       for(let i = 0; i < data.length; i++){
-        console.log("hi")
         if (data[i]["uID"] === 1){
           console.log('oye', data[i]["mobileNumber"])
           setMobileNumber(data[i]["mobileNumber"])
         }
       }
-      // data.map((i)=>{
-      //   if (data[i][1] === uid2){
-      //     setMobileNumber(data[i][mobileNumber])
-      //   }
-      // });
     }
   }
-
   useEffect(() => {
     getContactInfo();
     getMobileNumber();
