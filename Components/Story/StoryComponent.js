@@ -7,7 +7,7 @@ function StoryComponent() {
     <div className={styles.component}>
       <Avatar
           alt="Remy Sharp"
-          src={"http://sc01.alicdn.com/kf/HTB1jA_RXrj1gK0jSZFuq6ArHpXab.jpg"}
+          src={"https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"}
           sx={{ width: 40, height: 40, cursor: "pointer" }}/>
       <div className={styles.nameFlex} style={{marginLeft:"0.5rem"}}>
         <p className={styles.name}>Aryan Teng</p>
