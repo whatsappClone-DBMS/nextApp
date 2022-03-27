@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 function ChatViewHeader({ uid, dmId }) {
   const [user, setUser] = useState({});
   const router = useRouter();
-
   const getUserDetails = async () => {
     if (dmId) {
       const responseDM = await fetch(
@@ -46,7 +45,12 @@ function ChatViewHeader({ uid, dmId }) {
 
   return (
     <div className={styles.container}>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex" }}
+      onClick={()=>{
+        router.push(`contact-info?uid=${uid}&uid2=${user?.uID}`)
+      }
+      }
+      >
         <Avatar
           alt={user?.name ?? "Name"}
           src={

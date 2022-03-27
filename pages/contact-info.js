@@ -5,14 +5,16 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import ContactInfo from "../Components/ContactInfo/ContactInfo";
 
-export default function HomeAfterLogin() {
-  const router = useRouter();
-  const { uid, dmId } = router.query;
 
-  return (
-    <div className={styles.container}>
-      <AllChats uid={uid} />
-      <ChatView dmId={dmId ?? -1000} uid={uid} />
-    </div>
-  );
+function contactInfo() {
+    const router = useRouter();
+    const { uid, uid2 } = router.query;
+    return (
+        <div className={styles.container}>
+        <AllChats uid={uid} />
+        <ContactInfo uid2={uid2}/>
+        </div>
+  )
 }
+
+export default contactInfo

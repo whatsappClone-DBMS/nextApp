@@ -19,4 +19,11 @@ const createUser = async (req, res, mobileNumber, password) => {
   res.status(200).send(users);
 };
 
-export { getAllUsers, getUserDetails, createUser };
+const perUser = async (req, res, uid) => {
+  let users = await executeQuery(
+    `select * from Users where uID = ${uid}`, []);
+  res.send(users);
+};
+
+
+export { getAllUsers, getUserDetails, createUser, perUser };

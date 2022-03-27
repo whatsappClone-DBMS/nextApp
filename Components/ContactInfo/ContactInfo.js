@@ -17,14 +17,10 @@ function ContactInfo({uid2}) {
   };
   const getMobileNumber = async() => {
     if(uid2){
-      const response = await fetch(`http://localhost:3000/api/user/users`);
+      const response = await fetch(`http://localhost:3000/api/user/users?uid=${uid2}`);
       const data = await response.json();
-      for(let i = 0; i < data.length; i++){
-        if (data[i]["uID"] === 1){
-          console.log('oye', data[i]["mobileNumber"])
-          setMobileNumber(data[i]["mobileNumber"])
-        }
-      }
+      console.log("avi gandu", data[0]);
+      setMobileNumber(data[0].mobileNumber);
     }
   }
   useEffect(() => {
