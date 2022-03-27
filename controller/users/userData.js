@@ -26,6 +26,7 @@ const updateProfileData = async (req, res, uid, name, status) => {
 };
 
 const updateProfilePic = async (req, res, uid, imgSrc) => {
+  console.log("bc", imgSrc)
   let users = await executeQuery(
     `UPDATE userData SET imgSrc = "${imgSrc}" WHERE uID = ${uid} `,
     []

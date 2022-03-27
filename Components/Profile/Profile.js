@@ -27,6 +27,7 @@ function Profile({ uid }) {
       console.log("User Details", data);
       setUser(data[0]);
       setName(data[0]?.name ?? "Avi");
+      setImgSrc(data[0].imgSrc)
       setStatus(data[0]?.status);
     }
   };
@@ -52,11 +53,11 @@ function Profile({ uid }) {
     }
   };
 
-  const updateDP = async () => {
+  const updateDP = async (secure_url) => {
     console.log("kinshuk");
     if (name != "" && status != "") {
       const response = await fetch(
-        `http://localhost:3000/api/profileData?uid=${user?.uID}&imgSrc=${imgSrc}`
+        `http://localhost:3000/api/profileData?uid=${user?.uID}&imgSrc=${secure_url}`
       );
       const data = await response.json();
       if (data) {
@@ -124,7 +125,10 @@ function Profile({ uid }) {
 
     setImgSrc(data.secure_url);
     setUploadData(data);
-    updateDP();
+    console.log("oye", data)
+    if(data){
+      updateDP(data.secure_url);
+    }
   }
 
   useEffect(() => {
