@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { Avatar, IconButton } from "@mui/material";
+import Input from "@mui/material/Input";
+import { withStyles } from "@material-ui/core/styles";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
+import DoneIcon from "@mui/icons-material/Done";
 import { useRouter } from "next/router";
 
 function Profile({ uid }) {
   const [user, setUser] = useState({});
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("Hi There! I'm Using WhatsApp!");
+  const [disabled, setDisabled] = useState(true);
+  const [disabled2, setDisabled2] = useState(true);
+  const nameInput = useRef(null);
+
   const router = useRouter();
   const getUserDetails = async () => {
     if (uid) {
@@ -14,6 +23,8 @@ function Profile({ uid }) {
       const data = await response.json();
       console.log("User Detailsss", data);
       setUser(data[0]);
+      setName(data[0]?.name ?? "Avi");
+      setStatus(data[0]?.status);
     }
   };
 
@@ -21,6 +32,7 @@ function Profile({ uid }) {
     console.log("uid", uid);
     getUserDetails();
   }, [uid]);
+
   return (
     <div className={styles.chatsContainer}>
       <div className={styles.header}>
@@ -30,7 +42,9 @@ function Profile({ uid }) {
               router.push(`/home?uid=${uid}`);
             }}
           >
-            <ArrowBackIcon sx={{ cursor: "pointer", color:'#fff', opacity: "0.6" }} />
+            <ArrowBackIcon
+              sx={{ cursor: "pointer", color: "#fff", opacity: "0.6" }}
+            />
           </IconButton>
           <p
             style={{
@@ -56,8 +70,38 @@ function Profile({ uid }) {
         />
         <p style={{ color: "#025D4B" }}>Your name</p>
         <div className={styles.editInfo}>
-          {user?.name ?? "Aryan Teng"}
-          <EditIcon sx={{ cursor: "pointer" }} />
+          {disabled ? (
+            name ?? user?.name
+          ) : (
+            <Input
+              style={{ flex: 1, color: "#fff" }}
+              disabled={false}
+              focused={true}
+              color="success"
+              id="component-helper"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              aria-describedby="component-helper-text"
+              ref={nameInput}
+              inputProps={{ color: "#fff" }}
+            />
+          )}
+
+          <IconButton
+            onClick={() => {
+              setDisabled(!disabled);
+            }}
+          >
+            {disabled ? (
+              <EditIcon
+                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+              />
+            ) : (
+              <DoneIcon
+                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+              />
+            )}
+          </IconButton>
         </div>
         <p
           style={{
@@ -72,8 +116,37 @@ function Profile({ uid }) {
         </p>
         <p style={{ color: "#025D4B" }}>About</p>
         <div className={styles.editInfo}>
-          {user?.status ?? "Hi There! I'm Using WhatsApp!"}
-          <EditIcon sx={{ cursor: "pointer" }} />
+          {disabled2 ? (
+            status ?? user?.status ?? "Hi There! I'm Using WhatsApp!"
+          ) : (
+            <Input
+              style={{ flex: 1, color: "#fff" }}
+              disabled={false}
+              focused={true}
+              color="success"
+              id="component-status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              aria-describedby="component-helper-text"
+              inputProps={{ color: "#fff" }}
+            />
+          )}
+
+          <IconButton
+            onClick={() => {
+              setDisabled2(!disabled2);
+            }}
+          >
+            {disabled2 ? (
+              <EditIcon
+                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+              />
+            ) : (
+              <DoneIcon
+                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+              />
+            )}
+          </IconButton>
         </div>
       </div>
     </div>
