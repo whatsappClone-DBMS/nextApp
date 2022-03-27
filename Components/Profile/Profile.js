@@ -207,7 +207,7 @@ function Profile({ uid }) {
           />
         </form>
 
-        <p style={{ color: "#025D4B" }}>Your name</p>
+        <p style={{ color: "#008069" }}>Your name</p>
         <div className={styles.editInfo}>
           {disabled ? (
             name ?? user?.name
@@ -254,7 +254,7 @@ function Profile({ uid }) {
           This is not your username or pin. This name will be visible to your
           WhatsApp contacts.
         </p>
-        <p style={{ color: "#025D4B" }}>About</p>
+        <p style={{ color: "#008069" }}>About</p>
         <div className={styles.editInfo}>
           {disabled2 ? (
             status ?? user?.status ?? "Hi There! I'm Using WhatsApp!"
