@@ -30,7 +30,7 @@ function Profile({ uid }) {
               router.push(`/home?uid=${uid}`);
             }}
           >
-            <ArrowBackIcon sx={{ cursor: "pointer" }} />
+            <ArrowBackIcon sx={{ cursor: "pointer", color:'#fff', opacity: "0.6" }} />
           </IconButton>
           <p
             style={{

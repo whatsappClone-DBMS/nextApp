@@ -12,7 +12,13 @@ export default function HomeAfterLogin() {
   return (
     <div className={styles.container}>
       <AllChats uid={uid} />
-      <ChatView dmId={dmId ?? -1000} uid={uid} />
+      {dmId?
+      (<ChatView dmId={dmId ?? -1000} uid={uid} />)
+      :
+      <div></div>
+
+
+      }
     </div>
   );
 }

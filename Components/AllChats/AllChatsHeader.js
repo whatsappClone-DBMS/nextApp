@@ -12,7 +12,6 @@ import RateReviewIcon from "@mui/icons-material/RateReview";
 function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
   const router = useRouter();
-
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -28,7 +27,9 @@ function AllChatsHeader({ uid }) {
   }, [uid]);
   return (
     <div className={styles.header}>
-      <IconButton>
+      <IconButton onClick={()=>{
+        router.push(`/profile?uid=${uid}`);
+      }}>
         <Avatar
           alt={user?.name}
           src={
@@ -38,7 +39,9 @@ function AllChatsHeader({ uid }) {
         />
       </IconButton>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <IconButton style={{ color: "#AEBAC1" }}>
+        <IconButton style={{ color: "#AEBAC1" }} onClick={()=>{
+          router.push(`/stories?uid=${uid}`)
+        }}>
           <CircleOutlinedIcon />
         </IconButton>
         <IconButton style={{ color: "#AEBAC1" }}>

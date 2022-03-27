@@ -2,11 +2,13 @@ import React, { useState, useEffect} from 'react'
 import styles from "./styles.module.css";
 import { Avatar } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import { useRouter } from 'next/router';
 
 
 function ContactInfo({uid2}) {
   const [user, setUser] = useState();
   const [mobileNumber, setMobileNumber] = useState();
+  const router = useRouter();
   const getContactInfo = async() => {
     if(uid2){
       const response = await fetch(`http://localhost:3000/api/user/${uid2}`);
@@ -31,7 +33,9 @@ function ContactInfo({uid2}) {
   return (
     <div className={styles.container}>
         <div className={styles.navbar}>
-            <CloseIcon sx={{marginLeft:"1rem", marginRight:"1rem", fontSize:"1rem"}}/>
+            <div onClick={()=>{
+              router.back();
+            }}><CloseIcon sx={{marginLeft:"1rem", marginRight:"1rem", fontSize:"1rem"}}/></div>
             <h3>Contact Info</h3>
         </div>
         <div className={styles.box1}>
