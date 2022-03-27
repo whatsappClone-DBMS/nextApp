@@ -53,6 +53,7 @@ function Profile({ uid }) {
   };
 
   const updateDP = async () => {
+    console.log("kinshuk");
     if (name != "" && status != "") {
       const response = await fetch(
         `http://localhost:3000/api/profileData?uid=${user?.uID}&imgSrc=${imgSrc}`
@@ -100,6 +101,7 @@ function Profile({ uid }) {
   };
 
   async function handleOnSubmit(event) {
+    console.log("hehe")
     event.preventDefault();
     const form = event.currentTarget;
     const fileInput = Array.from(form.elements).find(
@@ -232,11 +234,11 @@ function Profile({ uid }) {
           >
             {disabled ? (
               <EditIcon
-                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+                sx={{ cursor: "pointer", color: "#D9DEE0"}}
               />
             ) : (
               <DoneIcon
-                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+                sx={{ cursor: "pointer", color: "#D9DEE0"}}
               />
             )}
           </IconButton>
@@ -278,11 +280,11 @@ function Profile({ uid }) {
           >
             {disabled2 ? (
               <EditIcon
-                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+                sx={{ cursor: "pointer", color: "#D9DEE0"}}
               />
             ) : (
               <DoneIcon
-                sx={{ cursor: "pointer", color: "#fff", opacity: 0.6 }}
+                sx={{ cursor: "pointer", color: "#D9DEE0"}}
               />
             )}
           </IconButton>
