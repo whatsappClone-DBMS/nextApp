@@ -12,6 +12,7 @@ import RateReviewIcon from "@mui/icons-material/RateReview";
 function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
   const router = useRouter();
+  const{dmId} = router.query;
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -28,7 +29,7 @@ function AllChatsHeader({ uid }) {
   return (
     <div className={styles.header}>
       <IconButton onClick={()=>{
-        router.push(`/profile?uid=${uid}`);
+        router.push(`/profile?uid=${uid}&dmId=${dmId}`);
       }}>
         <Avatar
           alt={user?.name}
@@ -51,8 +52,8 @@ function AllChatsHeader({ uid }) {
           <IconButton style={{ color: "#AEBAC1" }}>
             <KeyboardArrowDownIcon />
             <div className={styles.dropdownContent}>
-              <Link href="#">Settings</Link>
-              <Link href={`/profile?uid=${uid}`}>Profile</Link>
+              <Link href={`/settings?uid=${uid}&dmId=${dmId}`}>Settings</Link>
+              <Link href={`/profile?uid=${uid}&dmId=${dmId}`}>Profile</Link>
               <Link href="/">Logout</Link>
             </div>
           </IconButton>
