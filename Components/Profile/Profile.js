@@ -83,7 +83,7 @@ function Profile({ uid }) {
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
-
+    handleOnSubmit(changeEvent);
     // var file = e.target.files[0];
 
     // let reader = new FileReader();
@@ -101,7 +101,7 @@ function Profile({ uid }) {
   };
 
   async function handleOnSubmit(event) {
-    console.log("hehe")
+    console.log("hehe");
     event.preventDefault();
     const form = event.currentTarget;
     const fileInput = Array.from(form.elements).find(
@@ -141,15 +141,13 @@ function Profile({ uid }) {
               router.push(`/home?uid=${uid}`);
             }}
           >
-            <ArrowBackIcon
-              sx={{ cursor: "pointer", color: "#D9DEE0"}}
-            />
+            <ArrowBackIcon sx={{ cursor: "pointer", color: "#D9DEE0" }} />
           </IconButton>
           <p
             style={{
               marginLeft: "1rem",
               fontSize: "1.2rem",
-              color: "#D9DEE0"
+              color: "#D9DEE0",
             }}
           >
             Profile
@@ -160,7 +158,7 @@ function Profile({ uid }) {
         <form
           method="post"
           onChange={(event) => handleFileChange(event)}
-          onSubmit={(event) => handleOnSubmit(event)}
+          // onSubmit={(event) => handleOnSubmit(event)}
         >
           <label
             htmlFor="file"
@@ -175,12 +173,13 @@ function Profile({ uid }) {
           >
             {show ? (
               <CameraAltIcon
-                style={{ position: "absolute", zIndex: 100 }}
                 sx={{
                   cursor: "pointer",
                   color: "#999",
                   opacity: "1",
                   fontSize: 64,
+                  position: "absolute",
+                  zIndex: 100,
                 }}
               />
             ) : (
@@ -233,13 +232,9 @@ function Profile({ uid }) {
             }}
           >
             {disabled ? (
-              <EditIcon
-                sx={{ cursor: "pointer", color: "#D9DEE0"}}
-              />
+              <EditIcon sx={{ cursor: "pointer", color: "#D9DEE0" }} />
             ) : (
-              <DoneIcon
-                sx={{ cursor: "pointer", color: "#D9DEE0"}}
-              />
+              <DoneIcon sx={{ cursor: "pointer", color: "#D9DEE0" }} />
             )}
           </IconButton>
         </div>
@@ -279,13 +274,9 @@ function Profile({ uid }) {
             }}
           >
             {disabled2 ? (
-              <EditIcon
-                sx={{ cursor: "pointer", color: "#D9DEE0"}}
-              />
+              <EditIcon sx={{ cursor: "pointer", color: "#D9DEE0" }} />
             ) : (
-              <DoneIcon
-                sx={{ cursor: "pointer", color: "#D9DEE0"}}
-              />
+              <DoneIcon sx={{ cursor: "pointer", color: "#D9DEE0" }} />
             )}
           </IconButton>
         </div>
