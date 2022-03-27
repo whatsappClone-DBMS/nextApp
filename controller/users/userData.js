@@ -25,4 +25,16 @@ const updateProfileData = async (req, res, uid, name, status) => {
   res.status(200).send(user);
 };
 
-export { createUserData, updateProfileData };
+const updateProfilePic = async (req, res, uid, imgSrc) => {
+  let users = await executeQuery(
+    `UPDATE userData SET imgSrc = "${imgSrc}" WHERE uID = ${uid} `,
+    []
+  );
+  let user = await executeQuery(
+    `select * from userData where uID = ${uid}`,
+    []
+  );
+  res.status(200).send(user);
+};
+
+export { createUserData, updateProfileData, updateProfilePic };
