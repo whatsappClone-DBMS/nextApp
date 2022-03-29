@@ -7,6 +7,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
+import Link from "next/link";
 
 function SignUp() {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -14,6 +15,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [type, setType] = useState(true);
+  const [type1, setType1] = useState(true);
 
   const [error, setError] = useState("");
   const router = useRouter();
@@ -105,10 +107,10 @@ function SignUp() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm Password"
-              type={type ? "password" : "text"}
+              type={type1 ? "password" : "text"}
             ></input>
-            <IconButton onClick={() => setType(!type)}>
-              {type ? (
+            <IconButton onClick={() => setType1(!type1)}>
+              {type1 ? (
                 <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
               ) : (
                 <VisibilityOffIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
@@ -116,11 +118,15 @@ function SignUp() {
             </IconButton>
           </div>
         </div>
-        <button
-          style={{ marginTop: "2rem" }}
-          className={styles.button}
-          onClick={handleSignUp}
-        >
+        <Link href="/signup">
+          <p>
+            Already Have An Account?{" "}
+            <span>
+              <a style={{ textDecoration: "underline 1px" }}>Login</a>
+            </span>
+          </p>
+        </Link>
+        <button className={styles.button} onClick={handleSignUp}>
           <h3>Sign Up</h3>
         </button>
         <p style={{ textAlign: "center", color: "#08A684" }}>{error}</p>
