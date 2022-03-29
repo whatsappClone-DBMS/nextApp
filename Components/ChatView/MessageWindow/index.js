@@ -53,12 +53,12 @@ function MessageWindow({ dmId, user }) {
           message.sender == user ? (
             <SenderBubble
               message={message.text}
-              time={tConvert(message.time.split(":").slice(0, 2).join(":"))}
+              time={tConvert(message.time)}
             />
           ) : (
             <ReceiverBubble
               message={message.text}
-              time={tConvert(message.time.split(":").slice(0, 2).join(":"))}
+              time={tConvert(message.time)}
             />
           )
         )
