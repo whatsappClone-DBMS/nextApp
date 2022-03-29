@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styles from "./styles.module.css";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 
-function MessageBox({ sender, receiver }) {
+function MessageBox({ sender, dmId }) {
   const [message, setMessage] = useState("");
+  const [receiver, setReceiver] = useState("");
 
   const sendMessage = async () => {
     if (message != "") {
@@ -18,6 +19,31 @@ function MessageBox({ sender, receiver }) {
       setMessage("");
     }
   };
+
+  useEffect( async() => {
+    if (dmId) {
+      const responseDM = await fetch(
+        `http://localhost:3000/api/chats/dm?dmId=${dmId}`
+      );
+      const DMdata = await responseDM.json();
+      console.log("hi2", DMdata);
+      var uid2;
+      // if (DMdata[0]){
+      //   if(uid === DMdata[0].uid1){
+      //     uid2 = DMdata[0].uid2;
+      //   }
+      //   else{
+      //     uid2 = DMdata[0].uid1;
+      //   }
+      // }
+      DMdata[0]?.uid1 == sender
+              ? (uid2 = DMdata[0]?.uid2)
+              : (uid2 = DMdata[0]?.uid1);
+      
+      setReceiver(uid2);
+    }
+  }, [dmId])
+  
 
   function formatDate() {
     var d = new Date(),
@@ -41,7 +67,7 @@ function MessageBox({ sender, receiver }) {
         onChange={(e) => setMessage(e.target.value)}
       ></input>
       <IconButton onClick={sendMessage}>
-        <SendIcon sx={{ marginRight: "2rem" }} />
+        <SendIcon sx={{marginLeft:"-1.5rem", marginRight: "1rem", color:"#7B8B95"}} />
       </IconButton>
     </div>
   );

@@ -8,7 +8,7 @@ function ChatView({ dmId, uid }) {
     <div className={styles.ChatViewContainer}>
       <ChatViewHeader dmId={dmId} uid={uid}/>
       <MessageWindow dmId={dmId} user={uid} />
-      <MessageBox />
+      <MessageBox sender={uid} dmId={dmId} />
     </div>
   );
 }
