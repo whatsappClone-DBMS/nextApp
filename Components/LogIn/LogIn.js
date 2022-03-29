@@ -5,11 +5,13 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { IconButton } from "@mui/material";
 
 function LogIn() {
   const [mobileNumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [type, setType] = useState(true);
   const router = useRouter();
   const handleLogin = async () => {
     if (mobileNumber != "" && password != "") {
@@ -60,11 +62,13 @@ function LogIn() {
             <LockIcon sx={{ fontSize: "1.5rem" }} />
             <input
               placeholder="Password"
-              type="password"
+              type={type ? "password" : "text"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
-            <VisibilityIcon sx={{ fontSize: "1.5rem" }} />
+            <IconButton onClick={() => setType(!type)}>
+              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+            </IconButton>
           </div>
         </div>
         <Link href="/signup">

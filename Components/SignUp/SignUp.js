@@ -5,12 +5,15 @@ import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
+import { IconButton } from "@mui/material";
 
 function SignUp() {
   const [mobileNumber, setMobileNumber] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [type, setType] = useState(true);
+
   const [error, setError] = useState("");
   const router = useRouter();
   const handleSignUp = async () => {
@@ -82,9 +85,11 @@ function SignUp() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              type="password"
+              type={type ? "password" : "text"}
             ></input>
-            <VisibilityIcon sx={{ fontSize: "1.5rem" }} />
+            <IconButton onClick={() => setType(!type)}>
+              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+            </IconButton>
           </div>
         </div>
         <div className={styles.input}>
@@ -95,9 +100,11 @@ function SignUp() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm Password"
-              type="password"
+              type={type ? "password" : "text"}
             ></input>
-            <VisibilityIcon sx={{ fontSize: "1.5rem" }} />
+            <IconButton onClick={() => setType(!type)}>
+              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+            </IconButton>
           </div>
         </div>
         <button
