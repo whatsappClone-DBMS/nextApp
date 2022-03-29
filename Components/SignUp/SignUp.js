@@ -3,6 +3,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import styles from "./styles.module.css";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
 import { IconButton } from "@mui/material";
@@ -88,7 +89,11 @@ function SignUp() {
               type={type ? "password" : "text"}
             ></input>
             <IconButton onClick={() => setType(!type)}>
-              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              {type ? (
+                <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              ) : (
+                <VisibilityOffIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              )}
             </IconButton>
           </div>
         </div>
@@ -103,7 +108,11 @@ function SignUp() {
               type={type ? "password" : "text"}
             ></input>
             <IconButton onClick={() => setType(!type)}>
-              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              {type ? (
+                <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              ) : (
+                <VisibilityOffIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              )}
             </IconButton>
           </div>
         </div>

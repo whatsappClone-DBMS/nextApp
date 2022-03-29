@@ -6,6 +6,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { IconButton } from "@mui/material";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function LogIn() {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -67,7 +68,11 @@ function LogIn() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <IconButton onClick={() => setType(!type)}>
-              <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              {type ? (
+                <VisibilityIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              ) : (
+                <VisibilityOffIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+              )}
             </IconButton>
           </div>
         </div>
