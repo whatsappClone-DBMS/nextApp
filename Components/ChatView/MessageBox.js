@@ -10,9 +10,7 @@ function MessageBox({ sender, receiver }) {
     if (message != "") {
       const today = new Date();
       const response = await fetch(
-        `http://localhost:3000/api/chats/messages?sender=${sender}&receiver=${receiver}&text=${message}&date=${formatDate(
-          today
-        )}&time=${
+        `http://localhost:3000/api/chats/messages?sender=${sender}&receiver=${receiver}&text=${message}&date=${formatDate()}&time=${
           today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
         }`
       );
@@ -21,8 +19,8 @@ function MessageBox({ sender, receiver }) {
     }
   };
 
-  function formatDate(date) {
-    var d = new Date(date),
+  function formatDate() {
+    var d = new Date(),
       month = "" + (d.getMonth() + 1),
       day = "" + d.getDate(),
       year = d.getFullYear();
