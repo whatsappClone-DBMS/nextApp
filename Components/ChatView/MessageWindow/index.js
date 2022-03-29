@@ -21,8 +21,8 @@ function MessageWindow({ dmId, user }) {
             `http://localhost:3000/api/chats/messages?mId=${mId}`
           );
           const messageObj = await response.json();
-          console.log("messageObj", messageObj);
-          setMessages([...messages, messageObj]);
+          console.log("messageObj", messageObj[0]);
+          setMessages([...messages, messageObj[0]]);
         });
       }
     }

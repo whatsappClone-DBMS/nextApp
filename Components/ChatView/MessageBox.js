@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
+import { useRouter } from "next/router";
 
 function MessageBox({ sender, dmId }) {
   const [message, setMessage] = useState("");
   const [receiver, setReceiver] = useState("");
+  const router = useRouter();
 
   const sendMessage = async () => {
     if (message != "") {
@@ -16,11 +18,20 @@ function MessageBox({ sender, dmId }) {
         }`
       );
       const data = await response.json();
+      if (data[0]) {
+        const response2 = await fetch(
+          `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${data[0]}`
+        );
+        const data2 = await response2.json();
+        if (data2[0]) {
+          router.reload();
+        }
+      }
       setMessage("");
     }
   };
 
-  useEffect( async() => {
+  useEffect(async () => {
     if (dmId) {
       const responseDM = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
@@ -28,22 +39,14 @@ function MessageBox({ sender, dmId }) {
       const DMdata = await responseDM.json();
       console.log("hi2", DMdata);
       var uid2;
-      // if (DMdata[0]){
-      //   if(uid === DMdata[0].uid1){
-      //     uid2 = DMdata[0].uid2;
-      //   }
-      //   else{
-      //     uid2 = DMdata[0].uid1;
-      //   }
-      // }
+
       DMdata[0]?.uid1 == sender
-              ? (uid2 = DMdata[0]?.uid2)
-              : (uid2 = DMdata[0]?.uid1);
-      
+        ? (uid2 = DMdata[0]?.uid2)
+        : (uid2 = DMdata[0]?.uid1);
+
       setReceiver(uid2);
     }
-  }, [dmId])
-  
+  }, [dmId]);
 
   function formatDate() {
     var d = new Date(),
@@ -67,7 +70,9 @@ function MessageBox({ sender, dmId }) {
         onChange={(e) => setMessage(e.target.value)}
       ></input>
       <IconButton onClick={sendMessage}>
-        <SendIcon sx={{marginLeft:"-1.5rem", marginRight: "1rem", color:"#7B8B95"}} />
+        <SendIcon
+          sx={{ marginLeft: "-1.5rem", marginRight: "1rem", color: "#7B8B95" }}
+        />
       </IconButton>
     </div>
   );

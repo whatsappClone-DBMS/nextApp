@@ -18,6 +18,19 @@ const oneDM = async (req, res, dmId) => {
   res.send(oneDm);
 };
 
+const updateDmArray = async (req, res, dmId, mId) => {
+  let getArray = await executeQuery(
+    "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
+    []
+  );
+  const finalHistory = [...JSON.parse(getArray), mId];
+  let getArray = await executeQuery(
+    `UPDATE DM SET chatHistory = "${finalHistory}" WHERE dmID = ${dmId}`,
+    []
+  );
+  res.send(getArray);
+};
+
 const allMessages = async (req, res, mId) => {
   console.log("middddd", mId);
   let allMessages = await executeQuery(
@@ -33,7 +46,11 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
       "${sender}", "${receiver}", "${text}", "${date}", "${time}")`,
     []
   );
-  res.send(message);
+  let mId = await executeQuery(
+    "SELECT mID FROM Messages WHERE time= " + `${time}`,
+    []
+  );
+  res.send(mId);
 };
 
-export { allDMs, oneDM, allMessages, createMessage };
+export { allDMs, oneDM, allMessages, createMessage, updateDmArray };
