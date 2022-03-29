@@ -16,9 +16,10 @@ function MessageBox({ sender, dmId }) {
         }`
       );
       const data = await response.json();
+      console.log("helloooo", data);
       if (data[0]) {
         const response2 = await fetch(
-          `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${data[0]}`
+          `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${data[0].mID}`
         );
         const data2 = await response2.json();
         if (data2[0]) {

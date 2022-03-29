@@ -24,12 +24,14 @@ const updateDmArray = async (req, res, dmId, mId) => {
     "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
-  const finalHistory = [...JSON.parse(getArray), mId];
+  console.log(JSON.parse(getArray[0].chatHistory));
+  console.log(JSON.stringify(mId))
+  const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
   let putArray = await executeQuery(
-    `UPDATE DM SET chatHistory = "${finalHistory}" WHERE dmID = ${dmId}`,
+    `UPDATE DM SET chatHistory = "${JSON.stringify(finalHistory)}" WHERE dmID = ${dmId}`,
     []
   );
-  console.log('wqe', finalHistory)
+  console.log('wqe', finalHistory.toString())
   res.send(putArray);
 };
 
