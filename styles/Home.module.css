@@ -38,3 +38,9 @@
   width: 70vw;
   z-index: 100;
 }
+
+.storyImage {
+  /* display: block; */
+  /* margin-left: auto;
+  margin-right: auto; */
+}
