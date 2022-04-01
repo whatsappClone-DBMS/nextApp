@@ -12,7 +12,7 @@ import RateReviewIcon from "@mui/icons-material/RateReview";
 function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
   const router = useRouter();
-  const{dmId} = router.query;
+  const { dmId } = router.query;
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -28,9 +28,11 @@ function AllChatsHeader({ uid }) {
   }, [uid]);
   return (
     <div className={styles.header}>
-      <IconButton onClick={()=>{
-        router.push(`/profile?uid=${uid}&dmId=${dmId}`);
-      }}>
+      <IconButton
+        onClick={() => {
+          router.push(`/profile?uid=${uid}&dmId=${dmId}`);
+        }}
+      >
         <Avatar
           alt={user?.name}
           src={
@@ -40,9 +42,12 @@ function AllChatsHeader({ uid }) {
         />
       </IconButton>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <IconButton style={{ color: "#AEBAC1" }} onClick={()=>{
-          router.push(`/stories?uid=${uid}`)
-        }}>
+        <IconButton
+          style={{ color: "#AEBAC1" }}
+          onClick={() => {
+            router.push(`/stories?uid=${uid}`);
+          }}
+        >
           <CircleOutlinedIcon />
         </IconButton>
         <IconButton style={{ color: "#AEBAC1" }}>
