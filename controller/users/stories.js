@@ -4,7 +4,7 @@ const uploadStory = async (req, res, uid, imgSrc) => {
   console.log("bc", imgSrc);
   let story = await executeQuery(`select * from Story where uID = ${uid}`, []);
   if (story) {
-    let updateQuery = await executeQuery(
+    let insertQuery = await executeQuery(
       `UPDATE Story SET imgSrc = "${imgSrc}" WHERE uID = ${uid} `,
       []
     );
@@ -15,11 +15,7 @@ const uploadStory = async (req, res, uid, imgSrc) => {
     );
   }
 
-  let stories = await executeQuery(
-    `select * from Story where uID = ${uid}`,
-    []
-  );
-  res.send(stories);
+  res.send(insertQuery);
 };
 
 const allStories = async (req, res) => {
