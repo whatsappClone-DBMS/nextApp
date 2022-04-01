@@ -57,7 +57,7 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
   //   "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
   //   []
   // );
-  res.send(message);
+  // res.send(message);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray };
