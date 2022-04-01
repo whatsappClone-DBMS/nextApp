@@ -17,6 +17,7 @@ function MessageWindow({ dmId, user }) {
       const chatHistory = JSON.parse(DMdata[0].chatHistory);
       if (chatHistory) {
         chatHistory.forEach(async (mId) => {
+          console.log("FINAL MSSAGE TESTS", mId);
           const response = await fetch(
             `http://localhost:3000/api/chats/messages?mId=${mId}`
           );
