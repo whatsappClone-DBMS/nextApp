@@ -53,11 +53,12 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
     []
   );
   console.log("abcd");
-  // let mId = await executeQuery(
-  //   "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
-  //   []
-  // );
-  // res.send(message);
+  let mId = await executeQuery(
+    "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
+    []
+  );
+  console.log('bc', mId)
+  res.send(message);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray };
