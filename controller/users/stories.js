@@ -19,12 +19,12 @@ const uploadStory = async (req, res, uid, imgSrc) => {
     `select * from Story where uID = ${uid}`,
     []
   );
-  res.status(200).send(stories);
+  res.send(stories);
 };
 
 const allStories = async (req, res) => {
   let stories = await executeQuery(`select * from Story `, []);
-  res.status(200).send(stories);
+  res.send(stories);
 };
 
 export { uploadStory, allStories };

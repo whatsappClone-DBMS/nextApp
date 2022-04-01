@@ -9,7 +9,7 @@ const createUserData = async (req, res, uid, name) => {
     `select * from userData where uID = ${uid}`,
     []
   );
-  res.status(200).send(user);
+  res.send(user);
 };
 
 const updateProfileData = async (req, res, uid, name, status) => {
@@ -22,7 +22,7 @@ const updateProfileData = async (req, res, uid, name, status) => {
     `select * from userData where uID = ${uid}`,
     []
   );
-  res.status(200).send(user);
+  res.send(user);
 };
 
 const updateProfilePic = async (req, res, uid, imgSrc) => {
@@ -35,7 +35,7 @@ const updateProfilePic = async (req, res, uid, imgSrc) => {
     `select * from userData where uID = ${uid}`,
     []
   );
-  res.status(200).send(user);
+  res.send(user);
 };
 
 export { createUserData, updateProfileData, updateProfilePic };
