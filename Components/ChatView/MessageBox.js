@@ -16,16 +16,22 @@ function MessageBox({ sender, dmId }) {
         }`
       );
       const data = await response.json();
-      console.log("helloooo", data);
-      // if (data[0]) {
-      //   const response2 = await fetch(
-      //     `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${data[0].mID}`
-      //   );
-      //   const data2 = await response2.json();
-      //   if (data2[0]) {
-      //     router.reload();
-      //   }
-      // }
+
+      const responseForMID = await fetch(
+        `http://localhost:3000/api/chats/messages?time=${
+          today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        }`
+      );
+      const dataForMID = await response.json();
+      if (dataForMID[0]) {
+        const response2 = await fetch(
+          `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${dataForMID[0].mID}`
+        );
+        const data2 = await response2.json();
+        if (data2[0]) {
+          router.reload();
+        }
+      }
       setMessage("");
     }
   };

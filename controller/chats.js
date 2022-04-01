@@ -60,4 +60,13 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
   // res.send(message);
 };
 
-export { allDMs, oneDM, allMessages, createMessage, updateDmArray };
+const getMessage = async (req, res, time) => {
+  console.log("getting messageee");
+  let mId = await executeQuery(
+    "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
+    []
+  );
+  res.send(mId);
+};
+
+export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };
