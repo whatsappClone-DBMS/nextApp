@@ -43,6 +43,7 @@ function Story() {
     const data = await response.json();
     if (data) {
       setImgSrc(secure_url);
+      router.push(`/stories?uid=${user}&storyImg=${secure_url}`);
     } else {
       alert("Something went wrong.");
     }
@@ -155,12 +156,16 @@ function Story() {
             />
           </form>
 
-          <p style={{ marginLeft: "0.5rem" }}>My Status</p>
+          <p style={{ marginLeft: "0.5rem", cursor:"pointer"}} onClick={()=>{
+            if(imgSrc){
+              router.push(`/stories?uid=${user}&storyImg=${imgSrc}`);
+            }
+          }}>My Status</p>
         </div>
         <p style={{ marginLeft: "0.5rem" }}>Recent</p>
         {stories.map((story, index) => (
           <StoryComponent
-            user={uid}
+            User={uid}
             key={index}
             uid={story.uID}
             imgSrc={story.imgSrc}
@@ -202,7 +207,7 @@ function Story() {
                 />
               </IconButton>
             </span>
-            <img src={storyImg} style={{ minHeight: 500, width: "auto" }} />
+            <img src={storyImg} style={{ width: "auto", maxWidth:"70vw", height:"auto" , minHeight:"500px"}} />
           </div>
         ) : (
           <div

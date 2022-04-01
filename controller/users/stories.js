@@ -8,14 +8,15 @@ const uploadStory = async (req, res, uid, imgSrc) => {
       `UPDATE Story SET imgSrc = "${imgSrc}" WHERE uID = ${uid} `,
       []
     );
+    res.send(insertQuery);
   } else {
     let insertQuery = await executeQuery(
       `INSERT into Story(uID, imgSrc) Values("${uid}", "${imgSrc}")`,
       []
     );
+    res.send(insertQuery);
   }
-
-  res.send(insertQuery);
+  
 };
 
 const allStories = async (req, res) => {

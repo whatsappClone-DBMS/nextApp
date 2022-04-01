@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 
-function StoryComponent({ uid, imgSrc, seenBy }) {
+function StoryComponent({ uid, imgSrc, seenBy, User }) {
   const [user, setUser] = useState({});
   const router = useRouter();
 
@@ -24,7 +24,7 @@ function StoryComponent({ uid, imgSrc, seenBy }) {
     <div
       className={styles.component}
       onClick={() => {
-        router.push(`/stories?uid=${user}&storyImg=${imgSrc}`);
+        router.push(`/stories?uid=${User}&storyImg=${imgSrc}`);
       }}
     >
       <Avatar
