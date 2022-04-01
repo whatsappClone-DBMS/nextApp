@@ -26,8 +26,8 @@ function ChatViewHeader({ uid, dmId }) {
       //   }
       // }
       DMdata[0]?.uid1 == uid
-              ? (uid2 = DMdata[0]?.uid2)
-              : (uid2 = DMdata[0]?.uid1);
+        ? (uid2 = DMdata[0]?.uid2)
+        : (uid2 = DMdata[0]?.uid1);
       // const uid2 = (uid == DMdata[0]?.uid1 ? DMdata[0]?.uid2 : DMdata[0]?.uid1);
       if (uid2) {
         const response = await fetch(`http://localhost:3000/api/user/${uid2}`);
@@ -45,11 +45,11 @@ function ChatViewHeader({ uid, dmId }) {
 
   return (
     <div className={styles.container}>
-      <div style={{ display: "flex" }}
-      onClick={()=>{
-        router.push(`contact-info?uid=${uid}&uid2=${user?.uID}`)
-      }
-      }
+      <div
+        style={{ display: "flex", cursor: "pointer" }}
+        onClick={() => {
+          router.push(`contact-info?uid=${uid}&uid2=${user?.uID}`);
+        }}
       >
         <Avatar
           alt={user?.name ?? "Name"}
@@ -57,7 +57,7 @@ function ChatViewHeader({ uid, dmId }) {
             user?.imgSrc ??
             "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
           }
-          style={{ marginRight: 15 }}
+          style={{ marginRight: 15, cursor: "pointer" }}
         />
         <div>
           <h1 style={{ margin: "0" }}>{user?.name ?? "Name"}</h1>
