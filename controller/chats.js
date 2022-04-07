@@ -6,7 +6,7 @@ const allDMs = async (req, res, uid) => {
     "SELECT * FROM DM WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
     []
   );
-  return res.status(200).json(allDms);
+  return res.status(200).send(allDms);
 };
 
 const oneDM = async (req, res, dmId) => {
@@ -15,7 +15,7 @@ const oneDM = async (req, res, dmId) => {
     "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
-  return res.status(200).json(oneDm);
+  return res.status(200).send(oneDm);
 };
 
 const updateDmArray = async (req, res, dmId, mId) => {
@@ -33,7 +33,7 @@ const updateDmArray = async (req, res, dmId, mId) => {
     []
   );
   console.log("wqe", finalHistory.toString());
-  // res.status(200).json(putArray);
+  // res.status(200).send(putArray);
   return;
 };
 
@@ -43,7 +43,7 @@ const allMessages = async (req, res, mId) => {
     "SELECT * FROM Messages WHERE mID= " + `${mId}`,
     []
   );
-  return res.status(200).json(allMessages);
+  return res.status(200).send(allMessages);
 };
 
 const createMessage = async (req, res, sender, receiver, text, date, time) => {
@@ -59,7 +59,7 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
   );
   console.log("bcccc", mId);
   console.log("getHeaders", res.getHeaders());
-  return res.status(200).json(mId);
+  return res.status(200).send(mId);
 };
 
 const getMessage = async (req, res, time) => {
@@ -68,7 +68,7 @@ const getMessage = async (req, res, time) => {
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
     []
   );
-  return res.status(200).json(mId);
+  return res.status(200).send(mId);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };
