@@ -6,7 +6,7 @@ const allDMs = async (req, res, uid) => {
     "SELECT * FROM DM WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
     []
   );
-  return res.send(allDms);
+  return res.status(200).json(allDms);
 };
 
 const oneDM = async (req, res, dmId) => {
@@ -15,21 +15,10 @@ const oneDM = async (req, res, dmId) => {
     "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
-  return res.send(oneDm);
+  return res.status(200).json(oneDm);
 };
 
 const updateDmArray = async (req, res, dmId, mId) => {
-  console.log('getHeaders', res.getHeaders())
-  console.log("getArray");
-  res.removeHeader("x-powered-by");
-  res.removeHeader("set-cookie");
-  res.removeHeader("Date");
-  res.removeHeader("Connection");
-  res.removeHeader('cache-control');
-  res.removeHeader('etag');
-  res.removeHeader('content-type');
-  res.removeHeader('vary');
-  res.removeHeader('content-encoding');
   let getArray = await executeQuery(
     "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
     []
@@ -44,7 +33,7 @@ const updateDmArray = async (req, res, dmId, mId) => {
     []
   );
   console.log("wqe", finalHistory.toString());
-  // res.send(putArray);
+  // res.status(200).json(putArray);
   return;
 };
 
@@ -54,7 +43,7 @@ const allMessages = async (req, res, mId) => {
     "SELECT * FROM Messages WHERE mID= " + `${mId}`,
     []
   );
-  return res.send(allMessages);
+  return res.status(200).json(allMessages);
 };
 
 const createMessage = async (req, res, sender, receiver, text, date, time) => {
@@ -69,8 +58,8 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
     []
   );
   console.log("bcccc", mId);
-  console.log('getHeaders', res.getHeaders());
-  return res.send(mId);
+  console.log("getHeaders", res.getHeaders());
+  return res.status(200).json(mId);
 };
 
 const getMessage = async (req, res, time) => {
@@ -79,7 +68,7 @@ const getMessage = async (req, res, time) => {
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
     []
   );
-  return res.send(mId);
+  return res.status(200).json(mId);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };
