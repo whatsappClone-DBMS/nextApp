@@ -25,12 +25,11 @@ function MessageWindow({ dmId, user }) {
           );
           const messageObj = await response.json();
           console.log("messageObj", messageObj[0]);
-          messagesArr = [...messages, messageObj[0]];
+          messagesArr = [...messagesArr, messageObj[0]];
         });
+        setMessages(messagesArr);
+        console.log("my messages array", messagesArr);
       }
-
-      setMessages(messagesArr);
-      console.log("my messages array", messagesArr);
     }
   };
 
