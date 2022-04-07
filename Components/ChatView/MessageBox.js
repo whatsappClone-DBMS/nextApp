@@ -25,7 +25,7 @@ function MessageBox({ sender, dmId }) {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (mId) {
       const response2 = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${mId}`
