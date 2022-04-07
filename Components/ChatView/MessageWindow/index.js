@@ -16,6 +16,7 @@ function MessageWindow({ dmId, user }) {
       const DMdata = await responseDM.json();
       console.log("DMdataaaa", DMdata);
       const chatHistory = JSON.parse(DMdata[0].chatHistory);
+      let messagesArr = [];
       if (chatHistory) {
         chatHistory.forEach(async (mId) => {
           console.log("FINAL MSSAGE TESTS", mId);
@@ -24,10 +25,12 @@ function MessageWindow({ dmId, user }) {
           );
           const messageObj = await response.json();
           console.log("messageObj", messageObj[0]);
-          setMessages([...messages, messageObj[0]]);
+          messagesArr = [...messages, messageObj[0]];
         });
       }
-      console.log("my messages array", messages);
+
+      setMessages(messagesArr);
+      console.log("my messages array", messagesArr);
     }
   };
 
