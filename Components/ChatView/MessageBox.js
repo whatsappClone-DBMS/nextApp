@@ -20,8 +20,11 @@ function MessageBox({ sender, dmId }) {
       );
       const data = await response.json();
       console.log("helloooo", data);
-      setMId(data[0].mID);
+      if(data){
+        setMId(data[0].mID);
+      }
       setMessage("");
+      router.push(`/home?uid=${sender}&dmId=${dmId}`);
     }
   };
 
@@ -32,7 +35,8 @@ function MessageBox({ sender, dmId }) {
       );
       const data2 = await response2.json();
       if (data2) {
-        router.reload(window.location.pathname);
+        console.log(data2, "hulus")
+        router.push(`/home?uid=${sender}&dmId=${dmId}`);
       }
     }
   }, [mId]);
