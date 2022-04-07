@@ -3,6 +3,10 @@ import { allDMs, oneDM, updateDmArray } from "../../../controller/chats";
 
 function Handler(req, res) {
   const Handler = nc();
+  res.removeHeader("x-powered-by");
+  res.removeHeader("set-cookie");
+  res.removeHeader("Date");
+  res.removeHeader("Connection");
   const { uid, dmId, mId } = req.query;
 
   if (uid) {

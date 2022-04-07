@@ -6,8 +6,7 @@ const allDMs = async (req, res, uid) => {
     "SELECT * FROM DM WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
     []
   );
-  res.send(allDms);
-  return;
+  return res.send(allDms);
 };
 
 const oneDM = async (req, res, dmId) => {
@@ -16,12 +15,21 @@ const oneDM = async (req, res, dmId) => {
     "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
-  res.send(oneDm);
-  return;
+  return res.send(oneDm);
 };
 
 const updateDmArray = async (req, res, dmId, mId) => {
+  console.log('getHeaders', res.getHeaders())
   console.log("getArray");
+  res.removeHeader("x-powered-by");
+  res.removeHeader("set-cookie");
+  res.removeHeader("Date");
+  res.removeHeader("Connection");
+  res.removeHeader('cache-control');
+  res.removeHeader('etag');
+  res.removeHeader('content-type');
+  res.removeHeader('vary');
+  res.removeHeader('content-encoding');
   let getArray = await executeQuery(
     "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
     []
@@ -46,8 +54,7 @@ const allMessages = async (req, res, mId) => {
     "SELECT * FROM Messages WHERE mID= " + `${mId}`,
     []
   );
-  res.send(allMessages);
-  return;
+  return res.send(allMessages);
 };
 
 const createMessage = async (req, res, sender, receiver, text, date, time) => {
@@ -62,8 +69,8 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
     []
   );
   console.log("bcccc", mId);
-  res.send(mId);
-  return;
+  console.log('getHeaders', res.getHeaders());
+  return res.send(mId);
 };
 
 const getMessage = async (req, res, time) => {
@@ -72,8 +79,7 @@ const getMessage = async (req, res, time) => {
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
     []
   );
-  res.send(mId);
-  return;
+  return res.send(mId);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };

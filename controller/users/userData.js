@@ -9,7 +9,7 @@ const createUserData = async (req, res, uid, name) => {
     `select * from userData where uID = ${uid}`,
     []
   );
-  res.send(user);
+  return res.send(user);
 };
 
 const updateProfileData = async (req, res, uid, name, status) => {
