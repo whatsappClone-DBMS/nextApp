@@ -4,11 +4,12 @@ import SenderBubble from "./SenderBubble";
 import React, { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
+
 function MessageWindow({ dmId, user }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
   let messagesArr = [];
-  export const getChats = async () => {
+  const getChats = async () => {
     setMessages([]);
     if (dmId != -1000) {
       const responseDM = await fetch(
@@ -80,4 +81,4 @@ function MessageWindow({ dmId, user }) {
   );
 }
 
-export default { getChats, MessageWindow };
+export default MessageWindow ;
