@@ -51,13 +51,13 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
       "${sender}", "${receiver}", "${text}", "${date}", "${time}")`,
     []
   );
-  console.log("abcd");
+  console.log("abcdefg", message);
   let mId = await executeQuery(
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
     []
   );
-  console.log('bc', mId)
-  res.send(message);
+  console.log("bcccc", mId);
+  res.send(mId);
 };
 
 const getMessage = async (req, res, time) => {

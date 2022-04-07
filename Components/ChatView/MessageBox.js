@@ -4,11 +4,10 @@ import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 
-
-
 function MessageBox({ sender, dmId }) {
   const [message, setMessage] = useState("");
   const [receiver, setReceiver] = useState("");
+  const [mId, setMId] = useState("");
   const router = useRouter();
 
   const sendMessage = async () => {
@@ -21,16 +20,20 @@ function MessageBox({ sender, dmId }) {
       );
       const data = await response.json();
       console.log("helloooo", data);
-      if (data) {
-        const response2 = await fetch(
-          `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${data.insertId}`
-        );
-        const data2 = await response2.json();
-          router.reload();
-      }
+      setMId(data[0].mID);
       setMessage("");
     }
   };
+
+  useEffect(() => {
+    if (mId) {
+      const response2 = await fetch(
+        `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${mId}`
+      );
+      const data2 = await response2.json();
+      router.reload();
+    }
+  }, [mId]);
 
   useEffect(async () => {
     if (dmId) {
