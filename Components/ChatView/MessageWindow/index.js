@@ -7,6 +7,7 @@ import Loading from "../../Loading";
 function MessageWindow({ dmId, user }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
+  let messagesArr = [];
   const getChats = async () => {
     setMessages([]);
     if (dmId != -1000) {
@@ -16,19 +17,21 @@ function MessageWindow({ dmId, user }) {
       const DMdata = await responseDM.json();
       console.log("DMdataaaa", DMdata);
       const chatHistory = JSON.parse(DMdata[0].chatHistory);
-      let messagesArr = [];
       if (chatHistory) {
-        chatHistory.forEach(async (mId) => {
+        chatHistory.map(async (mId) => {
           console.log("FINAL MSSAGE TESTS", mId);
           const response = await fetch(
             `http://localhost:3000/api/chats/messages?mId=${mId}`
           );
           const messageObj = await response.json();
           console.log("messageObj", messageObj[0]);
-          messagesArr = [...messagesArr, messageObj[0]];
+          if(messageObj){
+            console.log("yele")
+            messagesArr = [...messagesArr, messageObj[0]];
+            setMessages(messagesArr);
+            console.log("my messages array", messagesArr);
+          } 
         });
-        setMessages(messagesArr);
-        console.log("my messages array", messagesArr);
       }
     }
   };
