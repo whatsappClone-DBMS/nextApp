@@ -8,6 +8,7 @@ function MessageWindow({ dmId, user }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
   const getChats = async () => {
+    setMessages([]);
     if (dmId != -1000) {
       const responseDM = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
