@@ -32,10 +32,15 @@ function MessageWindow({ dmId, user }) {
 
   useEffect(() => {
     if (dmId) {
+      setMessages([]);
       console.log("uid123", dmId);
       getChats();
     }
   }, [dmId]);
+
+  useEffect(() => {
+    setMessages([]);
+  }, []);
 
   function tConvert(timeString) {
     var hourEnd = timeString.indexOf(":");
