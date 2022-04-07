@@ -31,7 +31,9 @@ function MessageBox({ sender, dmId }) {
         `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${mId}`
       );
       const data2 = await response2.json();
-      router.reload();
+      if (data2) {
+        router.reload(window.location.pathname);
+      }
     }
   }, [mId]);
 
