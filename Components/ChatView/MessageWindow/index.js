@@ -50,8 +50,8 @@ function MessageWindow({ dmId, user }) {
       {!messages ? (
         <Loading />
       ) : (
-        messages.map((message) =>
-          message.sender == user ? (
+        messages.map((message) => {
+          return message.sender == user ? (
             <SenderBubble
               message={message.text}
               time={tConvert(message.time)}
@@ -61,8 +61,8 @@ function MessageWindow({ dmId, user }) {
               message={message.text}
               time={tConvert(message.time)}
             />
-          )
-        )
+          );
+        })
       )}
     </div>
   );
