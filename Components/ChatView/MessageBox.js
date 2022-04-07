@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
+import { getChats } from "./MessageWindow/index.js";
 
 function MessageBox({ sender, dmId }) {
   const [message, setMessage] = useState("");
@@ -33,6 +34,7 @@ function MessageBox({ sender, dmId }) {
       `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${temp}`
     );
     const data2 = await response2.json();
+    getChats();
     console.log(data2, "hulus");
     router.reload();
   };

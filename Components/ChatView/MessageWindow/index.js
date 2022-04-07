@@ -8,7 +8,7 @@ function MessageWindow({ dmId, user }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
   let messagesArr = [];
-  const getChats = async () => {
+  export const getChats = async () => {
     setMessages([]);
     if (dmId != -1000) {
       const responseDM = await fetch(
@@ -25,12 +25,12 @@ function MessageWindow({ dmId, user }) {
           );
           const messageObj = await response.json();
           console.log("messageObj", messageObj[0]);
-          if(messageObj){
-            console.log("yele")
+          if (messageObj) {
+            console.log("yele");
             messagesArr = [...messagesArr, messageObj[0]];
             setMessages(messagesArr);
             console.log("my messages array", messagesArr);
-          } 
+          }
         });
       }
     }
@@ -80,4 +80,4 @@ function MessageWindow({ dmId, user }) {
   );
 }
 
-export default MessageWindow;
+export default { getChats, MessageWindow };
