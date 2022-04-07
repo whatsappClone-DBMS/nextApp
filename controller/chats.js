@@ -6,7 +6,7 @@ const allDMs = async (req, res, uid) => {
     "SELECT * FROM DM WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
     []
   );
-  res.send(allDms);
+  return res.send(allDms);
 };
 
 const oneDM = async (req, res, dmId) => {
@@ -15,7 +15,7 @@ const oneDM = async (req, res, dmId) => {
     "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
-  res.send(oneDm);
+  return res.send(oneDm);
 };
 
 const updateDmArray = async (req, res, dmId, mId) => {
@@ -43,7 +43,7 @@ const allMessages = async (req, res, mId) => {
     "SELECT * FROM Messages WHERE mID= " + `${mId}`,
     []
   );
-  res.send(allMessages);
+  return res.send(allMessages);
 };
 
 const createMessage = async (req, res, sender, receiver, text, date, time) => {
@@ -58,7 +58,7 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
     []
   );
   console.log("bcccc", mId);
-  res.send(mId);
+  return res.send(mId);
 };
 
 const getMessage = async (req, res, time) => {
@@ -67,7 +67,7 @@ const getMessage = async (req, res, time) => {
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
     []
   );
-  res.send(mId);
+  return res.send(mId);
 };
 
 export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };
