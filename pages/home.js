@@ -8,13 +8,14 @@ import { display } from "@mui/system";
 
 export default function HomeAfterLogin() {
   const router = useRouter();
-  const { uid, dmId } = router.query;
+  const { uid, dmId, refresh } = router.query;
+
 
   return (
     <div className={styles.container}>
       <AllChats uid={uid} />
       {dmId?
-      (<ChatView dmId={dmId ?? -1000} uid={uid} />)
+      (<ChatView dmId={dmId ?? -1000} uid={uid} refresh={refresh} />)
       :
       <div style={{
         display:"flex", 

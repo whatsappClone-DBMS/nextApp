@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
 
-function MessageWindow({ dmId, user }) {
+function MessageWindow({ dmId, user, refresh }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
   let messagesArr = [];
@@ -48,7 +48,12 @@ function MessageWindow({ dmId, user }) {
   useEffect(() => {
     setMessages([]);
   }, []);
-
+  useEffect(() => {
+    if(refresh){
+      setMessages([]);
+      getChats();
+    }
+  }, [refresh]);
   function tConvert(timeString) {
     var hourEnd = timeString.indexOf(":");
     var H = +timeString.substr(0, hourEnd);
