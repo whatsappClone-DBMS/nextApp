@@ -20,11 +20,10 @@ function MessageBox({ sender, dmId }) {
       );
       const data = await response.json();
       console.log("helloooo", data);
-      if(data){
+      if (data) {
         setMId(data[0].mID);
       }
       setMessage("");
-      router.push(`/home?uid=${sender}&dmId=${dmId}`);
     }
   };
 
@@ -34,10 +33,8 @@ function MessageBox({ sender, dmId }) {
         `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${mId}`
       );
       const data2 = await response2.json();
-      if (data2) {
-        console.log(data2, "hulus")
-        router.push(`/home?uid=${sender}&dmId=${dmId}`);
-      }
+      console.log(data2, "hulus");
+      router.push("/");
     }
   }, [mId]);
 

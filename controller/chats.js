@@ -34,7 +34,7 @@ const updateDmArray = async (req, res, dmId, mId) => {
     []
   );
   console.log("wqe", finalHistory.toString());
-  res.send(putArray);
+  // res.send(putArray);
 };
 
 const allMessages = async (req, res, mId) => {
