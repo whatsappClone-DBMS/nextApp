@@ -27,6 +27,7 @@ function MessageWindow({ dmId, user }) {
           setMessages([...messages, messageObj[0]]);
         });
       }
+      console.log("my messages array", messages);
     }
   };
 
