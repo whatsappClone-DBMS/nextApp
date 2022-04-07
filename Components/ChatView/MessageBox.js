@@ -22,21 +22,20 @@ function MessageBox({ sender, dmId }) {
       console.log("helloooo", data);
       if (data) {
         setMId(data[0].mID);
+        addMId(data[0].mID);
       }
       setMessage("");
     }
   };
 
-  useEffect(async () => {
-    if (mId) {
-      const response2 = await fetch(
-        `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${mId}`
-      );
-      const data2 = await response2.json();
-      console.log(data2, "hulus");
-      router.push("/");
-    }
-  }, [mId]);
+  const addMId = async (temp) => {
+    const response2 = await fetch(
+      `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${temp}`
+    );
+    const data2 = await response2.json();
+    console.log(data2, "hulus");
+    router.reload();
+  };
 
   useEffect(async () => {
     if (dmId) {
