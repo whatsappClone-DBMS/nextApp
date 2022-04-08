@@ -48,24 +48,24 @@ function MessageBox({ sender, dmId }) {
       console.log("helloooo", data);
       if (data) {
         setMId(data[0].mID);
-        addMId(data[0].mID);
+        // addMId(data[0].mID);
       }
       setMessage("");
     }
   };
 
-  const addMId = async (temp) => {
-    console.log("kuch");
-    const response2 = await fetch(
-      `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${temp}`
-    );
-    console.log("kuch1");
-    const data2 = await response2.json();
-    console.log("kuch");
-    router.push(`/home?uid=${sender}&dmId=${dmId}&refresh=true`);
-    console.log(data2, "hulus");
-    router.reload();
-  };
+  // const addMId = async (temp) => {
+  //   console.log("kuch");
+  //   const response2 = await fetch(
+  //     `http://localhost:3000/api/chats/dm?dmId=${dmId}&mId=${temp}`
+  //   );
+  //   console.log("kuch1");
+  //   const data2 = await response2.json();
+  //   console.log("kuch");
+  //   router.push(`/home?uid=${sender}&dmId=${dmId}&refresh=true`);
+  //   console.log(data2, "hulus");
+  //   router.reload();
+  // };
 
   useEffect(async () => {
     if (dmId) {
