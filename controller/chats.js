@@ -73,10 +73,11 @@ const createMessage = async (
     []
   );
   console.log(JSON.parse(getArray[0].chatHistory));
-  console.log("2", parseInt(mId));
-  const finalHistory = [];
-  if (parseInt(mId)) {
-    finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
+  console.log("2", parseInt(mId[0].mID));
+  var finalHistory = [];
+  if (mId) {
+    finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId[0].mID)];
+    console.log("hat", finalHistory)
   } else {
     finalHistory = JSON.parse(getArray[0].chatHistory);
   }
@@ -89,7 +90,7 @@ const createMessage = async (
   );
   console.log("wqe", finalHistory.toString());
 
-  return res.send(putArray);
+  // return res.send(putArray);
 };
 
 const getMessage = async (req, res, time) => {

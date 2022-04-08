@@ -44,13 +44,14 @@ function MessageBox({ sender, dmId }) {
           today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
         }&dmId=${dmId}`
       );
+      setMessage("");
+      router.reload();
       const data = await response.json();
       console.log("helloooo", data);
-      if (data) {
-        setMId(data[0].mID);
+      // if (data) {
+        setMId(data[0]?.mID);
         // addMId(data[0].mID);
-      }
-      setMessage("");
+      // }
     }
   };
 
