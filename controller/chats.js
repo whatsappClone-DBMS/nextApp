@@ -46,7 +46,16 @@ const allMessages = async (req, res, mId) => {
   return res.status(200).send(allMessages);
 };
 
-const createMessage = async (req, res, sender, receiver, text, date, time) => {
+const createMessage = async (
+  req,
+  res,
+  sender,
+  receiver,
+  text,
+  date,
+  time,
+  dmId
+) => {
   let message = await executeQuery(
     `INSERT into Messages(sender, receiver, text, date, time) Values(
       "${sender}", "${receiver}", "${text}", "${date}", "${time}")`,
@@ -59,7 +68,23 @@ const createMessage = async (req, res, sender, receiver, text, date, time) => {
   );
   console.log("bcccc", mId);
   console.log("getHeaders", res.getHeaders());
-  return res.status(200).send(mId);
+
+  let getArray = await executeQuery(
+    "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
+    []
+  );
+  console.log(JSON.parse(getArray[0].chatHistory));
+  console.log(JSON.stringify(mId));
+  const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
+  let putArray = await executeQuery(
+    `UPDATE DM SET chatHistory = "${JSON.stringify(
+      finalHistory
+    )}" WHERE dmID = ${dmId}`,
+    []
+  );
+  console.log("wqe", finalHistory.toString());
+
+  return res.status(200).send(putArray);
 };
 
 const getMessage = async (req, res, time) => {

@@ -42,7 +42,7 @@ function MessageBox({ sender, dmId }) {
       const response = await fetch(
         `http://localhost:3000/api/chats/messages?sender=${sender}&receiver=${receiver}&text=${message}&date=${formatDate()}&time=${
           today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-        }`
+        }&dmId=${dmId}`
       );
       const data = await response.json();
       console.log("helloooo", data);
