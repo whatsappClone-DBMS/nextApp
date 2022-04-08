@@ -113,10 +113,10 @@ const deleteMessage = async (req, res, dmId, mId) => {
   console.log(JSON.parse(getArray[0].chatHistory));
   console.log(JSON.stringify(mId));
   const finalHistory = JSON.parse(getArray[0].chatHistory);
-  finalHistory = finalHistory.filter((item) => item != mId);
+  const final = finalHistory.filter((item) => item != mId);
   let putArray = await executeQuery(
     `UPDATE DM SET chatHistory = "${JSON.stringify(
-      finalHistory
+      final
     )}" WHERE dmID = ${dmId}`,
     []
   );
