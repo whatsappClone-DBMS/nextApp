@@ -67,14 +67,12 @@ const createMessage = async (
     []
   );
   console.log("bcccc", mId);
-  console.log("getHeaders", res.getHeaders());
-
   let getArray = await executeQuery(
     "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
     []
   );
   console.log(JSON.parse(getArray[0].chatHistory));
-  console.log(JSON.stringify(mId));
+  console.log("2", parseInt(mId));
   const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
   let putArray = await executeQuery(
     `UPDATE DM SET chatHistory = "${JSON.stringify(
@@ -84,7 +82,7 @@ const createMessage = async (
   );
   console.log("wqe", finalHistory.toString());
 
-  return res.status(200).send(putArray);
+  return res.send(putArray);
 };
 
 const getMessage = async (req, res, time) => {

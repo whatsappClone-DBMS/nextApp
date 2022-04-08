@@ -4,7 +4,6 @@ import SenderBubble from "./SenderBubble";
 import React, { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
-
 function MessageWindow({ dmId, user, refresh }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
@@ -49,17 +48,17 @@ function MessageWindow({ dmId, user, refresh }) {
     setMessages([]);
   }, []);
   useEffect(() => {
-    if(refresh){
+    if (refresh) {
       setMessages([]);
       getChats();
     }
   }, [refresh]);
   function tConvert(timeString) {
-    var hourEnd = timeString.indexOf(":");
-    var H = +timeString.substr(0, hourEnd);
+    var hourEnd = timeString?.indexOf(":");
+    var H = +timeString?.substr(0, hourEnd);
     var h = H % 12 || 12;
     var ampm = H < 12 ? " AM" : " PM";
-    timeString = h + timeString.substr(hourEnd, 3) + ampm;
+    timeString = h + timeString?.substr(hourEnd, 3) + ampm;
     return timeString;
   }
 
@@ -69,15 +68,15 @@ function MessageWindow({ dmId, user, refresh }) {
         <Loading />
       ) : (
         messages.map((message) => {
-          return message.sender == user ? (
+          return message?.sender == user ? (
             <SenderBubble
-              message={message.text}
-              time={tConvert(message.time)}
+              message={message?.text}
+              time={tConvert(message?.time)}
             />
           ) : (
             <ReceiverBubble
-              message={message.text}
-              time={tConvert(message.time)}
+              message={message?.text}
+              time={tConvert(message?.time)}
             />
           );
         })
@@ -86,4 +85,4 @@ function MessageWindow({ dmId, user, refresh }) {
   );
 }
 
-export default MessageWindow ;
+export default MessageWindow;
