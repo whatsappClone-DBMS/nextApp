@@ -3,9 +3,11 @@ import styles from "./styles.module.css";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function SenderBubble({ message, time, mId, dmId }) {
   const [show, setShow] = useState(false);
+  const router = useRouter();
   function toggle() {
     setShow(!show);
   }
@@ -15,6 +17,7 @@ function SenderBubble({ message, time, mId, dmId }) {
     const responseDM = await fetch(
       `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&dmId=${dmId}`
     );
+    router.reload();
     const data = await responseDM.json();
   };
 

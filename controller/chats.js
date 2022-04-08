@@ -76,8 +76,11 @@ const createMessage = async (
   console.log("2", parseInt(mId[0].mID));
   var finalHistory = [];
   if (mId) {
-    finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId[0].mID)];
-    console.log("hat", finalHistory)
+    finalHistory = [
+      ...JSON.parse(getArray[0].chatHistory),
+      parseInt(mId[0].mID),
+    ];
+    console.log("hat", finalHistory);
   } else {
     finalHistory = JSON.parse(getArray[0].chatHistory);
   }
@@ -110,16 +113,22 @@ const deleteMessage = async (req, res, dmId, mId) => {
   console.log(JSON.parse(getArray[0].chatHistory));
   console.log(JSON.stringify(mId));
   const finalHistory = JSON.parse(getArray[0].chatHistory);
-  finalHistory.filter((item) => item != mId);
+  finalHistory = finalHistory.filter((item) => item != mId);
   let putArray = await executeQuery(
     `UPDATE DM SET chatHistory = "${JSON.stringify(
       finalHistory
     )}" WHERE dmID = ${dmId}`,
     []
   );
-  return;
+  return res.status(200).send(putArray);
 };
 
-
-
-export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage, deleteMessage};
+export {
+  allDMs,
+  oneDM,
+  allMessages,
+  createMessage,
+  updateDmArray,
+  getMessage,
+  deleteMessage,
+};
