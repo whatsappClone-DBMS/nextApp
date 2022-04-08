@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function MessageBox({ sender, dmId }) {
   const [message, setMessage] = useState("");
@@ -49,8 +50,8 @@ function MessageBox({ sender, dmId }) {
       const data = await response.json();
       console.log("helloooo", data);
       // if (data) {
-        setMId(data[0]?.mID);
-        // addMId(data[0].mID);
+      setMId(data[0]?.mID);
+      // addMId(data[0].mID);
       // }
     }
   };
@@ -106,6 +107,14 @@ function MessageBox({ sender, dmId }) {
 
   return (
     <div className={styles.messageContainer}>
+      <IconButton
+        onClick={() => {
+          setMessage("❤️");
+          sendMessage();
+        }}
+      >
+        <FavoriteIcon sx={{ marginRight: "1rem", color: "#7B8B95" }} />
+      </IconButton>
       <input
         className={styles.textMessage}
         style={{ marginRight: "2rem" }}
