@@ -74,7 +74,13 @@ const createMessage = async (
   );
   console.log(JSON.parse(getArray[0].chatHistory));
   console.log("2", parseInt(mId));
-  const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
+  const finalHistory = [];
+  if (parseInt(mId)) {
+    finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
+  } else {
+    finalHistory = JSON.parse(getArray[0].chatHistory);
+  }
+
   let putArray = await executeQuery(
     `UPDATE DM SET chatHistory = "${JSON.stringify(
       finalHistory
