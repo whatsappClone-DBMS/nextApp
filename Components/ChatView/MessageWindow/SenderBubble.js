@@ -21,7 +21,14 @@ function SenderBubble({ message, time, mId, dmId }) {
   return (
     <div className={styles.senderBubble}>
       {message}
-      <div style={{ flex: 0 }}>
+      <div
+        style={{
+          flex: 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <span style={{ marginLeft: 10, fontSize: "0.55rem", opacity: 0.7 }}>
           {time}
         </span>
@@ -35,9 +42,9 @@ function SenderBubble({ message, time, mId, dmId }) {
               style={{ display: show ? "block" : "none" }}
               onClick={deleteMessage}
             >
-              {/* <Link href={`/api/chats/deleteMessage?mId=${mId}&dmId=${dmId}`}> */}
-              Delete
-              {/* </Link> */}
+              <Link href="#" passHref={true}>
+                Delete
+              </Link>
             </div>
           </IconButton>
         </span>
