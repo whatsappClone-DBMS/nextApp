@@ -23,7 +23,6 @@ function SenderBubble({ message, time, mId, dmId }) {
       {message}
       <div
         style={{
-          flex: 0,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -35,7 +34,7 @@ function SenderBubble({ message, time, mId, dmId }) {
         <span className={styles.dropdown}>
           <IconButton style={{ color: "#AEBAC1" }} onClick={toggle}>
             <KeyboardArrowDownIcon
-              style={{ marginRight: 2, fontSize: "0.55rem", opacity: 0.7 }}
+              style={{ fontSize: "0.6rem", opacity: 0.7 }}
             />
             <div
               className={styles.dropdownContent}
