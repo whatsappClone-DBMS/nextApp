@@ -102,4 +102,24 @@ const getMessage = async (req, res, time) => {
   return res.status(200).send(mId);
 };
 
-export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage };
+const deleteMessage = async (req, res, dmId, mId) => {
+  let getArray = await executeQuery(
+    "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
+    []
+  );
+  console.log(JSON.parse(getArray[0].chatHistory));
+  console.log(JSON.stringify(mId));
+  const finalHistory = JSON.parse(getArray[0].chatHistory);
+  finalHistory.filter((item) => item != mId);
+  let putArray = await executeQuery(
+    `UPDATE DM SET chatHistory = "${JSON.stringify(
+      finalHistory
+    )}" WHERE dmID = ${dmId}`,
+    []
+  );
+  return;
+};
+
+
+
+export { allDMs, oneDM, allMessages, createMessage, updateDmArray, getMessage, deleteMessage};

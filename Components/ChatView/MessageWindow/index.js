@@ -81,6 +81,8 @@ function MessageWindow({ dmId, user, refresh }) {
             <SenderBubble
               message={message?.text}
               time={tConvert(message?.time)}
+              dmId = {dmId}
+              mId = {message?.mID}
             />
           ) : (
             <ReceiverBubble
