@@ -19,7 +19,9 @@
 
 .senderBubble {
   width: fit-content;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 2rem;
   margin-left: auto;
   background-color: #025d4b;
@@ -31,6 +33,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  background-color: #111b21;
 }
 
 .dropdownContent {
@@ -56,7 +59,6 @@
   background-color: #2a3942;
 }
 
-.dropdown:hover .dropdownContent {
+.dropdownContent {
   display: block;
-  background-color: #111b21;
 }
