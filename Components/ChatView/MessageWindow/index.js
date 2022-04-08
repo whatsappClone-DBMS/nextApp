@@ -28,10 +28,13 @@ function MessageWindow({ dmId, user, refresh }) {
           if (messageObj) {
             console.log("yele");
             messagesArr = [...messagesArr, messageObj[0]];
-            setMessages(messagesArr);
+
             console.log("my messages array", messagesArr);
           }
         });
+
+        messagesArr.sort((a, b) => (Date(a.date) > Date(b.date) ? 1 : -1));
+        setMessages(messagesArr);
       }
     }
   };
