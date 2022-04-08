@@ -61,6 +61,7 @@ const createMessage = async (
       "${sender}", "${receiver}", "${text}", "${date}", "${time}")`,
     []
   );
+
   console.log("abcdefg", message);
   let mId = await executeQuery(
     "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
