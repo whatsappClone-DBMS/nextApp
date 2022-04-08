@@ -30,11 +30,17 @@ function MessageWindow({ dmId, user, refresh }) {
             messagesArr = [...messagesArr, messageObj[0]];
 
             console.log("my messages array", messagesArr);
+            console.log("000")
+            messagesArr.sort((a, b) => {
+            if (a.mID < b.mID) return -1
+            return a.mID > b.mID ? 1 : 0
+            });
+            console.log("000")
+            setMessages(messagesArr);
+            console.log("msgs", messagesArr)
           }
         });
-
-        messagesArr.sort((a, b) => (Date(a.date) > Date(b.date) ? 1 : -1));
-        setMessages(messagesArr);
+        
       }
     }
   };
