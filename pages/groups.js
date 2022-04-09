@@ -12,9 +12,8 @@ export default function Groups() {
     <div className={styles.container}>
       <AllGroupChats uid={uid} />
       {gId ? (
-        <></>
+        <ChatView gId={gId ?? -1000} uid={uid} refresh={refresh} />
       ) : (
-        // <ChatView groupId={groupId ?? -1000} uid={uid} refresh={refresh} />
         <div
           style={{
             display: "flex",

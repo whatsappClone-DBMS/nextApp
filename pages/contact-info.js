@@ -5,16 +5,15 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import ContactInfo from "../Components/ContactInfo/ContactInfo";
 
-
 function contactInfo() {
-    const router = useRouter();
-    const { uid, uid2 } = router.query;
-    return (
-        <div className={styles.container}>
-        <AllChats uid={uid} />
-        <ContactInfo uid2={uid2}/>
-        </div>
-  )
+  const router = useRouter();
+  const { uid, uid2, gId } = router.query;
+  return (
+    <div className={styles.container}>
+      <AllChats uid={uid} />
+      <ContactInfo uid2={uid2} gId={gId} />
+    </div>
+  );
 }
 
-export default contactInfo
+export default contactInfo;
