@@ -10,6 +10,7 @@ import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
 function Setting({uid}) {
     const [user, setUser] = useState();
     const [archived, setArchived] = useState([]);
+    const [blocked, setBlocked] = useState([]);
     const getUserDetails = async () => {
         if (uid) {
           const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -20,10 +21,22 @@ function Setting({uid}) {
     };
     const getArchived = async () => {
         if(uid){
-            const response = await fetch(`http://localhost:3000/api/user/archived/${uid}`);
+            const response = await fetch(`http://localhost:3000/api/user/archived?uid=${uid}`);
             const data =  await response.json();
-            setArchived(data);
+            if(data){
+                setArchived(data[0].archived);
+            }
             console.log('mdrfkr', archived);
+        }
+    }
+    const getBlocked = async () => {
+        if(uid){
+            const response = await fetch(`http://localhost:3000/api/user/blocked?uid=${uid}`);
+            const data =  await response.json();
+            if(data){
+                setBlocked(data[0].blocked);
+            }
+            console.log('mdrfkr', blocked);
         }
     }
     const router = useRouter();
@@ -31,6 +44,7 @@ function Setting({uid}) {
     useEffect(() => {
         console.log("uid", uid);
         getUserDetails();
+        getArchived();
       }, [uid]);
   return (
     <div className={styles.settingContainer}>
@@ -70,15 +84,11 @@ function Setting({uid}) {
                     <p>{user?.status??"Your Status"}</p>
                 </div>
             </div>
-            <div className={styles.option}>
+            <div className={styles.option} onClick={() => getBlocked()}>
                 <BlockIcon/>
                 <h3>Blocked</h3>
             </div>
-            <div className={styles.option}>
-                <VolumeMuteIcon/>
-                <h3>Muted Chats</h3>
-            </div>
-            <div className={styles.option}>
+            <div className={styles.option} onClick={() => getArchived()}>
                 <VolumeMuteIcon/>
                 <h3>Archived Chats</h3>
             </div>

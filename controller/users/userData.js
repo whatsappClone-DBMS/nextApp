@@ -41,6 +41,11 @@ const updateProfilePic = async (req, res, uid, imgSrc) => {
 const getArchived = async (req, res, uid) => {
   let archivedUsers = await executeQuery(`select archived from userData where uID = ${uid}`,[]);
   res.send(archivedUsers);
-}
+};
 
-export { createUserData, updateProfileData, updateProfilePic, getArchived };
+const getBlocked = async (req, res, uid) => {
+  let blockedUsers = await executeQuery(`select blocked from userData where uID = ${uid}`,[]);
+  res.send(blockedUsers);
+};
+
+export { createUserData, updateProfileData, updateProfilePic, getArchived, getBlocked };
