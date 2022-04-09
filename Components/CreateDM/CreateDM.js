@@ -18,15 +18,17 @@ function CreateDMComponent({ uid }) {
       var flag = true;
       const response = await fetch(`http://localhost:3000/api/login/${number}`);
       const data = await response.json();
-      if (data) {
+      if (data[0]) {
         console.log("data of number", data);
         // Check if chats already exists and uid is not the same!
-        if (data[0].uID != uid) {
+        if (data[0]?.uID != uid) {
+          console.log("atif bkl", uid);
           const response2 = await fetch(
-            `http://localhost:3000/api/chats/dm?uid=${data[0].uID}`
+            `http://localhost:3000/api/chats/dm?uid=${data[0]?.uID}`
           );
           const data2 = await response2.json();
-          data2[0].map((dm) => {
+          console.log("atif chu", data2);
+          data2.map((dm) => {
             console.log("dmDtaaa", dm);
             if (
               (dm.uid1 == uid && dm.uid2 == data[0].uID) ||
