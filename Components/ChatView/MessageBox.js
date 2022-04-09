@@ -5,40 +5,40 @@ import { IconButton } from "@mui/material";
 import { useRouter } from "next/router";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-function MessageBox({ sender, dmId }) {
+function MessageBox({ sender, dmId, gId }) {
   const [message, setMessage] = useState("");
   const [receiver, setReceiver] = useState("");
   const [mId, setMId] = useState("");
   const router = useRouter();
-  const getChats = async () => {
-    setMessages([]);
-    if (dmId != -1000) {
-      const responseDM = await fetch(
-        `http://localhost:3000/api/chats/dm?dmId=${dmId}`
-      );
-      const DMdata = await responseDM.json();
-      console.log("DMdataaaa", DMdata);
-      const chatHistory = JSON.parse(DMdata[0].chatHistory);
-      if (chatHistory) {
-        chatHistory.map(async (mId) => {
-          console.log("FINAL MSSAGE TESTS", mId);
-          const response = await fetch(
-            `http://localhost:3000/api/chats/messages?mId=${mId}`
-          );
-          const messageObj = await response.json();
-          console.log("messageObj", messageObj[0]);
-          if (messageObj) {
-            console.log("yele");
-            messagesArr = [...messagesArr, messageObj[0]];
-            setMessages(messagesArr);
-            console.log("my messages array", messagesArr);
-          }
-        });
-      }
-    }
-  };
+  // const getChats = async () => {
+  //   setMessages([]);
+  //   if (dmId != -1000) {
+  //     const responseDM = await fetch(
+  //       `http://localhost:3000/api/chats/dm?dmId=${dmId}`
+  //     );
+  //     const DMdata = await responseDM.json();
+  //     console.log("DMdataaaa", DMdata);
+  //     const chatHistory = JSON.parse(DMdata[0].chatHistory);
+  //     if (chatHistory) {
+  //       chatHistory.map(async (mId) => {
+  //         console.log("FINAL MSSAGE TESTS", mId);
+  //         const response = await fetch(
+  //           `http://localhost:3000/api/chats/messages?mId=${mId}`
+  //         );
+  //         const messageObj = await response.json();
+  //         console.log("messageObj", messageObj[0]);
+  //         if (messageObj) {
+  //           console.log("yele");
+  //           messagesArr = [...messagesArr, messageObj[0]];
+  //           setMessages(messagesArr);
+  //           console.log("my messages array", messagesArr);
+  //         }
+  //       });
+  //     }
+  //   }
+  // };
   const sendMessage = async () => {
-    if (message != "") {
+    if (message != "" && dmId) {
       const today = new Date();
       const response = await fetch(
         `http://localhost:3000/api/chats/messages?sender=${sender}&receiver=${receiver}&text=${message}&date=${formatDate()}&time=${
@@ -53,6 +53,18 @@ function MessageBox({ sender, dmId }) {
       setMId(data[0]?.mID);
       // addMId(data[0].mID);
       // }
+    } else if (message != "" && gId) {
+      const today = new Date();
+      const response = await fetch(
+        `http://localhost:3000/api/chats/messages?sender=${sender}&receiver=${-1}&text=${message}&date=${formatDate()}&time=${
+          today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        }&gId=${gId}`
+      );
+      setMessage("");
+      router.reload();
+      const data = await response.json();
+      console.log("helloooo", data);
+      setMId(data[0]?.mID);
     }
   };
 

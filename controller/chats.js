@@ -123,6 +123,56 @@ const deleteMessage = async (req, res, dmId, mId) => {
   return res.status(200).send(putArray);
 };
 
+const createGroupMessage = async (
+  req,
+  res,
+  sender,
+  receiver,
+  text,
+  date,
+  time,
+  gId
+) => {
+  let message = await executeQuery(
+    `INSERT into Messages(sender, receiver, text, date, time) Values(
+      "${sender}", "${receiver}", "${text}", "${date}", "${time}")`,
+    []
+  );
+
+  console.log("abcdefg", message);
+  let mId = await executeQuery(
+    "SELECT mID FROM Messages WHERE time = " + `"${time}"`,
+    []
+  );
+  console.log("bcccc", mId);
+  let getArray = await executeQuery(
+    "SELECT chatHistory FROM userGroup WHERE gID= " + `${gId}`,
+    []
+  );
+  console.log(JSON.parse(getArray[0].chatHistory));
+  console.log("2", parseInt(mId[0].mID));
+  var finalHistory = [];
+  if (mId) {
+    finalHistory = [
+      ...JSON.parse(getArray[0].chatHistory),
+      parseInt(mId[0].mID),
+    ];
+    console.log("hat", finalHistory);
+  } else {
+    finalHistory = JSON.parse(getArray[0].chatHistory);
+  }
+
+  let putArray = await executeQuery(
+    `UPDATE userGroup SET chatHistory = "${JSON.stringify(
+      finalHistory
+    )}" WHERE dmID = ${dmId}`,
+    []
+  );
+  console.log("wqe", finalHistory.toString());
+
+  // return res.send(putArray);
+};
+
 export {
   allDMs,
   oneDM,
@@ -131,4 +181,5 @@ export {
   updateDmArray,
   getMessage,
   deleteMessage,
+  createGroupMessage,
 };
