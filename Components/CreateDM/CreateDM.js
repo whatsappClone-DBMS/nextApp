@@ -37,6 +37,8 @@ function CreateDMComponent({ uid }) {
               setError("You already have a chat with this user!");
             }
           });
+        } else {
+          setError("Cannot create a chat with yourself!");
         }
 
         if (flag) {
