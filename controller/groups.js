@@ -9,13 +9,13 @@ const allGroups = async (req, res, uid) => {
   return res.status(200).send(allGroups);
 };
 
-const oneGroup = async (req, res, dmId) => {
-  console.log("uiddddd", dmId);
-  let oneDm = await executeQuery(
-    "SELECT * FROM DM WHERE dmID= " + `${dmId}`,
+const oneGroup = async (req, res, gId) => {
+  console.log("uiddddd", gId);
+  let oneGroup = await executeQuery(
+    "SELECT * FROM userGroups WHERE gID= " + `${gId}`,
     []
   );
-  return res.status(200).send(oneDm);
+  return res.status(200).send(oneGroup);
 };
 
 const updateDmArrayGroups = async (req, res, dmId, mId) => {
