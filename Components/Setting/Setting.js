@@ -96,7 +96,11 @@ function Setting({ uid }) {
             <p>{user?.status ?? "Your Status"}</p>
           </div>
         </div>
-        <div className={styles.option} onClick={() => setIsBlocked(!isBlocked)}>
+        <div
+          className={styles.option}
+          style={{ backgroundColor: isBlocked ? "#1f2c33" : "transparent" }}
+          onClick={() => setIsBlocked(!isBlocked)}
+        >
           <BlockIcon />
           <h3>Blocked</h3>
         </div>
@@ -121,6 +125,7 @@ function Setting({ uid }) {
         )}
         <div
           className={styles.option}
+          style={{ backgroundColor: isArchived ? "#1f2c33" : "transparent" }}
           onClick={() => setIsArchived(!isArchived)}
         >
           <VolumeMuteIcon />
