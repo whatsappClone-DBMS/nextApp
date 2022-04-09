@@ -1,11 +1,13 @@
 import styles from "./styles.module.css";
 import ReceiverBubble from "./ReceiverBubble";
 import SenderBubble from "./SenderBubble";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Loading from "../../Loading";
 
 function MessageWindow({ dmId, user, refresh, gId }) {
   const [messages, setMessages] = useState([]);
+  const endMessageRef = useRef(null);
+
   var personUid = 0;
   let messagesArr = [];
   const getChats = async () => {
@@ -94,20 +96,22 @@ function MessageWindow({ dmId, user, refresh, gId }) {
   useEffect(() => {
     setMessages([]);
   }, []);
+
   useEffect(() => {
     if (refresh) {
       setMessages([]);
       getChats();
     }
   }, [refresh]);
+
   useEffect(() => {
     if (messages) {
       setMessages([]);
       getChats();
-      var myDiv = document.getElementById("myDiv");
-      myDiv.scrollTop = myDiv.scrollHeight;
+      endMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
     var H = +timeString?.substr(0, hourEnd);
@@ -122,18 +126,25 @@ function MessageWindow({ dmId, user, refresh, gId }) {
       {!messages ? (
         <Loading />
       ) : (
-        messages.map((message) => {
+        messages.map((message, index) => {
+          if (index == messages.length - 1) {
+            var flag = true;
+          } else {
+            var flag = false;
+          }
           return message?.sender == user ? (
             <SenderBubble
               message={message?.text}
               time={tConvert(message?.time)}
               dmId={dmId}
               mId={message?.mID}
+              ref={flag && endMessageRef}
             />
           ) : (
             <ReceiverBubble
               message={message?.text}
               time={tConvert(message?.time)}
+              ref={flag && endMessageRef}
             />
           );
         })
