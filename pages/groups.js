@@ -1,18 +1,18 @@
-import AllChats from "../Components/AllChats/AllChats";
 import ChatView from "../Components/ChatView/ChatView";
 import styles from "../styles/Home2.module.css";
 import { useRouter } from "next/router";
 import React from "react";
+import AllGroupChats from "../Components/AllChats/AllGroupChats";
 
-export default function HomeAfterLogin() {
+export default function Groups() {
   const router = useRouter();
-  const { uid, dmId, refresh } = router.query;
+  const { uid, groupId, refresh } = router.query;
 
   return (
     <div className={styles.container}>
-      <AllChats uid={uid} />
-      {dmId ? (
-        <ChatView dmId={dmId ?? -1000} uid={uid} refresh={refresh} />
+      <AllGroupChats uid={uid} />
+      {groupId ? (
+        <ChatView groupId={groupId ?? -1000} uid={uid} refresh={refresh} />
       ) : (
         <div
           style={{
