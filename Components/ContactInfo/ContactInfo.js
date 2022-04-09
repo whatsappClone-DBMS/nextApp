@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 function ContactInfo({ uid2, gId }) {
   const [user, setUser] = useState();
   const [group, setGroup] = useState();
+  const [members, setMembers] = useState([]);
   const [mobileNumber, setMobileNumber] = useState();
   const router = useRouter();
   const getContactInfo = async () => {
@@ -22,6 +23,7 @@ function ContactInfo({ uid2, gId }) {
       const data = await response.json();
       console.log("groups Data", data);
       setGroup(data[0]);
+      setMembers(JSON.parse(data[0]?.gMembers));
     }
   };
   const getMobileNumber = async () => {
@@ -82,6 +84,28 @@ function ContactInfo({ uid2, gId }) {
         <p style={{ color: "#8696A0" }}>About</p>
         <h3>{gId ? group?.gDesc : user?.status ?? "Status"}</h3>
       </div>
+      {gId && (
+        <div className={styles.box2}>
+          <p style={{ color: "#8696A0" }}>Members</p>
+          <div className={styles.chatsContainer}>
+            <div>
+              {!members ? (
+                <div>
+                  <p>No Members </p>
+                </div>
+              ) : (
+                members?.map((item) => {
+                  return (
+                    <div>
+                      <Chats uid={item} flag={true} />
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
