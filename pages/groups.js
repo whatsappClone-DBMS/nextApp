@@ -6,7 +6,7 @@ import AllGroupChats from "../Components/AllChats/AllGroupChats";
 
 export default function Groups() {
   const router = useRouter();
-  const { uid, groupId, refresh } = router.query;
+  const { uid, gId, refresh } = router.query;
 
   return (
     <div className={styles.container}>

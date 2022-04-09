@@ -109,7 +109,7 @@ function Setting({ uid }) {
                 blocked?.map((item) => {
                   return (
                     <div>
-                      <Chats uid={item} clickToOpen={false} />
+                      <Chats uid={item} flag={true} />
                     </div>
                   );
                 })

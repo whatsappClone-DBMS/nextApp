@@ -11,19 +11,19 @@ function AllGroupChats({ uid }) {
   const [chats, setChats] = useState();
   const router = useRouter();
   var personUid = 0;
-  const getChats = async () => {
+  const getGroups = async () => {
     if (uid) {
       const response = await fetch(
         `http://localhost:3000/api/chats/groups?uid=${uid}`
       );
       const data = await response.json();
-      console.log("User chats", data);
+      console.log("User chats", data[0].groups);
       setChats(data);
     }
   };
 
   useEffect(() => {
-    getChats();
+    getGroups();
   }, [uid]);
   return (
     <div className={styles.chatsContainer}>
@@ -33,16 +33,13 @@ function AllGroupChats({ uid }) {
           <Loading />
         ) : (
           chats?.map((chat) => {
-            chat?.uid1 == uid
-              ? (personUid = chat.uid2)
-              : (personUid = chat.uid1);
             return (
               <div
                 onClick={() => {
-                  router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
+                  router.push(`/groups?uid=${uid}&gId=${chat}`);
                 }}
               >
-                <GroupsComponent gId={personUid} />
+                <GroupsComponent gId={chat} />
               </div>
             );
           })

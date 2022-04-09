@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Avatar from "@mui/material/Avatar";
 import ChatIcon from "@mui/icons-material/Chat";
+import PeopleIcon from "@mui/icons-material/People";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
@@ -42,6 +43,14 @@ function AllChatsHeader({ uid }) {
         />
       </IconButton>
       <div style={{ display: "flex", alignItems: "center" }}>
+        <IconButton
+          style={{ color: "#AEBAC1" }}
+          onClick={() => {
+            router.push(`/groups?uid=${uid}`);
+          }}
+        >
+          <PeopleIcon />
+        </IconButton>
         <IconButton
           style={{ color: "#AEBAC1" }}
           onClick={() => {

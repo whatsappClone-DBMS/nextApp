@@ -2,11 +2,11 @@ import { executeQuery } from "../config/db";
 
 const allGroups = async (req, res, uid) => {
   console.log("uiddddd", uid);
-  let allDms = await executeQuery(
-    "SELECT * FROM userGroup WHERE uid1= " + `${uid}` + " OR uid2= " + `${uid}`,
+  let allGroups = await executeQuery(
+    "SELECT groups FROM userData WHERE uid= " + `${uid}`,
     []
   );
-  return res.status(200).send(allDms);
+  return res.status(200).send(allGroups);
 };
 
 const oneGroup = async (req, res, dmId) => {

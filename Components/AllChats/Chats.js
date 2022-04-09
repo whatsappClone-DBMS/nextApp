@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid, clickToOpen }) {
+function Chats({ uid, flag }) {
   const [user, setUser] = useState({});
   const getUserDetails = async () => {
     if (uid) {
@@ -31,11 +31,17 @@ function Chats({ uid, clickToOpen }) {
       />
       <div className={styles.nameFlex}>
         <p className={styles.name}>{user?.name ?? "Name..."}</p>
-        <p className={styles.message}>Click To Open</p>
+        {flag ? <></> : <p className={styles.message}>Click To Open</p>}
       </div>
       <div className={styles.timeFlex}>
-        <p className={styles.time}>11:30 pm</p>
-        <p className={styles.unread}>3</p>
+        {flag ? (
+          <></>
+        ) : (
+          <>
+            <p className={styles.time}>11:30 pm</p>
+            <p className={styles.unread}>3</p>
+          </>
+        )}
       </div>
     </div>
   );
