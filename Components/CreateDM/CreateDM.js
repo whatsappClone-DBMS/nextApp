@@ -45,6 +45,14 @@ function CreateDMComponent({ uid }) {
 
         if (flag) {
           //Create DM
+          const response3 = await fetch(
+            `http://localhost:3000/api/create?uid1=${uid}&uid2=${data[0]?.uID}`
+          );
+          const data3 = await response3.json();
+          console.log("data3", data3);
+          if (data3) {
+            router.push(`/home?uid=${uid}&dmId=${data3}`);
+          }
           console.log("Creating DM For the first time");
         }
         // router.push(`/chat?uid=${uid}&dmId=${data[0].dmID}`);
