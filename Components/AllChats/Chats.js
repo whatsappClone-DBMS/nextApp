@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid }) {
+function Chats({ uid, clickToOpen }) {
   const [user, setUser] = useState({});
   const getUserDetails = async () => {
     if (uid) {

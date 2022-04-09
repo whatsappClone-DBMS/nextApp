@@ -1,62 +1,106 @@
 .settingContainer {
-    width: 30vw;
-    min-width: 300px;
-    background-color: #111b21;
-    color: #aebac1;
-    min-height: 100vh;
-    overflow-y: scroll;
-    border-right: 1px solid #3b4f5c;
+  width: 30vw;
+  min-width: 300px;
+  background-color: #111b21;
+  color: #aebac1;
+  min-height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid #3b4f5c;
 }
 
-.header{
-    background-color: #202C33;
-    height: 7rem;
+.header {
+  background-color: #202c33;
+  height: 7rem;
 }
 
-.headerInfo{
-    margin-left: 1.5rem;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    margin-top: 3rem;
+.headerInfo {
+  margin-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin-top: 3rem;
 }
 
-.body h1{
-    font-size: 1.1rem;
-    color: #fff;
+.body h1 {
+  font-size: 1.1rem;
+  color: #fff;
 }
 
-.body h3{
-    font-size: 1rem;
-    color: #fff;
-    font-weight: 400;
-    margin-left: 1rem;
+.body h3 {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 400;
+  margin-left: 1rem;
 }
 
-.body p{
-    font-size: 0.9rem;
+.body p {
+  font-size: 0.9rem;
 }
 
-.userData{
-    display: flex;
-    padding: 1rem;
-    align-items: center;
-    justify-content: center;
+.userData {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.userData:hover{
-    cursor: pointer;
-    background-color: #1F2C33;
+.userData:hover {
+  cursor: pointer;
+  background-color: #1f2c33;
 }
 
-.option{
-    display: flex;
-    padding-left: 1rem;
-    align-items: center;
-    border-bottom: 1px solid #222D34;
+.option {
+  display: flex;
+  padding-left: 1rem;
+  align-items: center;
+  border-bottom: 1px solid #222d34;
 }
 
-.option:hover{
-    cursor: pointer;
-    background-color: #1F2C33;
+.option:hover {
+  cursor: pointer;
+  background-color: #1f2c33;
+}
+
+.chatsContainer {
+  width: 30vw;
+  min-width: 300px;
+  background-color: #111b21;
+  color: #aebac1;
+  max-height: 100vh;
+  overflow-y: scroll;
+  border-right: 1px solid #3b4f5c;
+}
+
+.component {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.4rem;
+  border-bottom: 1px solid #2a3942;
+  cursor: pointer;
+}
+.component:hover {
+  background-color: #2a3942;
+  transition: all 0.1s;
+}
+
+.message {
+  color: #aebac1;
+  margin: 0;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.timeFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.time {
+  color: #04a784;
+  margin: 0;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
 }
