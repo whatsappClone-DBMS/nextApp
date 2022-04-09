@@ -165,7 +165,7 @@ const createGroupMessage = async (
   let putArray = await executeQuery(
     `UPDATE userGroup SET chatHistory = "${JSON.stringify(
       finalHistory
-    )}" WHERE dmID = ${dmId}`,
+    )}" WHERE gID = ${gId}`,
     []
   );
   console.log("wqe", finalHistory.toString());
