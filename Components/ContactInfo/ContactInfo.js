@@ -88,8 +88,11 @@ function ContactInfo({ uid2, gId }) {
       {gId && (
         <div className={styles.box2}>
           <p style={{ color: "#8696A0" }}>Members</p>
-          <div className={styles.chatsContainer}>
-            <div>
+          <div
+            className={styles.chatsContainer}
+            style={{ overflowY: "scroll" }}
+          >
+            <div style={{ overflowY: "scroll" }}>
               {!members ? (
                 <div>
                   <p>No Members </p>
