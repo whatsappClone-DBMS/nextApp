@@ -4,7 +4,7 @@ import SenderBubble from "./SenderBubble";
 import React, { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
-function MessageWindow({ dmId, user, refresh }) {
+function MessageWindow({ dmId, user, refresh, gId }) {
   const [messages, setMessages] = useState([]);
   var personUid = 0;
   let messagesArr = [];
