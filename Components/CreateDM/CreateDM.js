@@ -10,7 +10,21 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 function CreateDMComponent({ uid }) {
   const [number, setNumber] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
+
+  const createChat = async () => {
+    if (number != "") {
+      const response = await fetch(`http://localhost:3000/api/login/${number}`);
+      const data = await response.json();
+      if (data) {
+        console.log("data of number", data);
+        // router.push(`/chat?uid=${uid}&dmId=${data[0].dmID}`);
+      } else {
+        setError("User Does not exist");
+      }
+    }
+  };
 
   useEffect(() => {
     console.log("uid", uid);
@@ -61,11 +75,12 @@ function CreateDMComponent({ uid }) {
         <div
           className={styles.btn}
           onClick={() => {
-            router.push("/home?uid=1");
+            createChat();
           }}
         >
           Start Chatting
         </div>
+        <p style={{ textAlign: "center", color: "#04a784" }}>{error}</p>
       </div>
     </div>
   );
