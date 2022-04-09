@@ -10,11 +10,12 @@ const allGroups = async (req, res, uid) => {
 };
 
 const oneGroup = async (req, res, gId) => {
-  console.log("uiddddd", gId);
+  console.log("popopo", gId);
   let oneGroup = await executeQuery(
-    "SELECT * FROM userGroups WHERE gID= " + `${gId}`,
+    `select * from userGroup where gID = ${gId}`,
     []
   );
+  console.log("pop", oneGroup);
   return res.status(200).send(oneGroup);
 };
 

@@ -6,7 +6,7 @@ function GroupsComponent({ gId }) {
   const getGroupDetails = async () => {
     if (gId) {
       const response = await fetch(
-        `http://localhost:3000/api/groups?gId=${gId}`
+        `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const data = await response.json();
       console.log("groups Data", data);
@@ -27,13 +27,13 @@ function GroupsComponent({ gId }) {
       }}
     >
       <Avatar
-        alt={group?.name ?? "Name..."}
+        alt={group?.gName ?? "Name..."}
         src={group?.imgSrc ?? "Name..."}
         sx={{ width: 45, height: 45 }}
         style={{ marginRight: 15 }}
       />
       <div className={styles.nameFlex}>
-        <p className={styles.name}>{group?.name ?? "Name..."}</p>
+        <p className={styles.name}>{group?.gName ?? "Name..."}</p>
         <p className={styles.message}>Click To Open</p>
       </div>
       <div className={styles.timeFlex}>
