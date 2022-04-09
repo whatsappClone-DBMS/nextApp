@@ -28,7 +28,7 @@ function Setting({ uid }) {
       );
       const data = await response.json();
       if (data) {
-        setArchived(data[0].archived);
+        setArchived(JSON.parse(data[0].archived));
       }
       console.log("mdrfkr", archived);
     }
@@ -104,7 +104,9 @@ function Setting({ uid }) {
           <div className={styles.chatsContainer}>
             <div style={{ paddingTop: 5 }}>
               {!blocked ? (
-                <Loading />
+                <div>
+                  <p>No Blocked Contacts</p>
+                </div>
               ) : (
                 blocked?.map((item) => {
                   return (
@@ -124,7 +126,25 @@ function Setting({ uid }) {
           <VolumeMuteIcon />
           <h3>Archived Chats</h3>
         </div>
-        {isArchived && <div>hi</div>}
+        {isArchived && (
+          <div className={styles.chatsContainer}>
+            <div style={{ paddingTop: 5 }}>
+              {!archived ? (
+                <div>
+                  <p>No Archived Contacts</p>
+                </div>
+              ) : (
+                archived?.map((item) => {
+                  return (
+                    <div>
+                      <Chats uid={item} flag={true} />
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
