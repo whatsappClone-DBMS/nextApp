@@ -9,6 +9,7 @@ import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import RateReviewIcon from "@mui/icons-material/RateReview";
+import HomeIcon from "@mui/icons-material/Home";
 
 function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
@@ -42,7 +43,16 @@ function AllChatsHeader({ uid }) {
           }
         />
       </IconButton>
+
       <div style={{ display: "flex", alignItems: "center" }}>
+        <IconButton
+          style={{ color: "#AEBAC1" }}
+          onClick={() => {
+            router.push(`/home?uid=${uid}`);
+          }}
+        >
+          <HomeIcon />
+        </IconButton>
         <IconButton
           style={{ color: "#AEBAC1" }}
           onClick={() => {

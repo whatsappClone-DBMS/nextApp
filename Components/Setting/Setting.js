@@ -4,8 +4,8 @@ import { Avatar, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useRouter } from "next/router";
 import BlockIcon from "@mui/icons-material/Block";
-import VolumeMuteIcon from "@mui/icons-material/VolumeMute";
 import Chats from "../AllChats/Chats";
+import InventoryIcon from "@mui/icons-material/Inventory";
 
 function Setting({ uid }) {
   const [user, setUser] = useState();
@@ -128,7 +128,7 @@ function Setting({ uid }) {
           style={{ backgroundColor: isArchived ? "#1f2c33" : "transparent" }}
           onClick={() => setIsArchived(!isArchived)}
         >
-          <VolumeMuteIcon />
+          <InventoryIcon />
           <h3>Archived Chats</h3>
         </div>
         {isArchived && (
