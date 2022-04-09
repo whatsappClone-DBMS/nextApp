@@ -106,8 +106,6 @@ function MessageWindow({ dmId, user, refresh, gId }) {
 
   useEffect(() => {
     if (messages) {
-      setMessages([]);
-      getChats();
       endMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
