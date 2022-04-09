@@ -15,10 +15,34 @@ function CreateDMComponent({ uid }) {
 
   const createChat = async () => {
     if (number != "") {
+      var flag = true;
       const response = await fetch(`http://localhost:3000/api/login/${number}`);
       const data = await response.json();
       if (data) {
         console.log("data of number", data);
+        // Check if chats already exists and uid is not the same!
+        if (data[0].uID != uid) {
+          const response2 = await fetch(
+            `http://localhost:3000/api/chats/dm?uid=${data[0].uID}`
+          );
+          const data2 = await response2.json();
+          data2[0].map((dm) => {
+            console.log("dmDtaaa", dm);
+            if (
+              (dm.uid1 == uid && dm.uid2 == data[0].uID) ||
+              (dm.uid2 == uid && dm.uid1 == data[0].uID)
+            ) {
+              flag = false;
+              router.push(`/home?uid=${uid}&dmId=${dm.dmID}`);
+              setError("You already have a chat with this user!");
+            }
+          });
+        }
+
+        if (flag) {
+          //Create DM
+          console.log("Creating DM For the first time");
+        }
         // router.push(`/chat?uid=${uid}&dmId=${data[0].dmID}`);
       } else {
         setError("User Does not exist");
