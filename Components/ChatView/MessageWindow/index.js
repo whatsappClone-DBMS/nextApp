@@ -100,6 +100,14 @@ function MessageWindow({ dmId, user, refresh, gId }) {
       getChats();
     }
   }, [refresh]);
+  useEffect(() => {
+    if (messages) {
+      setMessages([]);
+      getChats();
+      var myDiv = document.getElementById("myDiv");
+      myDiv.scrollTop = myDiv.scrollHeight;
+    }
+  }, [messages]);
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
     var H = +timeString?.substr(0, hourEnd);

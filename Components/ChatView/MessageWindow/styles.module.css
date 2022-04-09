@@ -8,7 +8,7 @@
 
 .receiverBubble {
   width: fit-content;
-  margin: 2rem;
+  margin: 1.5rem;
   display: block;
   margin-right: auto;
   background-color: #2a3942;
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem;
+  margin: 1.5rem;
   margin-left: auto;
   background-color: #025d4b;
   padding: 0.5rem;

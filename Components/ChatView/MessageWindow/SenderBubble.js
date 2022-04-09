@@ -45,7 +45,7 @@ function SenderBubble({ message, time, mId, dmId }) {
               onClick={deleteMessage}
             >
               <Link href="#" passHref={true}>
-                Delete
+                Unsend
               </Link>
             </div>
           </IconButton>

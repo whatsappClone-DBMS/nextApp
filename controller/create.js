@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../config/db";
 
 const createDm = async (req, res, uid1, uid2) => {
   let insert = await executeQuery(
