@@ -106,7 +106,7 @@ function Setting({ uid }) {
         </div>
         {isBlocked && (
           <div className={styles.chatsContainer}>
-            <div style={{ paddingTop: 5 }}>
+            <div>
               {!blocked ? (
                 <div>
                   <p>No Blocked Contacts</p>

@@ -3,7 +3,7 @@ import { executeQuery } from "../config/db";
 const allGroups = async (req, res, uid) => {
   console.log("uiddddd", uid);
   let allGroups = await executeQuery(
-    "SELECT groups FROM userData WHERE uid= " + `${uid}`,
+    `select userGroups from userData where uID = ${uid}`,
     []
   );
   return res.status(200).send(allGroups);
@@ -20,7 +20,7 @@ const oneGroup = async (req, res, gId) => {
 
 const updateDmArrayGroups = async (req, res, dmId, mId) => {
   let getArray = await executeQuery(
-    "SELECT chatHistory FROM DM WHERE dmID= " + `${dmId}`,
+    "SELECT chatHistory FROM DM WHERE dmID = " + `${dmId}`,
     []
   );
   console.log(JSON.parse(getArray[0].chatHistory));
