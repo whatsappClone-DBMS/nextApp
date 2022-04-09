@@ -10,7 +10,7 @@ function MessageWindow({ dmId, user, refresh }) {
   let messagesArr = [];
   const getChats = async () => {
     setMessages([]);
-    if (dmId != -1000) {
+    if (dmId) {
       const responseDM = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
       );
@@ -30,17 +30,47 @@ function MessageWindow({ dmId, user, refresh }) {
             messagesArr = [...messagesArr, messageObj[0]];
 
             console.log("my messages array", messagesArr);
-            console.log("000")
+            console.log("000");
             messagesArr.sort((a, b) => {
-            if (a.mID < b.mID) return -1
-            return a.mID > b.mID ? 1 : 0
+              if (a.mID < b.mID) return -1;
+              return a.mID > b.mID ? 1 : 0;
             });
-            console.log("000")
+            console.log("000");
             setMessages(messagesArr);
-            console.log("msgs", messagesArr)
+            console.log("msgs", messagesArr);
           }
         });
-        
+      }
+    } else if (gId) {
+      const responseDM = await fetch(
+        `http://localhost:3000/api/chats/groups?gId=${gId}`
+      );
+      const DMdata = await responseDM.json();
+      console.log("DMdataaaa", DMdata);
+      const chatHistory = JSON.parse(DMdata[0].chatHistory);
+      if (chatHistory) {
+        chatHistory.map(async (mId) => {
+          console.log("FINAL MSSAGE TESTS", mId);
+          const response = await fetch(
+            `http://localhost:3000/api/chats/messages?mId=${mId}`
+          );
+          const messageObj = await response.json();
+          console.log("messageObj", messageObj[0]);
+          if (messageObj) {
+            console.log("yele");
+            messagesArr = [...messagesArr, messageObj[0]];
+
+            console.log("my messages array", messagesArr);
+            console.log("000");
+            messagesArr.sort((a, b) => {
+              if (a.mID < b.mID) return -1;
+              return a.mID > b.mID ? 1 : 0;
+            });
+            console.log("000");
+            setMessages(messagesArr);
+            console.log("msgs", messagesArr);
+          }
+        });
       }
     }
   };
@@ -52,6 +82,14 @@ function MessageWindow({ dmId, user, refresh }) {
       getChats();
     }
   }, [dmId]);
+
+  useEffect(() => {
+    if (gId) {
+      setMessages([]);
+      console.log("uid123", gId);
+      getChats();
+    }
+  }, [gId]);
 
   useEffect(() => {
     setMessages([]);
@@ -81,8 +119,8 @@ function MessageWindow({ dmId, user, refresh }) {
             <SenderBubble
               message={message?.text}
               time={tConvert(message?.time)}
-              dmId = {dmId}
-              mId = {message?.mID}
+              dmId={dmId}
+              mId={message?.mID}
             />
           ) : (
             <ReceiverBubble
