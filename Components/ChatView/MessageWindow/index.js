@@ -104,11 +104,14 @@ function MessageWindow({ dmId, user, refresh, gId }) {
     }
   }, [refresh]);
 
-  useEffect(() => {
+  const gotoRef = () => {
     if (messages) {
-      endMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      if (endMessageRef) {
+        console.log("atiffffffs", endMessageRef);
+        endMessageRef?.current?.scrollIntoView({ behavior: "smooth" });
+      }
     }
-  }, [messages]);
+  };
 
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
@@ -125,10 +128,13 @@ function MessageWindow({ dmId, user, refresh, gId }) {
         <Loading />
       ) : (
         messages.map((message, index) => {
+          console.log(index);
+          var flag2 = false;
+          if (index == messages.length - 2) {
+            flag2 = true;
+          }
           if (index == messages.length - 1) {
-            var flag = true;
-          } else {
-            var flag = false;
+            gotoRef();
           }
           return message?.sender == user ? (
             <SenderBubble
@@ -136,13 +142,13 @@ function MessageWindow({ dmId, user, refresh, gId }) {
               time={tConvert(message?.time)}
               dmId={dmId}
               mId={message?.mID}
-              ref={flag && endMessageRef}
+              ref={endMessageRef}
             />
           ) : (
             <ReceiverBubble
               message={message?.text}
               time={tConvert(message?.time)}
-              ref={flag && endMessageRef}
+              ref={endMessageRef}
             />
           );
         })
