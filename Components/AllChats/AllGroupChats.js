@@ -18,7 +18,7 @@ function AllGroupChats({ uid }) {
       );
       const data = await response.json();
       console.log("User chats", data[0].groups);
-      setChats(data);
+      setChats(JSON.parse(data[0].userGroups));
     }
   };
 
