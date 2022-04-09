@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { Avatar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/router";
+import Chats from "../AllChats/Chats";
 
 function ContactInfo({ uid2, gId }) {
   const [user, setUser] = useState();
