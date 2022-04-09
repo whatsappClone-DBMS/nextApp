@@ -69,7 +69,12 @@ function AllChatsHeader({ uid }) {
         >
           <CircleOutlinedIcon />
         </IconButton>
-        <IconButton style={{ color: "#AEBAC1" }}>
+        <IconButton
+          style={{ color: "#AEBAC1" }}
+          onClick={() => {
+            router.push(`/create-dm?uid=${uid}`);
+          }}
+        >
           <RateReviewIcon />
         </IconButton>
         <div className={styles.dropdown}>
