@@ -9,6 +9,7 @@ import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
 
 function Setting({uid}) {
     const [user, setUser] = useState();
+    const [archived, setArchived] = useState([]);
     const getUserDetails = async () => {
         if (uid) {
           const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -16,7 +17,15 @@ function Setting({uid}) {
           console.log("User Details", data);
           setUser(data[0]);
         }
-      };
+    };
+    const getArchived = async () => {
+        if(uid){
+            const response = await fetch(`http://localhost:3000/api/user/archived/${uid}`);
+            const data =  await response.json();
+            setArchived(data);
+            console.log('mdrfkr', archived);
+        }
+    }
     const router = useRouter();
     const {dmId} = router.query;
     useEffect(() => {
@@ -68,6 +77,10 @@ function Setting({uid}) {
             <div className={styles.option}>
                 <VolumeMuteIcon/>
                 <h3>Muted Chats</h3>
+            </div>
+            <div className={styles.option}>
+                <VolumeMuteIcon/>
+                <h3>Archived Chats</h3>
             </div>
         </div>
     </div>

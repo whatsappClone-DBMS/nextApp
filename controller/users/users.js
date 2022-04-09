@@ -26,4 +26,6 @@ const perUser = async (req, res, uid) => {
   res.send(users);
 };
 
-export { getAllUsers, getUserDetails, createUser, perUser };
+
+
+export { getAllUsers, getUserDetails, createUser, perUser};
