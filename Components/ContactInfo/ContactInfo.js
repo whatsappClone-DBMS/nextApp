@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton, Input } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/router";
 import Chats from "../AllChats/Chats";
+import EditIcon from "@mui/icons-material/Edit";
+import DoneIcon from "@mui/icons-material/Done";
 
 function ContactInfo({ uid2, gId }) {
   const [user, setUser] = useState();
   const [group, setGroup] = useState();
+  const [name, setName] = useState("");
   const [members, setMembers] = useState([]);
   const [mobileNumber, setMobileNumber] = useState();
+  const [disabled, setDisabled] = useState(true);
+  const [disabledName, setDisabledName] = useState(true);
+  const [status, setStatus] = useState("");
+
   const router = useRouter();
   const getContactInfo = async () => {
     if (uid2) {
@@ -24,6 +31,8 @@ function ContactInfo({ uid2, gId }) {
       const data = await response.json();
       console.log("groups Data", data);
       setGroup(data[0]);
+      setStatus(data[0].gDesc);
+      setName(data[0].gName);
       setMembers(JSON.parse(data[0]?.gMembers));
     }
   };
@@ -57,6 +66,7 @@ function ContactInfo({ uid2, gId }) {
           onClick={() => {
             router.back();
           }}
+          style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
         >
           <CloseIcon
             sx={{ marginLeft: "1rem", marginRight: "1rem", fontSize: "1rem" }}
@@ -78,12 +88,133 @@ function ContactInfo({ uid2, gId }) {
         />
         <h1>{gId ? group?.gName : user?.name ?? "Name"}</h1>
         <p style={{ color: "#8696A0", marginTop: "-1rem" }}>
-          {!gId ? mobileNumber ?? "Your Number" : ""}
+          {!gId
+            ? "+91 " + mobileNumber ?? "Your Number"
+            : `${members.length} Participants`}
         </p>
       </div>
+      {gId ? (
+        <div className={styles.box2}>
+          <div
+            style={{
+              color: "#8696A0",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <p style={{ margin: 0 }}>Group Name</p>
+            <IconButton
+              onClick={() => {
+                setDisabledName(!disabledName);
+                updateGroupData();
+              }}
+            >
+              {disabledName ? (
+                <EditIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "#D9DEE0",
+                    marginRight: "1rem",
+                  }}
+                />
+              ) : (
+                <DoneIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "#D9DEE0",
+                    marginRight: "1rem",
+                  }}
+                />
+              )}
+            </IconButton>
+          </div>
+          <div className={styles.editInfo}>
+            {disabledName ? (
+              <h3 style={{ margin: 0 }}>{name ?? "Group Name..."}</h3>
+            ) : (
+              <Input
+                style={{
+                  flex: 1,
+                  color: "#fff",
+                  width: "90%",
+                  marginBottom: "1rem",
+                }}
+                disabled={false}
+                focused={true}
+                color="success"
+                id="component-helper"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                aria-describedby="component-helper-text"
+                inputProps={{ color: "#fff" }}
+              />
+            )}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+
       <div className={styles.box2}>
-        <p style={{ color: "#8696A0" }}>About</p>
-        <h3>{gId ? group?.gDesc : user?.status ?? "Status"}</h3>
+        <div
+          style={{
+            color: "#8696A0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <p style={{ margin: 0 }}>{gId ? "Group Description" : "About"}</p>
+          <IconButton
+            onClick={() => {
+              setDisabled(!disabled);
+              updateGroupData();
+            }}
+          >
+            {disabled ? (
+              <EditIcon
+                sx={{
+                  cursor: "pointer",
+                  color: "#D9DEE0",
+                  marginRight: "1rem",
+                }}
+              />
+            ) : (
+              <DoneIcon
+                sx={{
+                  cursor: "pointer",
+                  color: "#D9DEE0",
+                  marginRight: "1rem",
+                }}
+              />
+            )}
+          </IconButton>
+        </div>
+        <div className={styles.editInfo}>
+          {disabled ? (
+            <h3 style={{ margin: 0 }}>
+              {gId ? status : user?.status ?? "Status"}
+            </h3>
+          ) : (
+            <Input
+              style={{
+                flex: 1,
+                color: "#fff",
+                width: "90%",
+                marginBottom: "1rem",
+              }}
+              disabled={false}
+              focused={true}
+              color="success"
+              id="component-helper"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              aria-describedby="component-helper-text"
+              inputProps={{ color: "#fff" }}
+            />
+          )}
+        </div>
       </div>
       {gId && (
         <div className={styles.box2}>
