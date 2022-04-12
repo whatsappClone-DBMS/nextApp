@@ -10,6 +10,7 @@ export default function CreateDM() {
   return (
     <div className={styles.container}>
       <CreateDMComponent uid={uid} />
+
       {dmId ? (
         <ChatView dmId={dmId ?? -1000} uid={uid} />
       ) : (

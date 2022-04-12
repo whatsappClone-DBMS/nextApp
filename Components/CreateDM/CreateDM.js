@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import { useRouter } from "next/router";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import CreateGroup from "./CreateGroup";
 
 function CreateDMComponent({ uid }) {
   const [number, setNumber] = useState("");
@@ -84,11 +85,14 @@ function CreateDMComponent({ uid }) {
               color: "#D9DEE0",
             }}
           >
-            Start A New Chat
+            Compose Message
           </p>
         </div>
       </div>
       <div className={styles.body}>
+        <p style={{ marginTop: 0, textAlign: "center", lineHeight: 2 }}>
+          Create A New DM
+        </p>
         <div
           className={styles.input}
           style={{
@@ -117,6 +121,7 @@ function CreateDMComponent({ uid }) {
           Start Chatting
         </div>
         <p style={{ textAlign: "center", color: "#04a784" }}>{error}</p>
+        <CreateGroup />
       </div>
     </div>
   );
