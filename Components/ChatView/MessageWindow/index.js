@@ -3,7 +3,7 @@ import ReceiverBubble from "./ReceiverBubble";
 import SenderBubble from "./SenderBubble";
 import React, { useEffect, useRef, useState } from "react";
 import Loading from "../../Loading";
-
+import GroupReceiverBubble from "./GroupReceiverBubble";
 function MessageWindow({ dmId, user, refresh, gId }) {
   const [messages, setMessages] = useState([]);
   const endMessageRef = useRef(null);

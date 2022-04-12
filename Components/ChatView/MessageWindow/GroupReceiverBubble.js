@@ -18,17 +18,31 @@ function GroupReceiverBubble({ uid, message, time }) {
   }, [uid]);
 
   return (
-    <div className={styles.GroupReceiverBubble}>
-      <>
-        <p style={{ fontWeight: "bold" }}>{user?.name}</p>
-        <br />
-        {message}
-      </>
-      <span style={{ marginLeft: 10, fontSize: "0.55rem", opacity: 0.7 }}>
-        {time}
-      </span>
+    <div className={styles.receiverBubble}>
+      <div
+        style={{
+          margin: "0",
+          fontSize: "0.9rem",
+          fontWeight: "bold",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <p style={{ margin: "0", color: "#FC9775" }}>{user?.name}</p>
+        <p
+          style={{
+            marginLeft: 10,
+            fontSize: "0.6rem",
+            opacity: 0.7,
+          }}
+        >
+          {time}
+        </p>
+      </div>
+      {message}
     </div>
   );
 }
 
-export default ReceiverBubble;
+export default GroupReceiverBubble;

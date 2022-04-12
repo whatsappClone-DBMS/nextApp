@@ -31,7 +31,7 @@ function SenderBubble({ message, time, mId, dmId }) {
           alignItems: "center",
         }}
       >
-        <span style={{ marginLeft: 10, fontSize: "0.55rem", opacity: 0.7 }}>
+        <span style={{ marginLeft: 10, fontSize: "0.6rem", opacity: 0.7 }}>
           {time}
         </span>
         <span className={styles.dropdown}>

@@ -40,7 +40,6 @@ const createGroup = async (req, res, name, members) => {
       );
     }
   });
-  res.send(group[0]?.gID);
 };
 
 export { createDm, createGroup };
