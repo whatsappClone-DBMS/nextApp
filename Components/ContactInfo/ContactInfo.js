@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Chats from "../AllChats/Chats";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 function ContactInfo({ uid2, gId }) {
   const [user, setUser] = useState();
@@ -16,6 +17,9 @@ function ContactInfo({ uid2, gId }) {
   const [disabled, setDisabled] = useState(true);
   const [disabledName, setDisabledName] = useState(true);
   const [status, setStatus] = useState("");
+  const [imgSrc, setImgSrc] = useState();
+  const [uploadData, setUploadData] = useState();
+  const [show, setShow] = useState(false);
 
   const router = useRouter();
   const getContactInfo = async () => {
@@ -75,6 +79,65 @@ function ContactInfo({ uid2, gId }) {
     }
   };
 
+  const updateDP = async (secure_url) => {
+    console.log("kinshuk");
+    if (name != "" && status != "") {
+      const response = await fetch(
+        `http://localhost:3000/api/groupData?gId=${gId}&imgSrc=${secure_url}`
+      );
+      const data = await response.json();
+      if (data) {
+        setGroup(data[0]);
+      } else {
+        alert("Something went wrong.");
+      }
+    } else {
+      setImgSrc(secure_url);
+    }
+  };
+
+  const handleFileChange = (changeEvent) => {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent) {
+      setImgSrc(onLoadEvent.target.result);
+      setUploadData(undefined);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+    handleOnSubmit(changeEvent);
+  };
+
+  async function handleOnSubmit(event) {
+    console.log("hehe");
+    event.preventDefault();
+    const form = event.currentTarget;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === "file"
+    );
+    const formData = new FormData();
+    console.log("formDataaa", fileInput);
+
+    for (const file of fileInput.files) {
+      formData.append("file", file);
+    }
+    formData.append("upload_preset", "my-uploads");
+    const data = await fetch(
+      "https://api.cloudinary.com/v1_1/simply-sites1/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    ).then((r) => r.json());
+
+    setImgSrc(data.secure_url);
+    setUploadData(data);
+    console.log("oye", data);
+    if (data) {
+      updateDP(data.secure_url);
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.navbar}>
@@ -91,17 +154,73 @@ function ContactInfo({ uid2, gId }) {
         <h3>Contact Info</h3>
       </div>
       <div className={styles.box1}>
-        <Avatar
-          alt={gId ? group?.gName : user?.name ?? "Your Name"}
-          src={
-            gId
-              ? group?.imgSrc
-              : user?.imgSrc ??
-                "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
-          }
-          sx={{ width: 200, height: 200, cursor: gId && "pointer" }}
-          style={{ marginLeft: "auto", marginRight: "auto" }}
-        />
+        {gId ? (
+          <form
+            method="post"
+            onChange={(event) => handleFileChange(event)}
+            // onSubmit={(event) => handleOnSubmit(event)}
+          >
+            <label
+              htmlFor="file"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+              }}
+              onMouseEnter={() => setShow(!show)}
+              onMouseLeave={() => setShow(!show)}
+            >
+              {show ? (
+                <CameraAltIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "#999",
+                    opacity: "1",
+                    fontSize: 64,
+                    position: "absolute",
+                    zIndex: 100,
+                  }}
+                />
+              ) : (
+                <></>
+              )}
+              <Avatar
+                alt={gId ? group?.gName : user?.name ?? "Your Name"}
+                src={
+                  gId
+                    ? imgSrc
+                    : group?.imgSrc ??
+                      "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
+                }
+                sx={{ width: 200, height: 200, cursor: gId && "pointer" }}
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+              />
+            </label>
+
+            <input
+              type="file"
+              id="file"
+              name="file"
+              // onChange={(event) => handleFileChange(event)}
+              accept=".png,.jpg,.jpeg,.webp"
+              style={{ display: "none" }}
+            />
+          </form>
+        ) : (
+          <Avatar
+            alt={gId ? group?.gName : user?.name ?? "Your Name"}
+            src={
+              gId
+                ? group?.imgSrc
+                : user?.imgSrc ??
+                  "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
+            }
+            sx={{ width: 200, height: 200, cursor: gId && "pointer" }}
+            style={{ marginLeft: "auto", marginRight: "auto" }}
+          />
+        )}
+
         <h1>{gId ? group?.gName : user?.name ?? "Name"}</h1>
         <p style={{ color: "#8696A0", marginTop: "-1rem" }}>
           {!gId

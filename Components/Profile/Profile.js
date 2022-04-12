@@ -27,7 +27,7 @@ function Profile({ uid }) {
       console.log("User Details", data);
       setUser(data[0]);
       setName(data[0]?.name ?? "Avi");
-      setImgSrc(data[0].imgSrc)
+      setImgSrc(data[0].imgSrc);
       setStatus(data[0]?.status);
     }
   };
@@ -85,20 +85,6 @@ function Profile({ uid }) {
 
     reader.readAsDataURL(changeEvent.target.files[0]);
     handleOnSubmit(changeEvent);
-    // var file = e.target.files[0];
-
-    // let reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onloadend = function () {
-    //   setImgSrc(reader.result);
-    // };
-    // const form = event.currentTarget;
-    // const fileInput = Array.from(form.elements).find(
-    //   ({ name }) => name === "file"
-    // );
-
-    // var url = await uploadImage(file);
-    // setImgSrc(url);
   };
 
   async function handleOnSubmit(event) {
@@ -125,8 +111,8 @@ function Profile({ uid }) {
 
     setImgSrc(data.secure_url);
     setUploadData(data);
-    console.log("oye", data)
-    if(data){
+    console.log("oye", data);
+    if (data) {
       updateDP(data.secure_url);
     }
   }
