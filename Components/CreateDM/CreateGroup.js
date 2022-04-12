@@ -47,7 +47,7 @@ function CreateGroup({ uid }) {
     } else {
       if (groupMembers.length > 1) {
         const response = await fetch(
-          `http://localhost:3000/api/groups?name=${name}&members=${groupMembers}`
+          `http://localhost:3000/api/create?name=${name}&members=${groupMembers}`
         );
         const data = await response.json();
       } else {

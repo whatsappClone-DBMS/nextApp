@@ -17,10 +17,12 @@ const createGroup = async (req, res, name, members) => {
     `INSERT into userGroup(gName, imgSrc, gDesc,gMembers) Values("${name}","","","${members}")`,
     []
   );
+  console.log("membersss", members);
   let group = await executeQuery(
     `Select gID from userGroup where gMembers=${members}`,
     []
   );
+  console.log("group", group);
   res.send(group[0].gID);
 };
 
