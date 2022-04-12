@@ -13,32 +13,34 @@ const createDm = async (req, res, uid1, uid2) => {
 };
 
 const createGroup = async (req, res, name, members) => {
+  console.log("juju");
   let insert = await executeQuery(
-    `INSERT into userGroup(gName, gMembers) Values("${name}","[${members}]")`,
+    `insert into userGroup(gName, gMembers) Values('${name}', '[${members}]')`,
     []
   );
   console.log("membersss", members);
   let group = await executeQuery(
-    `Select gID from userGroup where gMembers=[${members}]`,
+    `select gID from userGroup where gMembers='[${members}]'`,
     []
   );
   console.log("group", group);
-  members.map((uid) => {
+  let memberArray = [1, 2];
+  memberArray.map(async (uid) => {
     let GroupArray = await executeQuery(
-      `Select userGroups from userData where uid=${uid}`,
+      `select userGroups from userData where uID=${uid}`,
       []
     );
-    if(GroupArray[0]){
+    if (GroupArray[0]) {
       console.log("GroupArray", GroupArray[0].userGroups);
-      newlist  = [...JSON.parse(GroupArray[0].userGroups), group[0].gID];
+      let oldArr = [JSON.parse(GroupArray[0].userGroups)];
+      var newlist = [...oldArr, group[0]?.gID];
       let update = await executeQuery(
         `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
         []
       );
     }
-    }
-  );
-  res.send(group[0].gID);
+  });
+  res.send(group[0]?.gID);
 };
 
 export { createDm, createGroup };

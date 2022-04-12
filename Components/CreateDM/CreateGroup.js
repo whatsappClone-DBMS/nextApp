@@ -46,7 +46,7 @@ function CreateGroup({ uid }) {
     if (name == "") {
       setError("Please Enter The Name of the Group First!");
     } else {
-      if (groupMembers.length > 1) {
+      if (groupMembers.length > 0) {
         const response = await fetch(
           `http://localhost:3000/api/create?name=${name}&members=${groupMembers}`
         );
