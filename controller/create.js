@@ -23,6 +23,21 @@ const createGroup = async (req, res, name, members) => {
     []
   );
   console.log("group", group);
+  members.map((uid) => {
+    let GroupArray = await executeQuery(
+      `Select userGroups from userData where uid=${uid}`,
+      []
+    );
+    if(GroupArray[0]){
+      console.log("GroupArray", GroupArray[0].userGroups);
+      newlist  = [...JSON.parse(GroupArray[0].userGroups), group[0].gID];
+      let update = await executeQuery(
+        `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
+        []
+      );
+    }
+    }
+  );
   res.send(group[0].gID);
 };
 

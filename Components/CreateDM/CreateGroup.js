@@ -25,9 +25,10 @@ function CreateGroup({ uid }) {
         // Check if chats already exists and uid is not the same!
         if (data[0]?.uID != uid) {
           console.log("atif bkl", uid);
-          if (!groupMembers.includes(data[0]?.uID))
+          if (!groupMembers.includes(data[0]?.uID)) {
             setGroupMembers([...groupMembers, data[0].uID]);
-          else {
+            setNumber("");
+          } else {
             setError("You already have this person in your group!");
           }
         } else {
@@ -50,6 +51,9 @@ function CreateGroup({ uid }) {
           `http://localhost:3000/api/create?name=${name}&members=${groupMembers}`
         );
         const data = await response.json();
+        if (data) {
+          router.push(`/groups?uid=${uid}&gId=${data}`);
+        }
       } else {
         setError("You need atleast 2 people to create a group");
       }

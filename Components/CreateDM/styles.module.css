@@ -11,10 +11,12 @@
 .header {
   background-color: #202c33;
   height: 7rem;
+  z-index: 100;
 }
 
 .headerInfo {
   margin-left: 1.5rem;
+
   display: flex;
   align-items: center;
   position: absolute;
@@ -23,6 +25,7 @@
 
 .body {
   padding: 2rem;
+  background-color: #111b21;
 }
 
 .editInfo {
