@@ -12,4 +12,16 @@ const createDm = async (req, res, uid1, uid2) => {
   res.send(dm[0].dmID);
 };
 
-export { createDm };
+const createGroup = async (req, res, name, members) => {
+  let insert = await executeQuery(
+    `INSERT into userGroup(gName, imgSrc, gDesc,gMembers) Values("${name}","","","${members}")`,
+    []
+  );
+  let group = await executeQuery(
+    `Select gID from userGroup where gMembers=${members}`,
+    []
+  );
+  res.send(group[0].gID);
+};
+
+export { createDm, createGroup };

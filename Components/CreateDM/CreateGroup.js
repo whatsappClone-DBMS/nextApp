@@ -11,6 +11,7 @@ import Chats from "../AllChats/Chats";
 
 function CreateGroup({ uid }) {
   const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
   const [groupMembers, setGroupMembers] = useState([]);
@@ -24,7 +25,11 @@ function CreateGroup({ uid }) {
         // Check if chats already exists and uid is not the same!
         if (data[0]?.uID != uid) {
           console.log("atif bkl", uid);
-          setGroupMembers([...groupMembers, data[0].uID]);
+          if (!groupMembers.includes(data[0]?.uID))
+            setGroupMembers([...groupMembers, data[0].uID]);
+          else {
+            setError("You already have this person in your group!");
+          }
         } else {
           setError("Cannot create a chat with yourself!");
         }
@@ -36,17 +41,40 @@ function CreateGroup({ uid }) {
     }
   };
 
+  const createGroup = async () => {
+    if (name == "") {
+      setError("Please Enter The Name of the Group First!");
+    } else {
+      if (groupMembers.length > 1) {
+        const response = await fetch(
+          `http://localhost:3000/api/groups?name=${name}&members=${groupMembers}`
+        );
+        const data = await response.json();
+      } else {
+        setError("You need atleast 2 people to create a group");
+      }
+    }
+  };
+
   useEffect(() => {
     console.log("uid", uid);
   }, [uid]);
 
   return (
     <div style={{ width: "100%", marginTop: "2rem" }}>
-      <p style={{ textAlign: "center", lineHeight: 2 }}>
-        Or <br />
-        Create A New Group
+      <p style={{ textAlign: "center", lineHeight: 2, marginBottom: "1rem" }}>
+        Or
       </p>
+      <p style={{ textAlign: "center", lineHeight: 2 }}>Create A New Group</p>
       <div>
+        <input
+          type="text"
+          placeholder="Name Of The Group"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className={styles.input}
+          style={{ marginBottom: "1rem" }}
+        />
         <div
           className={styles.input}
           style={{
@@ -64,7 +92,12 @@ function CreateGroup({ uid }) {
             className={styles.input}
             style={{ border: "none", padding: 0 }}
           />
-          <IconButton style={{ border: "2px solid #3b4f5c" }}>
+          <IconButton
+            style={{ border: "2px solid #3b4f5c" }}
+            onClick={() => {
+              addPerson();
+            }}
+          >
             <AddIcon style={{ color: "#3b4f5c", fontSize: "2rem" }} />
           </IconButton>
         </div>
@@ -72,14 +105,17 @@ function CreateGroup({ uid }) {
         <div
           className={styles.btn}
           onClick={() => {
-            // addPerson();
+            createGroup();
           }}
         >
           Create Group
         </div>
-        {groupMembers.length > 0 &&
-          groupMembers.map((member) => <Chats uid={member} />)}
+
         <p style={{ textAlign: "center", color: "#04a784" }}>{error}</p>
+      </div>
+      <div style={{ marginTop: "1rem" }}>
+        {groupMembers.length > 0 &&
+          groupMembers.map((member) => <Chats uid={member} flag={true} />)}
       </div>
     </div>
   );
