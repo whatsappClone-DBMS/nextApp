@@ -14,7 +14,7 @@ const createDm = async (req, res, uid1, uid2) => {
 
 const createGroup = async (req, res, name, members) => {
   let insert = await executeQuery(
-    `INSERT into userGroup(gName, imgSrc, gDesc, gMembers) Values("${name}", " ", " ", "[${members}]")`,
+    `INSERT into userGroup(gName, gMembers) Values("${name}","[${members}]")`,
     []
   );
   console.log("membersss", members);
