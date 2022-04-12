@@ -88,6 +88,7 @@ function Story() {
     console.log("oye", data);
     if (data) {
       uploadStory(data.secure_url);
+      router.push(`/stories?uid=${User}&storyImg=${data.secure_url}`);
     }
   }
 
@@ -156,11 +157,16 @@ function Story() {
             />
           </form>
 
-          <p style={{ marginLeft: "0.5rem", cursor:"pointer"}} onClick={()=>{
-            if(imgSrc){
-              router.push(`/stories?uid=${user}&storyImg=${imgSrc}`);
-            }
-          }}>My Status</p>
+          <p
+            style={{ marginLeft: "0.5rem", cursor: "pointer" }}
+            onClick={() => {
+              if (imgSrc) {
+                router.push(`/stories?uid=${user}&storyImg=${imgSrc}`);
+              }
+            }}
+          >
+            My Status
+          </p>
         </div>
         <p style={{ marginLeft: "0.5rem" }}>Recent</p>
         {stories.map((story, index) => (
@@ -207,7 +213,15 @@ function Story() {
                 />
               </IconButton>
             </span>
-            <img src={storyImg} style={{ width: "auto", maxWidth:"70vw", height:"auto" , minHeight:"500px"}} />
+            <img
+              src={storyImg}
+              style={{
+                width: "auto",
+                maxWidth: "70vw",
+                height: "auto",
+                minHeight: "500px",
+              }}
+            />
           </div>
         ) : (
           <div
