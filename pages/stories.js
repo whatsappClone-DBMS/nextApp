@@ -88,7 +88,7 @@ function Story() {
     console.log("oye", data);
     if (data) {
       uploadStory(data.secure_url);
-      router.push(`/stories?uid=${User}&storyImg=${data.secure_url}`);
+      router.push(`/stories?uid=${uid}&storyImg=${data.secure_url}`);
     }
   }
 
@@ -161,7 +161,7 @@ function Story() {
             style={{ marginLeft: "0.5rem", cursor: "pointer" }}
             onClick={() => {
               if (imgSrc) {
-                router.push(`/stories?uid=${user}&storyImg=${imgSrc}`);
+                router.push(`/stories?uid=${uid}&storyImg=${imgSrc}`);
               }
             }}
           >

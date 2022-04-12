@@ -18,7 +18,7 @@ function MessageWindow({ dmId, user, refresh, gId }) {
       );
       const DMdata = await responseDM.json();
       console.log("DMdataaaa", DMdata);
-      const chatHistory = JSON.parse(DMdata[0].chatHistory);
+      const chatHistory = JSON.parse(DMdata[0]?.chatHistory);
       if (chatHistory) {
         chatHistory.map(async (mId) => {
           console.log("FINAL MSSAGE TESTS", mId);

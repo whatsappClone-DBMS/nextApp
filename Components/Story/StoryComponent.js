@@ -37,7 +37,7 @@ function StoryComponent({ uid, imgSrc, seenBy, User }) {
       />
       <div className={styles.nameFlex} style={{ marginLeft: "0.5rem" }}>
         <p className={styles.name}>{user?.name ?? "Name"}</p>
-        <p className={styles.message}>today at 10:20 pm</p>
+        <p className={styles.message}>Recently Uploaded</p>
       </div>
     </div>
   );
