@@ -121,7 +121,7 @@ function CreateDMComponent({ uid }) {
           Start Chatting
         </div>
         <p style={{ textAlign: "center", color: "#04a784" }}>{error}</p>
-        <CreateGroup />
+        <CreateGroup uid={uid} />
       </div>
     </div>
   );

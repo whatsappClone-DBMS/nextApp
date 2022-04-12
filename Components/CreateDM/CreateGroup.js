@@ -14,7 +14,7 @@ function CreateGroup({ uid }) {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const [groupMembers, setGroupMembers] = useState([]);
+  const [groupMembers, setGroupMembers] = useState([uid]);
   const addPerson = async () => {
     if (number != "") {
       var flag = true;
@@ -28,6 +28,7 @@ function CreateGroup({ uid }) {
           if (!groupMembers.includes(data[0]?.uID)) {
             setGroupMembers([...groupMembers, data[0].uID]);
             setNumber("");
+            setError("");
           } else {
             setError("You already have this person in your group!");
           }
@@ -46,12 +47,14 @@ function CreateGroup({ uid }) {
     if (name == "") {
       setError("Please Enter The Name of the Group First!");
     } else {
-      if (groupMembers.length > 0) {
+      if (groupMembers.length > 1) {
         const response = await fetch(
           `http://localhost:3000/api/create?name=${name}&members=${groupMembers}`
         );
         const data = await response.json();
         if (data) {
+          setNumber("");
+          setError("");
           router.push(`/groups?uid=${uid}&gId=${data}`);
         }
       } else {

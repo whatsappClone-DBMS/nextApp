@@ -144,6 +144,13 @@ function MessageWindow({ dmId, user, refresh, gId }) {
               mId={message?.mID}
               ref={endMessageRef}
             />
+          ) : gId ? (
+            <GroupReceiverBubble
+              uid={message?.sender}
+              message={message?.text}
+              time={tConvert(message?.time)}
+              ref={endMessageRef}
+            />
           ) : (
             <ReceiverBubble
               message={message?.text}
