@@ -59,6 +59,22 @@ function ContactInfo({ uid2, gId }) {
     }
   }, [gId]);
 
+  const updateGroupData = async () => {
+    if (name != "" && status != "") {
+      const response = await fetch(
+        `http://localhost:3000/api/groupData?gId=${gId}&name=${name}&status=${status}`
+      );
+      const data = await response.json();
+      if (data) {
+        setGroup(data[0]);
+        setStatus(data[0].gDesc);
+        setName(data[0].gName);
+      } else {
+        alert("Something went wrong.");
+      }
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.navbar}>
@@ -83,7 +99,7 @@ function ContactInfo({ uid2, gId }) {
               : user?.imgSrc ??
                 "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
           }
-          sx={{ width: 200, height: 200, cursor: "pointer" }}
+          sx={{ width: 200, height: 200, cursor: gId && "pointer" }}
           style={{ marginLeft: "auto", marginRight: "auto" }}
         />
         <h1>{gId ? group?.gName : user?.name ?? "Name"}</h1>
@@ -166,30 +182,32 @@ function ContactInfo({ uid2, gId }) {
           }}
         >
           <p style={{ margin: 0 }}>{gId ? "Group Description" : "About"}</p>
-          <IconButton
-            onClick={() => {
-              setDisabled(!disabled);
-              updateGroupData();
-            }}
-          >
-            {disabled ? (
-              <EditIcon
-                sx={{
-                  cursor: "pointer",
-                  color: "#D9DEE0",
-                  marginRight: "1rem",
-                }}
-              />
-            ) : (
-              <DoneIcon
-                sx={{
-                  cursor: "pointer",
-                  color: "#D9DEE0",
-                  marginRight: "1rem",
-                }}
-              />
-            )}
-          </IconButton>
+          {gId && (
+            <IconButton
+              onClick={() => {
+                setDisabled(!disabled);
+                updateGroupData();
+              }}
+            >
+              {disabled ? (
+                <EditIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "#D9DEE0",
+                    marginRight: "1rem",
+                  }}
+                />
+              ) : (
+                <DoneIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: "#D9DEE0",
+                    marginRight: "1rem",
+                  }}
+                />
+              )}
+            </IconButton>
+          )}
         </div>
         <div className={styles.editInfo}>
           {disabled ? (
