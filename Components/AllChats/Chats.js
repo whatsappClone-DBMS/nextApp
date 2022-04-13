@@ -2,11 +2,11 @@ import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid, flag, dmID }) {
+function Chats({ uid, flag, dmId }) {
   const [user, setUser] = useState({});
+  const [lastMsg, setLastMsg] = useState();
   const [clickFlag, setClickFlag] = useState(false);
   const router = useRouter();
-  const { dmId } = router.query;
 
   const getUserDetails = async () => {
     if (uid) {
@@ -16,18 +16,39 @@ function Chats({ uid, flag, dmID }) {
       setUser(data[0]);
     }
   };
-
+  const getChats = async () => {
+    if (dmId) {
+      const responseDM = await fetch(
+        `http://localhost:3000/api/chats/dm?dmId=${dmId}`
+      );
+      const DMdata = await responseDM.json();
+      const chatHistory = JSON.parse(DMdata[0]?.chatHistory);
+      if (chatHistory) {
+        const response = await fetch(
+          `http://localhost:3000/api/chats/messages?mId=${
+            chatHistory[chatHistory.length - 1]
+          }`
+        );
+        const messageObj = await response.json();
+        if (messageObj) {
+          setLastMsg(tConvert(messageObj[0].time));
+        }
+      }
+    }
+  };
+  function tConvert(timeString) {
+    var hourEnd = timeString?.indexOf(":");
+    var H = +timeString?.substr(0, hourEnd);
+    var h = H % 12 || 12;
+    var ampm = H < 12 ? " AM" : " PM";
+    timeString = h + timeString?.substr(hourEnd, 3) + ampm;
+    return timeString;
+  }
   useEffect(() => {
     console.log("uid", uid);
     getUserDetails();
+    getChats();
   }, [uid]);
-
-  useEffect(() => {
-    if (dmId && dmID == dmId) {
-      setClickFlag(true);
-    }
-  }, [router.query]);
-
   return (
     <div
       className={styles.component}
@@ -54,7 +75,7 @@ function Chats({ uid, flag, dmID }) {
           <></>
         ) : (
           <>
-            <p className={styles.time}>11:30 pm</p>
+            <p className={styles.time}>{lastMsg ?? ""}</p>
           </>
         )}
       </div>
