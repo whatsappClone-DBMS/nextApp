@@ -39,13 +39,55 @@ const updateProfilePic = async (req, res, uid, imgSrc) => {
 };
 
 const getArchived = async (req, res, uid) => {
-  let archivedUsers = await executeQuery(`select archived from userData where uID = ${uid}`,[]);
+  let archivedUsers = await executeQuery(
+    `select archived from userData where uID = ${uid}`,
+    []
+  );
   res.send(archivedUsers);
 };
 
 const getBlocked = async (req, res, uid) => {
-  let blockedUsers = await executeQuery(`select blocked from userData where uID = ${uid}`,[]);
+  let blockedUsers = await executeQuery(
+    `select blocked from userData where uID = ${uid}`,
+    []
+  );
   res.send(blockedUsers);
 };
-
-export { createUserData, updateProfileData, updateProfilePic, getArchived, getBlocked };
+const archiveUser = async (req, res, uid, uid2) => {
+  let archivedUsers = await executeQuery(
+    `select archived from userData where uID = ${uid}`,
+    []
+  );
+  var archivedList = [JSON.parse(archivedUsers[0].archived)];
+  if (uid2 && !archivedList.contains(uid2)) {
+    console.log("Sassy", uid2);
+    var newList = [...archivedList, uid2];
+    let updateArchive = await executeQuery(
+      `update userData set archived = '[${newList}]' where uID = ${uid}`,
+      []
+    );
+  }
+};
+const blockedUser = async (req, res, uid, uid2) => {
+  let blockedUsers = await executeQuery(
+    `select blocked from userData where uID = ${uid}`,
+    []
+  );
+  var blockedList = [JSON.parse(blockedUsers[0].blocked)];
+  if (uid2 && !blockedList.contains(uid2)) {
+    var newList = [...blockedList, uid2];
+    let updateBlock = await executeQuery(
+      `update userData set blocked = '[${newList}]' where uID = ${uid}`,
+      []
+    );
+  }
+};
+export {
+  createUserData,
+  updateProfileData,
+  updateProfilePic,
+  getArchived,
+  getBlocked,
+  archiveUser,
+  blockedUser,
+};

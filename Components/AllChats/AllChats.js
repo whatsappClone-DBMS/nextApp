@@ -9,6 +9,7 @@ import styles from "./styles.module.css";
 function AllChats({ uid }) {
   const [chats, setChats] = useState();
   const router = useRouter();
+  const { dmId } = router.query;
   var personUid = 0;
   const getChats = async () => {
     if (uid) {
@@ -26,7 +27,7 @@ function AllChats({ uid }) {
   }, [uid]);
   return (
     <div className={styles.chatsContainer}>
-      <AllChatsHeader  uid={uid}/>
+      <AllChatsHeader uid={uid} />
       <div style={{ paddingTop: 65 }}>
         {!chats ? (
           <Loading />
@@ -41,7 +42,10 @@ function AllChats({ uid }) {
                   router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
                 }}
               >
-                <Chats uid={personUid} />
+                <Chats
+                  uid={personUid}
+                  flag={dmId === chat?.dmID ? true : false}
+                />
               </div>
             );
           })

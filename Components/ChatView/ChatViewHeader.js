@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Avatar } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function ChatViewHeader({ uid, dmId, gId }) {
   const [user, setUser] = useState({});
@@ -43,6 +43,25 @@ function ChatViewHeader({ uid, dmId, gId }) {
       const data = await response.json();
       console.log("groups Data", data);
       setGroup(data[0]);
+    }
+  };
+
+  const archiveUser = async () => {
+    if (user) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/archived?uid=${uid}&uid2=${user.uID}`
+      );
+      router.push(`/home?uid=${uid}`);
+      const data = await response.json();
+    }
+  };
+  const blockUser = async () => {
+    if (user) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/blocked?uid=${uid}&uid2=${user.uID}`
+      );
+      router.push(`/home?uid=${uid}`);
+      const data = await response.json();
     }
   };
 
@@ -86,12 +105,15 @@ function ChatViewHeader({ uid, dmId, gId }) {
       <div
         style={{ display: "flex", marginRight: "2rem", alignItems: "center" }}
       >
-        <IconButton style={{ color: "#AEBAC1" }}>
-          <SearchIcon />
-        </IconButton>
-        <IconButton style={{ color: "#AEBAC1" }}>
-          <MoreVertIcon />
-        </IconButton>
+        <div className={styles.dropdown}>
+          <IconButton style={{ color: "#AEBAC1" }}>
+            <MoreVertIcon />
+            <div className={styles.dropdownContent}>
+              <p onClick={() => archiveUser()}>Archive</p>
+              <p onClick={() => blockUser()}>Block</p>
+            </div>
+          </IconButton>
+        </div>
       </div>
     </div>
   );

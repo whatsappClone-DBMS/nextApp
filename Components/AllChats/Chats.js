@@ -39,7 +39,6 @@ function Chats({ uid, flag }) {
         ) : (
           <>
             <p className={styles.time}>11:30 pm</p>
-            <p className={styles.unread}>3</p>
           </>
         )}
       </div>
