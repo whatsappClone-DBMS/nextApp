@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 function Chats({ uid, flag, dmID }) {
   const [user, setUser] = useState({});
+  const [clickFlag, setClickFlag] = useState(false);
   const router = useRouter();
   const { dmId } = router.query;
 
@@ -23,7 +24,7 @@ function Chats({ uid, flag, dmID }) {
 
   useEffect(() => {
     if (dmId && dmID == dmId) {
-      flag = true;
+      setClickFlag(true);
     }
   }, [dmId]);
 
@@ -42,7 +43,11 @@ function Chats({ uid, flag, dmID }) {
       />
       <div className={styles.nameFlex}>
         <p className={styles.name}>{user?.name ?? "Name..."}</p>
-        {flag ? <></> : <p className={styles.message}>Click To Open</p>}
+        {flag && !clickFlag ? (
+          <></>
+        ) : (
+          <p className={styles.message}>Click To Open</p>
+        )}
       </div>
       <div className={styles.timeFlex}>
         {flag ? (
