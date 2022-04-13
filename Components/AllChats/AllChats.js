@@ -8,6 +8,7 @@ import styles from "./styles.module.css";
 
 function AllChats({ uid }) {
   const [chats, setChats] = useState();
+  const [dmID, SetDmID] = useState();
   const router = useRouter();
   const { dmId } = router.query;
   var personUid = 0;
@@ -25,6 +26,11 @@ function AllChats({ uid }) {
   useEffect(() => {
     getChats();
   }, [uid]);
+
+  useEffect(() => {
+    if (dmId) SetDmID(dmId);
+  }, [dmId]);
+
   return (
     <div className={styles.chatsContainer}>
       <AllChatsHeader uid={uid} />
@@ -44,7 +50,7 @@ function AllChats({ uid }) {
               >
                 <Chats
                   uid={personUid}
-                  flag={dmId === chat?.dmID ? true : false}
+                  flag={dmID === chat?.dmID ? true : false}
                 />
               </div>
             );
