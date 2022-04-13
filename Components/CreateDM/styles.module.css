@@ -67,3 +67,12 @@
   cursor: pointer;
   background-color: #02b38d;
 }
+
+@media (max-width: 1100px) {
+  .input {
+    padding: 0.8rem;
+  }
+  .btn {
+    padding: 0.8rem;
+  }
+}

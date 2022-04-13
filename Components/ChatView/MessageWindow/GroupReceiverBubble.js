@@ -18,7 +18,7 @@ function GroupReceiverBubble({ uid, message, time }) {
   }, [uid]);
 
   return (
-    <div className={styles.receiverBubble}>
+    <div className={styles.groupReceiverBubble}>
       <div
         style={{
           margin: "0",

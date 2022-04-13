@@ -1,5 +1,5 @@
-import React from 'react'
-import Setting from '../Components/Setting/Setting'
+import React from "react";
+import Setting from "../Components/Setting/Setting";
 import styles from "../styles/Home2.module.css";
 import { useRouter } from "next/router";
 import ChatView from "../Components/ChatView/ChatView";
@@ -10,7 +10,7 @@ function Settings() {
 
   return (
     <div className={styles.container}>
-      <Setting uid={uid}/>
+      <Setting uid={uid} />
       {dmId != "undefined" ? (
         <ChatView dmId={dmId ?? -1000} uid={uid} />
       ) : (
@@ -23,11 +23,11 @@ function Settings() {
             backgroundColor: "#212E35",
           }}
         >
-          <img src="assets/DefaultChat.svg" style={{ maxWidth: "450px" }} />
+          <img src="assets/DefaultChat.svg" className={styles.defaultImg} />
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Settings
+export default Settings;

@@ -23,7 +23,7 @@ export default function CreateDM() {
             backgroundColor: "#212E35",
           }}
         >
-          <img src="assets/DefaultChat.svg" style={{ maxWidth: "450px" }} />
+          <img src="assets/DefaultChat.svg" className={styles.defaultImg} />
         </div>
       )}
     </div>

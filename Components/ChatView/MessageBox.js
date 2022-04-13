@@ -125,7 +125,7 @@ function MessageBox({ sender, dmId, gId }) {
           sendMessage();
         }}
       >
-        <FavoriteIcon sx={{ marginRight: "1rem", color: "#7B8B95" }} />
+        <FavoriteIcon sx={{ marginRight: "1rem", color: "#E80758" }} />
       </IconButton>
       <input
         className={styles.textMessage}

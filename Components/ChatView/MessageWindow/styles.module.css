@@ -61,3 +61,15 @@
 .dropdownContent {
   display: block;
 }
+
+.groupReceiverBubble {
+  width: fit-content;
+  margin: 1.5rem;
+  display: block;
+  margin-right: auto;
+  background-color: #2a3942;
+  padding: 0.5rem;
+  padding-top: 0;
+  border-radius: 5px;
+  max-width: 45vw;
+}
