@@ -29,7 +29,7 @@ function AllChats({ uid }) {
 
   useEffect(() => {
     if (dmId) SetDmID(dmId);
-  }, [dmId]);
+  }, [router.query]);
 
   return (
     <div className={styles.chatsContainer}>
