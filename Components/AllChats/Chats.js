@@ -1,8 +1,12 @@
 import { Avatar } from "@mui/material";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid, flag }) {
+function Chats({ uid, flag, dmID }) {
   const [user, setUser] = useState({});
+  const router = useRouter();
+  const { dmId } = router.query;
+
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
@@ -16,6 +20,13 @@ function Chats({ uid, flag }) {
     console.log("uid", uid);
     getUserDetails();
   }, [uid]);
+
+  useEffect(() => {
+    if (dmId && dmID == dmId) {
+      flag = true;
+    }
+  }, [dmId]);
+
   return (
     <div
       className={styles.component}

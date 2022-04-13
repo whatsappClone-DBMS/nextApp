@@ -51,6 +51,7 @@ function AllChats({ uid }) {
                 <Chats
                   uid={personUid}
                   flag={dmID === chat?.dmID ? true : false}
+                  dmID={chat?.dmID}
                 />
               </div>
             );
