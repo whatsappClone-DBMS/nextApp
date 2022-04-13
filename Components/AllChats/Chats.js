@@ -26,7 +26,7 @@ function Chats({ uid, flag, dmID }) {
     if (dmId && dmID == dmId) {
       setClickFlag(true);
     }
-  }, [dmId]);
+  }, [router.query]);
 
   return (
     <div
