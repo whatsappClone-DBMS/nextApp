@@ -9,23 +9,17 @@ function GroupsComponent({ gId }) {
         `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const data = await response.json();
-      console.log("groups Data", data);
+
       setGroup(data[0]);
     }
   };
 
   useEffect(() => {
-    console.log("uid", gId);
     getGroupDetails();
   }, [gId]);
 
   return (
-    <div
-      className={styles.component}
-      onClick={() => {
-        console.log("dmID");
-      }}
-    >
+    <div className={styles.component}>
       <Avatar
         alt={group?.gName ?? "Name..."}
         src={group?.imgSrc ?? "Name..."}

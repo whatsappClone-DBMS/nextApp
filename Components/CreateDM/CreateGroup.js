@@ -21,10 +21,8 @@ function CreateGroup({ uid }) {
       const response = await fetch(`http://localhost:3000/api/login/${number}`);
       const data = await response.json();
       if (data[0]) {
-        console.log("data of number", data);
         // Check if chats already exists and uid is not the same!
         if (data[0]?.uID != uid) {
-          console.log("atif bkl", uid);
           if (!groupMembers.includes(data[0]?.uID)) {
             setGroupMembers([...groupMembers, data[0].uID]);
             setNumber("");
@@ -60,10 +58,6 @@ function CreateGroup({ uid }) {
       }
     }
   };
-
-  useEffect(() => {
-    console.log("uid", uid);
-  }, [uid]);
 
   return (
     <div style={{ width: "100%", marginTop: "2rem" }}>

@@ -1,7 +1,6 @@
 import { executeQuery } from "../config/db";
 
 const allGroups = async (req, res, uid) => {
-  console.log("uiddddd", uid);
   let allGroups = await executeQuery(
     `select userGroups from userData where uID = ${uid}`,
     []
@@ -10,12 +9,11 @@ const allGroups = async (req, res, uid) => {
 };
 
 const oneGroup = async (req, res, gId) => {
-  console.log("popopo", gId);
   let oneGroup = await executeQuery(
     `select * from userGroup where gID = ${gId}`,
     []
   );
-  console.log("pop", oneGroup);
+
   return res.status(200).send(oneGroup);
 };
 
@@ -24,8 +22,7 @@ const updateDmArrayGroups = async (req, res, dmId, mId) => {
     "SELECT chatHistory FROM DM WHERE dmID = " + `${dmId}`,
     []
   );
-  console.log(JSON.parse(getArray[0].chatHistory));
-  console.log(JSON.stringify(mId));
+
   const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
   let putArray = await executeQuery(
     `UPDATE DM SET chatHistory = "${JSON.stringify(
@@ -33,7 +30,7 @@ const updateDmArrayGroups = async (req, res, dmId, mId) => {
     )}" WHERE dmID = ${dmId}`,
     []
   );
-  console.log("wqe", finalHistory.toString());
+
   // res.status(200).send(putArray);
   return;
 };

@@ -16,7 +16,6 @@ function StoryComponent({ uid, imgSrc, seenBy, User }) {
   };
 
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
   }, [uid]);
 

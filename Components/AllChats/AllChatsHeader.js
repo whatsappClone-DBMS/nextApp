@@ -19,13 +19,12 @@ function AllChatsHeader({ uid }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Detailsss", data);
+
       setUser(data[0]);
     }
   };
 
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
   }, [uid]);
   return (

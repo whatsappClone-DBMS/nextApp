@@ -18,7 +18,6 @@ function AllChats({ uid }) {
         `http://localhost:3000/api/chats/dm?uid=${uid}`
       );
       const data = await response.json();
-      console.log("User chats", data);
       setChats(data);
     }
   };

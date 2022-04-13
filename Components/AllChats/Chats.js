@@ -12,7 +12,7 @@ function Chats({ uid, flag, dmId }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Detailsss", data);
+
       setUser(data[0]);
     }
   };
@@ -45,17 +45,11 @@ function Chats({ uid, flag, dmId }) {
     return timeString;
   }
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
     getChats();
   }, [uid]);
   return (
-    <div
-      className={styles.component}
-      onClick={() => {
-        console.log("dmID");
-      }}
-    >
+    <div className={styles.component}>
       <Avatar
         alt={user?.name ?? "Name..."}
         src={user?.imgSrc ?? "Name..."}

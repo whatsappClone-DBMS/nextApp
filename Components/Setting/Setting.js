@@ -17,7 +17,7 @@ function Setting({ uid }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Details", data);
+
       setUser(data[0]);
     }
   };
@@ -30,7 +30,6 @@ function Setting({ uid }) {
       if (data) {
         setArchived(JSON.parse(data[0].archived));
       }
-      console.log("mdrfkr", archived);
     }
   };
   const getBlocked = async () => {
@@ -42,13 +41,11 @@ function Setting({ uid }) {
       if (data) {
         setBlocked(JSON.parse(data[0].blocked));
       }
-      console.log("mdrfkr2", blocked);
     }
   };
   const router = useRouter();
   const { dmId } = router.query;
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
     getArchived();
     getBlocked();

@@ -13,7 +13,6 @@ function Handler(req, res) {
   } else if (uid) {
     Handler.get(allGroups(req, res, uid));
   } else if (gId && mId) {
-    console.log("dmId and Mid");
     Handler.get(updateDmArrayGroups(req, res, gId, mId));
   }
 

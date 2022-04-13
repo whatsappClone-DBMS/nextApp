@@ -30,7 +30,6 @@ function SignUp() {
           );
 
           const data = await response.json();
-          console.log("signupppp", data);
 
           if (data[0]) {
             const response2 = await fetch(

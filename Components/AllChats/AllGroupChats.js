@@ -17,7 +17,7 @@ function AllGroupChats({ uid }) {
         `http://localhost:3000/api/chats/groups?uid=${uid}`
       );
       const data = await response.json();
-      console.log("User chats", data[0].groups);
+
       setChats(JSON.parse(data[0].userGroups));
     }
   };

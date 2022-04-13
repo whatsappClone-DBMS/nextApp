@@ -8,7 +8,6 @@ function Handler(req, res) {
   if (uid) {
     Handler.get(allDMs(req, res, uid));
   } else if (dmId && mId) {
-    console.log("dmId and Mid");
     Handler.get(updateDmArray(req, res, dmId, mId));
   } else if (dmId) {
     Handler.get(oneDM(req, res, dmId));

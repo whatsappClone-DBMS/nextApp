@@ -26,14 +26,13 @@ function ContactInfo({ uid2, gId }) {
     if (uid2) {
       const response = await fetch(`http://localhost:3000/api/user/${uid2}`);
       const data = await response.json();
-      console.log("aryan", data[0]);
       setUser(data[0]);
     } else if (gId) {
       const response = await fetch(
         `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const data = await response.json();
-      console.log("groups Data", data);
+
       setGroup(data[0]);
       setStatus(data[0].gDesc);
       setName(data[0].gName);
@@ -46,7 +45,7 @@ function ContactInfo({ uid2, gId }) {
         `http://localhost:3000/api/user/users?uid=${uid2}`
       );
       const data = await response.json();
-      console.log("avi gandu", data[0]);
+
       setMobileNumber(data[0].mobileNumber);
     }
   };
@@ -79,7 +78,6 @@ function ContactInfo({ uid2, gId }) {
   };
 
   const updateDP = async (secure_url) => {
-    console.log("kinshuk");
     if (name != "" && status != "") {
       const response = await fetch(
         `http://localhost:3000/api/groupData?gId=${gId}&imgSrc=${secure_url}`
@@ -111,14 +109,12 @@ function ContactInfo({ uid2, gId }) {
   };
 
   async function handleOnSubmit(event) {
-    console.log("hehe");
     event.preventDefault();
     const form = event.currentTarget;
     const fileInput = Array.from(form.elements).find(
       ({ name }) => name === "file"
     );
     const formData = new FormData();
-    console.log("formDataaa", fileInput);
 
     for (const file of fileInput.files) {
       formData.append("file", file);
@@ -134,7 +130,7 @@ function ContactInfo({ uid2, gId }) {
 
     setImgSrc(data.secure_url);
     setUploadData(data);
-    console.log("oye", data);
+
     if (data) {
       updateDP(data.secure_url);
     }

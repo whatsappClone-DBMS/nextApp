@@ -24,7 +24,7 @@ function Profile({ uid }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Details", data);
+
       setUser(data[0]);
       setName(data[0]?.name ?? "Avi");
       setImgSrc(data[0].imgSrc);
@@ -54,7 +54,6 @@ function Profile({ uid }) {
   };
 
   const updateDP = async (secure_url) => {
-    console.log("kinshuk");
     if (name != "" && status != "") {
       const response = await fetch(
         `http://localhost:3000/api/profileData?uid=${user?.uID}&imgSrc=${secure_url}`

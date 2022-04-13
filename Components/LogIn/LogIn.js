@@ -21,7 +21,6 @@ function LogIn() {
           `http://localhost:3000/api/login/${mobileNumber}`
         );
         const data = await response.json();
-        console.log(data);
 
         if (!data) {
           setError("User Does Not Exist. Please Sign Up!");

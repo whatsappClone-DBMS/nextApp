@@ -16,7 +16,6 @@ function ChatViewHeader({ uid, dmId, gId }) {
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
       );
       const DMdata = await responseDM.json();
-      console.log("hi2", DMdata);
       var uid2;
       // if (DMdata[0]){
       //   if(uid === DMdata[0].uid1){
@@ -33,7 +32,6 @@ function ChatViewHeader({ uid, dmId, gId }) {
       if (uid2) {
         const response = await fetch(`http://localhost:3000/api/user/${uid2}`);
         const data = await response.json();
-        console.log("hi", data);
         setUser(data[0]);
       }
     } else if (gId) {
@@ -41,7 +39,6 @@ function ChatViewHeader({ uid, dmId, gId }) {
         `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const data = await response.json();
-      console.log("groups Data", data);
       setGroup(data[0]);
     }
   };
@@ -66,12 +63,10 @@ function ChatViewHeader({ uid, dmId, gId }) {
   };
 
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
   }, [dmId]);
 
   useEffect(() => {
-    console.log("gId", gId);
     getUserDetails();
   }, [gId]);
 

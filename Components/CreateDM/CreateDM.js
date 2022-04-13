@@ -20,17 +20,14 @@ function CreateDMComponent({ uid }) {
       const response = await fetch(`http://localhost:3000/api/login/${number}`);
       const data = await response.json();
       if (data[0]) {
-        console.log("data of number", data);
         // Check if chats already exists and uid is not the same!
         if (data[0]?.uID != uid) {
-          console.log("atif bkl", uid);
           const response2 = await fetch(
             `http://localhost:3000/api/chats/dm?uid=${data[0]?.uID}`
           );
           const data2 = await response2.json();
-          console.log("atif chu", data2);
+
           data2.map((dm) => {
-            console.log("dmDtaaa", dm);
             if (
               (dm.uid1 == uid && dm.uid2 == data[0].uID) ||
               (dm.uid2 == uid && dm.uid1 == data[0].uID)
@@ -50,11 +47,10 @@ function CreateDMComponent({ uid }) {
             `http://localhost:3000/api/create?uid1=${uid}&uid2=${data[0]?.uID}`
           );
           const data3 = await response3.json();
-          console.log("data3", data3);
+
           if (data3) {
             router.push(`/home?uid=${uid}&dmId=${data3}`);
           }
-          console.log("Creating DM For the first time");
         }
         // router.push(`/chat?uid=${uid}&dmId=${data[0].dmID}`);
       } else {
@@ -62,10 +58,6 @@ function CreateDMComponent({ uid }) {
       }
     }
   };
-
-  useEffect(() => {
-    console.log("uid", uid);
-  }, [uid]);
 
   return (
     <div className={styles.chatsContainer}>

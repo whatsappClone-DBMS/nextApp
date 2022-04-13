@@ -22,7 +22,7 @@ function Story() {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-      console.log("User Detailsss", data);
+
       setUser(data[0]);
     }
   };
@@ -30,13 +30,11 @@ function Story() {
   const getAllStories = async () => {
     const response = await fetch(`http://localhost:3000/api/stories`);
     const data = await response.json();
-    console.log("User Detailsss", data);
+
     setStories(data);
   };
 
   const uploadStory = async (secure_url) => {
-    console.log("kinshuk");
-
     const response = await fetch(
       `http://localhost:3000/api/stories?uid=${user?.uID}&imgSrc=${secure_url}`
     );
@@ -62,14 +60,12 @@ function Story() {
   };
 
   async function handleOnSubmit(event) {
-    console.log("hehe");
     event.preventDefault();
     const form = event.currentTarget;
     const fileInput = Array.from(form.elements).find(
       ({ name }) => name === "file"
     );
     const formData = new FormData();
-    console.log("formDataaa", fileInput);
 
     for (const file of fileInput.files) {
       formData.append("file", file);
@@ -85,7 +81,7 @@ function Story() {
 
     setImgSrc(data.secure_url);
     setUploadData(data);
-    console.log("oye", data);
+
     if (data) {
       uploadStory(data.secure_url);
       router.push(`/stories?uid=${uid}&storyImg=${data.secure_url}`);
@@ -93,7 +89,6 @@ function Story() {
   }
 
   useEffect(() => {
-    console.log("uid", uid);
     getUserDetails();
     getAllStories();
   }, [uid]);

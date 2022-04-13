@@ -1,7 +1,6 @@
 import { executeQuery } from "../../config/db";
 
 const uploadStory = async (req, res, uid, imgSrc) => {
-  console.log("bc", imgSrc);
   let story = await executeQuery(`select * from Story where uID = ${uid}`, []);
   if (story) {
     let insertQuery = await executeQuery(
@@ -16,7 +15,6 @@ const uploadStory = async (req, res, uid, imgSrc) => {
     );
     res.send(insertQuery);
   }
-  
 };
 
 const allStories = async (req, res) => {

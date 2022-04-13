@@ -13,7 +13,6 @@ const createUserData = async (req, res, uid, name) => {
 };
 
 const updateProfileData = async (req, res, uid, name, status) => {
-  console.log("blah blah blah", name, status);
   let users = await executeQuery(
     `UPDATE userData SET name = "${name}", status = "${status}" WHERE uID = "${uid}"`,
     []
@@ -26,7 +25,6 @@ const updateProfileData = async (req, res, uid, name, status) => {
 };
 
 const updateProfilePic = async (req, res, uid, imgSrc) => {
-  console.log("bc", imgSrc);
   let users = await executeQuery(
     `UPDATE userData SET imgSrc = "${imgSrc}" WHERE uID = ${uid} `,
     []
@@ -60,7 +58,6 @@ const archiveUser = async (req, res, uid, uid2) => {
   );
   var archivedList = [JSON.parse(archivedUsers[0].archived)];
   if (uid2 && !archivedList.contains(uid2)) {
-    console.log("Sassy", uid2);
     var newList = [...archivedList, uid2];
     let updateArchive = await executeQuery(
       `update userData set archived = '[${newList}]' where uID = ${uid}`,
