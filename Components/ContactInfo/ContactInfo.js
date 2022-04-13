@@ -68,13 +68,12 @@ function ContactInfo({ uid2, gId }) {
       const response = await fetch(
         `http://localhost:3000/api/groupData?gId=${gId}&name=${name}&status=${status}`
       );
-      const data = await response.json();
-      if (data) {
+      if (response && (!disabled || !disabledName)) {
+        router.reload();
+        const data = await response.json();
         setGroup(data[0]);
         setStatus(data[0].gDesc);
         setName(data[0].gName);
-      } else {
-        alert("Something went wrong.");
       }
     }
   };
@@ -93,6 +92,7 @@ function ContactInfo({ uid2, gId }) {
       }
     } else {
       setImgSrc(secure_url);
+      router.reload();
     }
   };
 

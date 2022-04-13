@@ -1,4 +1,4 @@
-import { executeQuery } from "../../config/db";
+import { executeQuery } from "../config/db";
 
 const updateGroupData = async (req, res, gId, name, status) => {
   console.log("blah blah blah", name, status);
@@ -10,7 +10,6 @@ const updateGroupData = async (req, res, gId, name, status) => {
     `select * from userGroup where gID = ${gId}`,
     []
   );
-  res.send(group);
 };
 
 const updateGroupPic = async (req, res, gId, imgSrc) => {
@@ -23,13 +22,6 @@ const updateGroupPic = async (req, res, gId, imgSrc) => {
     `select * from userGroup where gID = ${gId}`,
     []
   );
-  res.send(group);
 };
 
-export {
-  createUserData,
-  updateGroupData,
-  updateGroupPic,
-  getArchived,
-  getBlocked,
-};
+export { updateGroupData, updateGroupPic };
