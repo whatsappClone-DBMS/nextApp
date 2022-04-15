@@ -71,19 +71,22 @@ function AllChats({ uid }) {
             chat?.uid1 == uid
               ? (personUid = chat.uid2)
               : (personUid = chat.uid1);
-            return !archived.contains(personUid) &&
-              !blocked.contains(personUid) ? (
-              <div
-                onClick={() => {
-                  router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
-                }}
-              >
-                <Chats
-                  uid={personUid}
-                  flag={dmID === chat?.dmID ? true : false}
-                  dmId={chat?.dmID}
-                />
-              </div>
+            return archived.length > 0 && blocked.length > 0 ? (
+              !archived.contains(personUid) && !blocked.contains(personUid) ? (
+                <div
+                  onClick={() => {
+                    router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
+                  }}
+                >
+                  <Chats
+                    uid={personUid}
+                    flag={dmID === chat?.dmID ? true : false}
+                    dmId={chat?.dmID}
+                  />
+                </div>
+              ) : (
+                <></>
+              )
             ) : (
               <></>
             );
