@@ -40,6 +40,7 @@ function AllChats({ uid }) {
       }
     }
   };
+
   const getBlocked = async () => {
     if (uid) {
       const response = await fetch(
@@ -51,6 +52,29 @@ function AllChats({ uid }) {
       }
     }
   };
+
+  useEffect(() => {
+    console.log("archived", archived);
+    console.log("blocked", blocked);
+
+    var myChats = chats;
+    if ((blocked.length > 0 || archived.length > 0) && myChats.length > 0) {
+      myChats?.map((chat, index) => {
+        var personUid = 0;
+        chat?.uid1 == uid ? (personUid = chat.uid2) : (personUid = chat.uid1);
+        console.log("person uid", personUid);
+
+        if (blocked.contains(personUid)) {
+          myChats.splice(index, 1);
+        }
+        if (archived.contains(personUid)) {
+          myChats.splice(index, 1);
+        }
+      });
+      console.log("my chats after deletion", myChats);
+      setChats(myChats);
+    }
+  }, [blocked, archived]);
 
   useEffect(() => {
     getChats();
@@ -71,24 +95,18 @@ function AllChats({ uid }) {
             chat?.uid1 == uid
               ? (personUid = chat.uid2)
               : (personUid = chat.uid1);
-            return archived.length > 0 && blocked.length > 0 ? (
-              !archived.contains(personUid) && !blocked.contains(personUid) ? (
-                <div
-                  onClick={() => {
-                    router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
-                  }}
-                >
-                  <Chats
-                    uid={personUid}
-                    flag={dmID === chat?.dmID ? true : false}
-                    dmId={chat?.dmID}
-                  />
-                </div>
-              ) : (
-                <></>
-              )
-            ) : (
-              <></>
+            return (
+              <div
+                onClick={() => {
+                  router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
+                }}
+              >
+                <Chats
+                  uid={personUid}
+                  flag={dmID === chat?.dmID ? true : false}
+                  dmId={chat?.dmID}
+                />
+              </div>
             );
           })
         )}
