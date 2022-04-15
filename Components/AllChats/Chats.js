@@ -67,7 +67,7 @@ function Chats({ uid, flag, dmId, removeArchive, removeBlock, mainUser }) {
     var minutes = timeString?.indexOf(":", hourEnd);
     var M = +timeString?.substr(hourEnd + 1, minutes);
     M < 10 ? (M = "0" + M) : M;
-    timeString = h + M + ampm;
+    timeString = h.toString() + ":" + M.toString() + ampm.toString();
     return timeString;
   }
   useEffect(() => {
