@@ -73,7 +73,9 @@ const unBlockUser = async (req, res, uid, uid2) => {
     `select blocked from userData where uID = ${uid}`,
     []
   );
+  console.log("uid2", uid2);
   var blockedList = JSON.parse(blockedUsers[0].blocked);
+  console.log("includes", blockedList.includes(uid2));
   var newList = blockedList.filter((item) => item != uid2);
   console.log("new list", newList);
   let updateBlock = await executeQuery(
