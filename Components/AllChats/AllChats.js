@@ -63,11 +63,7 @@ function AllChats({ uid }) {
         var personUid = 0;
         chat?.uid1 == uid ? (personUid = chat.uid2) : (personUid = chat.uid1);
         console.log("person uid", personUid);
-
-        if (blocked.contains(personUid)) {
-          myChats.splice(index, 1);
-        }
-        if (archived.contains(personUid)) {
+        if (blocked.includes(personUid) || archived.includes(personUid)) {
           myChats.splice(index, 1);
         }
       });
