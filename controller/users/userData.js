@@ -57,7 +57,10 @@ const unArchiveUser = async (req, res, uid, uid2) => {
     `select archived from userData where uID = ${uid}`,
     []
   );
+  console.log("unarchived", JSON.parse(archivedUsers[0].archived));
   var archivedList = [JSON.parse(archivedUsers[0].archived)];
+  console.log("uid2", uid2);
+  console.log("includes", archivedList.includes(uid2));
   if (uid2 && archivedList.contains(uid2)) {
     var newList = archivedList.filter((item) => item != uid2);
     let updateArchive = await executeQuery(
