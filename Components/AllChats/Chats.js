@@ -107,10 +107,21 @@ function Chats({ uid, flag, dmId, removeArchive, removeBlock, mainUser }) {
         )}
         {removeBlock && (
           <div className={styles.dropdown}>
-            <IconButton style={{ color: "#AEBAC1" }}>
+            <IconButton
+              style={{ color: "#AEBAC1" }}
+              onClick={() => {
+                unBlockUser();
+              }}
+            >
               <KeyboardArrowDownIcon />
               <div className={styles.dropdownContent}>
-                <p onClick={() => unBlockUser()}>Unblock</p>
+                <p
+                  onClick={() => {
+                    unBlockUser();
+                  }}
+                >
+                  Unblock
+                </p>
               </div>
             </IconButton>
           </div>
