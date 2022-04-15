@@ -11,6 +11,7 @@ function AllChats({ uid }) {
   const [dmID, SetDmID] = useState();
   const [archived, setArchived] = useState([]);
   const [blocked, setBlocked] = useState([]);
+  const [flag, setFlag] = useState(false);
   const router = useRouter();
   const { dmId } = router.query;
   var personUid = 0;
@@ -58,6 +59,7 @@ function AllChats({ uid }) {
     console.log("blocked", blocked);
 
     var myChats = chats;
+    setFlag(true);
     if ((blocked.length > 0 || archived.length > 0) && myChats.length > 0) {
       myChats?.map((chat, index) => {
         var personUid = 0;
@@ -69,6 +71,7 @@ function AllChats({ uid }) {
       });
       console.log("my chats after deletion", myChats);
       setChats(myChats);
+      setFlag(false);
     }
   }, [blocked, archived]);
 
@@ -84,7 +87,7 @@ function AllChats({ uid }) {
     <div className={styles.chatsContainer}>
       <AllChatsHeader uid={uid} />
       <div style={{ paddingTop: 65 }}>
-        {!chats ? (
+        {!chats && flag ? (
           <Loading />
         ) : (
           chats?.map((chat) => {
