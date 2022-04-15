@@ -9,9 +9,12 @@ import styles from "./styles.module.css";
 function AllChats({ uid }) {
   const [chats, setChats] = useState();
   const [dmID, SetDmID] = useState();
+  const [archived, setArchived] = useState([]);
+  const [blocked, setBlocked] = useState([]);
   const router = useRouter();
   const { dmId } = router.query;
   var personUid = 0;
+
   const getChats = async () => {
     if (uid) {
       const response = await fetch(
@@ -19,6 +22,33 @@ function AllChats({ uid }) {
       );
       const data = await response.json();
       setChats(data);
+      if (data) {
+        getArchived();
+        getBlocked();
+      }
+    }
+  };
+
+  const getArchived = async () => {
+    if (uid) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/archived?uid=${uid}`
+      );
+      const data = await response.json();
+      if (data) {
+        setArchived(JSON.parse(data[0].archived));
+      }
+    }
+  };
+  const getBlocked = async () => {
+    if (uid) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/blocked?uid=${uid}`
+      );
+      const data = await response.json();
+      if (data) {
+        setBlocked(JSON.parse(data[0].blocked));
+      }
     }
   };
 
@@ -41,7 +71,8 @@ function AllChats({ uid }) {
             chat?.uid1 == uid
               ? (personUid = chat.uid2)
               : (personUid = chat.uid1);
-            return (
+            return !archived.contains(personUid) &&
+              !blocked.contains(personUid) ? (
               <div
                 onClick={() => {
                   router.push(`/home?uid=${uid}&dmId=${chat?.dmID}`);
@@ -53,6 +84,8 @@ function AllChats({ uid }) {
                   dmId={chat?.dmID}
                 />
               </div>
+            ) : (
+              <></>
             );
           })
         )}
