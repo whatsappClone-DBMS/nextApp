@@ -8,6 +8,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Story() {
   const [user, setUser] = useState();
@@ -111,6 +112,12 @@ function Story() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.storyContainer}>
+        <IconButton
+          onClick={() => router.push(`/home?uid=${user?.uID}`)}
+          style={{ color: "#6d7275", marginTop: 20 }}
+        >
+          <ArrowBackIcon style={{ color: "#6d7275" }} />
+        </IconButton>
         <div className={styles.storyHeader}>
           <form
             method="post"
