@@ -2,11 +2,35 @@ import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-function Chats({ uid, flag, dmId }) {
+import IconButton from "@mui/material/IconButton";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Link from "next/link";
+
+function Chats({ uid, flag, dmId, removeArchive, removeBlock, mainUser }) {
   const [user, setUser] = useState({});
   const [lastMsg, setLastMsg] = useState();
   const [clickFlag, setClickFlag] = useState(false);
   const router = useRouter();
+
+  const unArchiveUser = async () => {
+    if (mainUser) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/unarchive?uid=${mainUser}&uid2=${uid}`
+      );
+      console.log("hehehehehhe");
+      router.reload();
+      const data = await response.json();
+    }
+  };
+  const unBlockUser = async () => {
+    if (mainUser) {
+      const response = await fetch(
+        `http://localhost:3000/api/user/unblock?uid=${mainUser}&uid2=${uid}`
+      );
+      router.reload();
+      const data = await response.json();
+    }
+  };
 
   const getUserDetails = async () => {
     if (uid) {
@@ -71,6 +95,32 @@ function Chats({ uid, flag, dmId }) {
           <>
             <p className={styles.time}>{lastMsg ?? ""}</p>
           </>
+        )}
+        {removeArchive && (
+          <div className={styles.dropdown}>
+            <IconButton style={{ color: "#AEBAC1" }}>
+              <KeyboardArrowDownIcon />
+              <div className={styles.dropdownContent}>
+                <p onClick={() => unArchiveUser()}>Unarchive</p>
+              </div>
+            </IconButton>
+          </div>
+        )}
+        {removeBlock && (
+          <div className={styles.dropdown}>
+            <IconButton
+              style={{ color: "#AEBAC1" }}
+              onClick={() => unBlockUser()}
+            >
+              <KeyboardArrowDownIcon />
+              <div
+                className={styles.dropdownContent}
+                onClick={() => unBlockUser()}
+              >
+                <p>Unblock</p>
+              </div>
+            </IconButton>
+          </div>
         )}
       </div>
     </div>

@@ -103,7 +103,7 @@ function Setting({ uid }) {
         </div>
         {isBlocked && (
           <div className={styles.chatsContainer}>
-            <div>
+            <div style={{ marginBottom: isBlocked ? 50 : 0 }}>
               {!blocked ? (
                 <div>
                   <p>No Blocked Contacts</p>
@@ -112,7 +112,7 @@ function Setting({ uid }) {
                 blocked?.map((item) => {
                   return (
                     <div>
-                      <Chats uid={item} flag={true} />
+                      <Chats uid={item} flag={true} removeBlock={true} />
                     </div>
                   );
                 })
@@ -122,7 +122,9 @@ function Setting({ uid }) {
         )}
         <div
           className={styles.option}
-          style={{ backgroundColor: isArchived ? "#1f2c33" : "transparent" }}
+          style={{
+            backgroundColor: isArchived ? "#1f2c33" : "transparent",
+          }}
           onClick={() => setIsArchived(!isArchived)}
         >
           <InventoryIcon />
@@ -139,7 +141,12 @@ function Setting({ uid }) {
                 archived?.map((item) => {
                   return (
                     <div>
-                      <Chats uid={item} flag={true} />
+                      <Chats
+                        uid={item}
+                        flag={true}
+                        removeArchive={true}
+                        mainUser={uid}
+                      />
                     </div>
                   );
                 })

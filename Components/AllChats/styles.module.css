@@ -140,3 +140,22 @@
   display: block;
   background-color: #111b21;
 }
+
+.dropdownContent p {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 1rem;
+  margin: 0;
+  z-index: 200;
+}
+
+.dropdownContent p:hover {
+  background-color: #2a3942;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+  background-color: #111b21;
+}

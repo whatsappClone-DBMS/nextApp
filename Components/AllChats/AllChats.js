@@ -28,14 +28,14 @@ function AllChats({ uid }) {
         );
         const dataArchived = await responseArchived.json();
         if (dataArchived) {
-          archived = [JSON.parse(dataArchived[0].archived)];
+          archived = JSON.parse(dataArchived[0].archived);
           const responseBlocked = await fetch(
             `http://localhost:3000/api/user/blocked?uid=${uid}`
           );
           const dataBlocked = await responseBlocked.json();
           if (dataBlocked) {
-            blocked = [JSON.parse(dataBlocked[0].blocked)];
-
+            blocked = JSON.parse(dataBlocked[0].blocked);
+            console.log(blocked, archived);
             if (
               (blocked.length > 0 || archived.length > 0) &&
               myChats.length > 0
