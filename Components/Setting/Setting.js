@@ -132,7 +132,7 @@ function Setting({ uid }) {
         </div>
         {isArchived && (
           <div className={styles.chatsContainer}>
-            <div style={{ paddingTop: 5 }}>
+            <div style={{ paddingTop: 5, marginBottom: isArchived ? 50 : 0 }}>
               {!archived ? (
                 <div>
                   <p>No Archived Contacts</p>

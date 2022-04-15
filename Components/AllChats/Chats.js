@@ -36,7 +36,6 @@ function Chats({ uid, flag, dmId, removeArchive, removeBlock, mainUser }) {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
-
       setUser(data[0]);
     }
   };
