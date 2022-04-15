@@ -47,7 +47,7 @@ function Story() {
     const data = await response.json();
     if (data) {
       setImgSrc(secure_url);
-      router.push(`/stories?uid=${user}&storyImg=${secure_url}`);
+      router.push(`/stories?uid=${user.uID}&storyImg=${secure_url}`);
     } else {
       alert("Something went wrong.");
     }

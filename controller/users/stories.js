@@ -1,18 +1,23 @@
 import { executeQuery } from "../../config/db";
 
 const uploadStory = async (req, res, uid, imgSrc, time) => {
-  let story = await executeQuery(`select * from Story where uID = ${uid}`, []);
-  if (story) {
+  let story = await executeQuery(
+    `select imgSrc from Story where uID = ${uid}`,
+    []
+  );
+  if (story[0]) {
     let insertQuery = await executeQuery(
-      `UPDATE Story SET imgSrc = "${imgSrc}", time = "${time}" WHERE uID = ${uid} `,
+      `UPDATE Story SET imgSrc = '${imgSrc}', time = '${time}' WHERE uID = ${uid}`,
       []
     );
+    console.log("ATIF CHUDAIL1");
     res.send(insertQuery);
   } else {
     let insertQuery = await executeQuery(
-      `INSERT into Story(uID, imgSrc,time) Values("${uid}", "${imgSrc}","${time}")`,
+      `INSERT into Story(uID, imgSrc, time) Values('${uid}', '${imgSrc}', '${time}')`,
       []
     );
+    console.log("ATIF CHUDAIL2");
     res.send(insertQuery);
   }
 };

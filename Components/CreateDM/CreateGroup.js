@@ -45,7 +45,7 @@ function CreateGroup({ uid }) {
     if (name == "") {
       setError("Please Enter The Name of the Group First!");
     } else {
-      if (groupMembers.length > 1) {
+      if (groupMembers.length > 2) {
         const response = await fetch(
           `http://localhost:3000/api/create?name=${name}&members=${groupMembers}`
         );
@@ -54,7 +54,7 @@ function CreateGroup({ uid }) {
         router.push(`/groups?uid=${uid}`);
         const data = await response.json();
       } else {
-        setError("You need atleast 2 people to create a group");
+        setError("You need atleast 3 people to create a group");
       }
     }
   };
