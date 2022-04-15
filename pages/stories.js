@@ -94,13 +94,15 @@ function Story() {
       router.push(`/stories?uid=${uid}&storyImg=${data.secure_url}`);
     }
   }
-
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
     var H = +timeString?.substr(0, hourEnd);
     var h = H % 12 || 12;
     var ampm = H < 12 ? " AM" : " PM";
-    timeString = h + timeString?.substr(hourEnd, 3) + ampm;
+    var minutes = timeString?.indexOf(":", hourEnd);
+    var M = +timeString?.substr(hourEnd + 1, minutes);
+    M < 10 ? (M = "0" + M) : M;
+    timeString = h.toString() + ":" + M.toString() + ampm.toString();
     return timeString;
   }
 
