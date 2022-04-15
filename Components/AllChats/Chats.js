@@ -64,10 +64,10 @@ function Chats({ uid, flag, dmId, removeArchive, removeBlock, mainUser }) {
     var H = +timeString?.substr(0, hourEnd);
     var h = H % 12 || 12;
     var ampm = H < 12 ? " AM" : " PM";
-    timeString =
-      h + timeString?.substr(hourEnd, 3) < 10
-        ? "0" + timeString?.substr(hourEnd, 3).toString()
-        : timeString?.substr(hourEnd, 3) + ampm;
+    var minutes = timeString?.indexOf(":", hourEnd);
+    var M = +timeString?.substr(hourEnd + 1, minutes);
+    M < 10 ? (M = "0" + M) : M;
+    timeString = h + M + ampm;
     return timeString;
   }
   useEffect(() => {
