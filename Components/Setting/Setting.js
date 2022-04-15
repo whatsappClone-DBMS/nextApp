@@ -112,7 +112,12 @@ function Setting({ uid }) {
                 blocked?.map((item) => {
                   return (
                     <div>
-                      <Chats uid={item} flag={true} removeBlock={true} />
+                      <Chats
+                        uid={item}
+                        flag={true}
+                        removeBlock={true}
+                        mainUser={uid}
+                      />
                     </div>
                   );
                 })
