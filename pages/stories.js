@@ -13,10 +13,12 @@ function Story() {
   const [user, setUser] = useState();
   const [show, setShow] = useState(false);
   const [imgSrc, setImgSrc] = useState();
+  const [time, setTime] = useState("");
   const [uploadData, setUploadData] = useState();
   const [stories, setStories] = useState([]);
   const router = useRouter();
   const { uid, storyImg } = router.query;
+  const today = new Date();
 
   const getUserDetails = async () => {
     if (uid) {
@@ -36,7 +38,11 @@ function Story() {
 
   const uploadStory = async (secure_url) => {
     const response = await fetch(
-      `http://localhost:3000/api/stories?uid=${user?.uID}&imgSrc=${secure_url}`
+      `http://localhost:3000/api/stories?uid=${
+        user?.uID
+      }&imgSrc=${secure_url}&time=${
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+      }`
     );
     const data = await response.json();
     if (data) {
@@ -86,6 +92,15 @@ function Story() {
       uploadStory(data.secure_url);
       router.push(`/stories?uid=${uid}&storyImg=${data.secure_url}`);
     }
+  }
+
+  function tConvert(timeString) {
+    var hourEnd = timeString?.indexOf(":");
+    var H = +timeString?.substr(0, hourEnd);
+    var h = H % 12 || 12;
+    var ampm = H < 12 ? " AM" : " PM";
+    timeString = h + timeString?.substr(hourEnd, 3) + ampm;
+    return timeString;
   }
 
   useEffect(() => {
@@ -170,7 +185,7 @@ function Story() {
             key={index}
             uid={story.uID}
             imgSrc={story.imgSrc}
-            seenBy={story.seenBy}
+            time={tConvert(story.time)}
           />
         ))}
       </div>

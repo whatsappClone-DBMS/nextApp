@@ -4,8 +4,8 @@ import { uploadStory, allStories } from "../../controller/users/stories";
 function Handler(req, res) {
   const Handler = nc();
   const { uid, imgSrc } = req.query;
-  if (uid && imgSrc) {
-    Handler.get(uploadStory(req, res, uid, imgSrc));
+  if (uid && imgSrc && time) {
+    Handler.get(uploadStory(req, res, uid, imgSrc, time));
   } else {
     Handler.get(allStories(req, res));
   }

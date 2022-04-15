@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 
-function StoryComponent({ uid, imgSrc, seenBy, User }) {
+function StoryComponent({ uid, imgSrc, User, time }) {
   const [user, setUser] = useState({});
   const router = useRouter();
 
@@ -36,7 +36,9 @@ function StoryComponent({ uid, imgSrc, seenBy, User }) {
       />
       <div className={styles.nameFlex} style={{ marginLeft: "0.5rem" }}>
         <p className={styles.name}>{user?.name ?? "Name"}</p>
-        <p className={styles.message}>Recently Uploaded</p>
+        <p className={styles.message} style={{ color: "#04a784" }}>
+          {time ?? "Recently Uploaded"}
+        </p>
       </div>
     </div>
   );
