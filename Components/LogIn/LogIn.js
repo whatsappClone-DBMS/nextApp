@@ -84,7 +84,7 @@ function LogIn() {
           </p>
         </Link>
         <button className={styles.button} onClick={handleLogin}>
-          <h3>Login</h3>
+          <h3 style={{ fontFamily: "Poppins" }}>Login</h3>
         </button>
         <p style={{ textAlign: "center", color: "#08A684" }}>{error}</p>
       </div>
