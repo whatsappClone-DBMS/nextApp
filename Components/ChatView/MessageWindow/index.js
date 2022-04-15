@@ -17,26 +17,27 @@ function MessageWindow({ dmId, user, refresh, gId }) {
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
       );
       const DMdata = await responseDM.json();
+      if (DMdata[0]) {
+        const chatHistory = JSON.parse(DMdata[0]?.chatHistory);
+        if (chatHistory) {
+          chatHistory.map(async (mId) => {
+            const response = await fetch(
+              `http://localhost:3000/api/chats/messages?mId=${mId}`
+            );
+            const messageObj = await response.json();
 
-      const chatHistory = JSON.parse(DMdata[0]?.chatHistory);
-      if (chatHistory) {
-        chatHistory.map(async (mId) => {
-          const response = await fetch(
-            `http://localhost:3000/api/chats/messages?mId=${mId}`
-          );
-          const messageObj = await response.json();
+            if (messageObj) {
+              messagesArr = [...messagesArr, messageObj[0]];
 
-          if (messageObj) {
-            messagesArr = [...messagesArr, messageObj[0]];
+              messagesArr.sort((a, b) => {
+                if (a.mID < b.mID) return -1;
+                return a.mID > b.mID ? 1 : 0;
+              });
 
-            messagesArr.sort((a, b) => {
-              if (a.mID < b.mID) return -1;
-              return a.mID > b.mID ? 1 : 0;
-            });
-
-            setMessages(messagesArr);
-          }
-        });
+              setMessages(messagesArr);
+            }
+          });
+        }
       }
     } else if (gId) {
       const responseDM = await fetch(
