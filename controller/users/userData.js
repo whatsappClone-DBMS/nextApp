@@ -62,6 +62,7 @@ const unArchiveUser = async (req, res, uid, uid2) => {
   console.log("uid2", uid2);
   console.log("includes", archivedList.includes(uid2));
   var newList = archivedList.filter((item) => item != uid2);
+  console.log("new list", newList);
   let updateArchive = await executeQuery(
     `update userData set archived = '[${newList}]' where uID = ${uid}`,
     []
@@ -74,6 +75,7 @@ const unBlockUser = async (req, res, uid, uid2) => {
   );
   var blockedList = [JSON.parse(blockedUsers[0].blocked)];
   var newList = blockedList.filter((item) => item != uid2);
+  console.log("new list", newList);
   let updateBlock = await executeQuery(
     `update userData set blocked = '[${newList}]' where uID = ${uid}`,
     []
