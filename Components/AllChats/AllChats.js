@@ -63,11 +63,6 @@ function AllChats({ uid }) {
   };
 
   useEffect(() => {
-    console.log("archived", archived);
-    console.log("blocked", blocked);
-  }, [blocked, archived]);
-
-  useEffect(() => {
     getChats();
   }, [uid]);
 
