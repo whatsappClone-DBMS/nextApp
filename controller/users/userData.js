@@ -57,27 +57,22 @@ const unArchiveUser = async (req, res, uid, uid2) => {
     `select archived from userData where uID = ${uid}`,
     []
   );
-  console.log("unarchived", JSON.parse(archivedUsers[0].archived));
+
   var archivedList = JSON.parse(archivedUsers[0].archived);
-  console.log("uid2", uid2);
-  console.log("includes", archivedList.includes(uid2));
   var newList = archivedList.filter((item) => item != uid2);
-  console.log("new list", newList);
   let updateArchive = await executeQuery(
     `update userData set archived = '[${newList}]' where uID = ${uid}`,
     []
   );
 };
+
 const unBlockUser = async (req, res, uid, uid2) => {
   let blockedUsers = await executeQuery(
     `select blocked from userData where uID = ${uid}`,
     []
   );
-  console.log("uid2", uid2);
   var blockedList = JSON.parse(blockedUsers[0].blocked);
-  console.log("includes", blockedList.includes(uid2));
   var newList = blockedList.filter((item) => item != uid2);
-  console.log("new list", newList);
   let updateBlock = await executeQuery(
     `update userData set blocked = '[${newList}]' where uID = ${uid}`,
     []
@@ -98,6 +93,7 @@ const archiveUser = async (req, res, uid, uid2) => {
     );
   }
 };
+
 const blockedUser = async (req, res, uid, uid2) => {
   let blockedUsers = await executeQuery(
     `select blocked from userData where uID = ${uid}`,
