@@ -12,6 +12,13 @@ const createUserData = async (req, res, uid, name) => {
   return res.send(user);
 };
 
+const createView = async (req, res, uid) => {
+  let users = await executeQuery(
+    `CREATE VIEW infoUser AS SELECT * FROM userData WHERE uID = ${uid}`,
+    []
+  );
+};
+
 const updateProfileData = async (req, res, uid, name, status) => {
   let users = await executeQuery(
     `UPDATE userData SET name = "${name}", status = "${status}" WHERE uID = "${uid}"`,
@@ -119,4 +126,5 @@ export {
   unBlockUser,
   archiveUser,
   blockedUser,
+  createView,
 };
