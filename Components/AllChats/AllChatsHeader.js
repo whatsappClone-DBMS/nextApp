@@ -15,12 +15,26 @@ function AllChatsHeader({ uid }) {
   const [user, setUser] = useState({});
   const router = useRouter();
   const { dmId } = router.query;
+  const today = new Date();
+
   const getUserDetails = async () => {
     if (uid) {
       const response = await fetch(`http://localhost:3000/api/user/${uid}`);
       const data = await response.json();
 
       setUser(data[0]);
+    }
+  };
+
+  const logout = async () => {
+    if (uid) {
+      const response = await fetch(
+        `http://localhost:3000/api/logout?uid=${uid}&time=${
+          today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        }`
+      );
+      router.push(`/`);
+      const data = await response.json();
     }
   };
 
@@ -82,7 +96,14 @@ function AllChatsHeader({ uid }) {
             <div className={styles.dropdownContent}>
               <Link href={`/settings?uid=${uid}&dmId=${dmId}`}>Settings</Link>
               <Link href={`/profile?uid=${uid}&dmId=${dmId}`}>Profile</Link>
-              <Link href="/">Logout</Link>
+              <Link
+                href="#"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Link>
             </div>
           </IconButton>
         </div>

@@ -10,14 +10,12 @@ const uploadStory = async (req, res, uid, imgSrc, time) => {
       `UPDATE Story SET imgSrc = '${imgSrc}', time = '${time}' WHERE uID = ${uid}`,
       []
     );
-    console.log("ATIF CHUDAIL1");
     res.send(insertQuery);
   } else {
     let insertQuery = await executeQuery(
       `INSERT into Story(uID, imgSrc, time) Values('${uid}', '${imgSrc}', '${time}')`,
       []
     );
-    console.log("ATIF CHUDAIL2");
     res.send(insertQuery);
   }
 };

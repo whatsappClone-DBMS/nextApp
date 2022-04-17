@@ -116,6 +116,13 @@ const blockedUser = async (req, res, uid, uid2) => {
   }
 };
 
+const updateLastSeen = async (req, res, uid, time) => {
+  let users = await executeQuery(
+    `UPDATE userData SET lastSeen = "${time}" WHERE uID = "${uid}"`,
+    []
+  );
+};
+
 export {
   createUserData,
   updateProfileData,
@@ -127,4 +134,5 @@ export {
   archiveUser,
   blockedUser,
   createView,
+  updateLastSeen,
 };
