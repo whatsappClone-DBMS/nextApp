@@ -224,6 +224,9 @@ function ContactInfo({ uid2, gId }) {
             ? "+91 " + mobileNumber ?? "Your Number"
             : `${members.length} Participants`}
         </p>
+        <p style={{ color: "#8696A0", marginTop: "-1rem" }}>
+          {!gId && "Last Seen at " + user?.lastSeen}
+        </p>
       </div>
       {gId ? (
         <div className={styles.box2}>
