@@ -136,6 +136,18 @@ function ContactInfo({ uid2, gId }) {
     }
   }
 
+  function tConvert(timeString) {
+    var hourEnd = timeString?.indexOf(":");
+    var H = +timeString?.substr(0, hourEnd);
+    var h = H % 12 || 12;
+    var ampm = H < 12 ? " AM" : " PM";
+    var minutes = timeString?.indexOf(":", hourEnd);
+    var M = +timeString?.substr(hourEnd + 1, minutes);
+    M < 10 ? (M = "0" + M) : M;
+    timeString = h.toString() + ":" + M.toString() + ampm.toString();
+    return timeString;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.navbar}>
@@ -225,7 +237,7 @@ function ContactInfo({ uid2, gId }) {
             : `${members.length} Participants`}
         </p>
         <p style={{ color: "#8696A0", marginTop: "-1rem" }}>
-          {!gId && "Last Seen at " + user?.lastSeen}
+          {!gId && "Last Seen at " + tConvert(user?.lastSeen)}
         </p>
       </div>
       {gId ? (
