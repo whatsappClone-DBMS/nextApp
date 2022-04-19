@@ -23,26 +23,29 @@ const createGroup = async (req, res, name, members) => {
     []
   );
 
-  let memberArray = [1, 2];
-  memberArray.map(async (uid) => {
-    let GroupArray = await executeQuery(
-      `select userGroups from userData where uID = ${uid}`,
-      []
-    );
-    if (GroupArray[0]) {
-      let oldArr = [JSON.parse(GroupArray[0].userGroups)];
-
-      if (oldArr.length > 0) {
-        var newlist = [...oldArr, group[0]?.gID];
-      } else {
-        var newlist = [group[0]?.gID];
-      }
-      let update = await executeQuery(
-        `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
+  if (group[0]) {
+    let memberArray = [members];
+    memberArray.map(async (uid) => {
+      let GroupArray = await executeQuery(
+        `select userGroups from userData where uID = ${uid}`,
         []
       );
-    }
-  });
+      if (GroupArray[0]) {
+        let oldArr = JSON.parse(GroupArray[0].userGroups);
+        console.log("hi", GroupArray[0].userGroups);
+        var newlist;
+        if (oldArr.length > 0) {
+          newlist = [...oldArr, group[group.length - 1]?.gID];
+        } else {
+          newlist = [group[0]?.gID];
+        }
+        let update = await executeQuery(
+          `UPDATE userData SET userGroups = '[${newlist}]' WHERE uID = ${uid}`,
+          []
+        );
+      }
+    });
+  }
 };
 
 export { createDm, createGroup };
