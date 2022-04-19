@@ -96,13 +96,17 @@ function Story() {
   }
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
+    console.log(timeString);
     var H = +timeString?.substr(0, hourEnd);
     var h = H % 12 || 12;
     var ampm = H < 12 ? " AM" : " PM";
-    var minutes = timeString?.indexOf(":", hourEnd);
-    var M = +timeString?.substr(hourEnd + 1, minutes);
+    var minutes = timeString?.indexOf(":", hourEnd + 1);
+    console.log(hourEnd);
+    var M = timeString?.substr(hourEnd + 1, minutes - 3);
+    console.log(M, "yuyuyu");
     M < 10 ? (M = "0" + M) : M;
-    timeString = h.toString() + ":" + M.toString() + ampm.toString();
+    console.log(M, "yuyuyu");
+    timeString = h.toString() + ":" + M + ampm.toString();
     return timeString;
   }
 

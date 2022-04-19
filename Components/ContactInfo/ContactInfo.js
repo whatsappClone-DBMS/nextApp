@@ -138,13 +138,17 @@ function ContactInfo({ uid2, gId }) {
 
   function tConvert(timeString) {
     var hourEnd = timeString?.indexOf(":");
+    console.log(timeString);
     var H = +timeString?.substr(0, hourEnd);
     var h = H % 12 || 12;
     var ampm = H < 12 ? " AM" : " PM";
-    var minutes = timeString?.indexOf(":", hourEnd);
-    var M = +timeString?.substr(hourEnd + 1, minutes);
+    var minutes = timeString?.indexOf(":", hourEnd + 1);
+    console.log(hourEnd);
+    var M = timeString?.substr(hourEnd + 1, minutes - 3);
+    console.log(M, "yuyuyu");
     M < 10 ? (M = "0" + M) : M;
-    timeString = h.toString() + ":" + M.toString() + ampm.toString();
+    console.log(M, "yuyuyu");
+    timeString = h.toString() + ":" + M + ampm.toString();
     return timeString;
   }
 
@@ -221,8 +225,8 @@ function ContactInfo({ uid2, gId }) {
           <Avatar
             alt={gId ? group?.gName : user?.name ?? "Your Name"}
             src={
-              gId
-                ? group?.imgSrc
+              uid2
+                ? user?.imgSrc
                 : "https://www.gravatar.com/avatar/82dd46c8fcb52e72641a80159b8e94e8.jpg?size=240&d=https%3A%2F%2Fwww.artstation.com%2Fassets%2Fdefault_avatar.jpg"
             }
             sx={{ width: 200, height: 200, cursor: gId && "pointer" }}
@@ -303,7 +307,7 @@ function ContactInfo({ uid2, gId }) {
         <></>
       )}
 
-      <div className={styles.box2}>
+      <div className={styles.box2} style={{ padding: "1rem" }}>
         <div
           style={{
             color: "#8696A0",

@@ -96,14 +96,13 @@ function AllChatsHeader({ uid }) {
             <div className={styles.dropdownContent}>
               <Link href={`/settings?uid=${uid}&dmId=${dmId}`}>Settings</Link>
               <Link href={`/profile?uid=${uid}&dmId=${dmId}`}>Profile</Link>
-              <Link
-                href="#"
+              <p
                 onClick={() => {
                   logout();
                 }}
               >
                 Logout
-              </Link>
+              </p>
             </div>
           </IconButton>
         </div>

@@ -70,6 +70,22 @@ function ChatViewHeader({ uid, dmId, gId }) {
     getUserDetails();
   }, [gId]);
 
+  function tConvert(timeString) {
+    var hourEnd = timeString?.indexOf(":");
+    console.log(timeString);
+    var H = +timeString?.substr(0, hourEnd);
+    var h = H % 12 || 12;
+    var ampm = H < 12 ? " AM" : " PM";
+    var minutes = timeString?.indexOf(":", hourEnd + 1);
+    console.log(hourEnd);
+    var M = timeString?.substr(hourEnd + 1, minutes - 3);
+    console.log(M, "yuyuyu");
+    M < 10 ? (M = "0" + M) : M;
+    console.log(M, "yuyuyu");
+    timeString = h.toString() + ":" + M + ampm.toString();
+    return timeString;
+  }
+
   return (
     <div className={styles.container}>
       <div
@@ -94,7 +110,11 @@ function ChatViewHeader({ uid, dmId, gId }) {
           <h1 style={{ margin: "0" }}>
             {gId ? group?.gName : user?.name ?? "Name"}
           </h1>
-          <p style={{ margin: "0", fontSize: "0.8rem" }}>online</p>
+          <p style={{ margin: "0", fontSize: "0.8rem", opacity: 0.5 }}>
+            {user?.lastSeen
+              ? "Last Seen at " + tConvert(user?.lastSeen)
+              : "Last Seen Recently"}
+          </p>
         </div>
       </div>
       <div

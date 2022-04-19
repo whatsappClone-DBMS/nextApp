@@ -55,7 +55,7 @@ function AllChats({ uid }) {
                 }
               });
               console.log("my chats after deletion", myChats);
-              setChats(myChats);
+              setChats(myChats.reverse());
             }
           }
         }
