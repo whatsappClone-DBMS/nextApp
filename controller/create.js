@@ -31,7 +31,12 @@ const createGroup = async (req, res, name, members) => {
     );
     if (GroupArray[0]) {
       let oldArr = [JSON.parse(GroupArray[0].userGroups)];
-      var newlist = [...oldArr, group[0]?.gID];
+
+      if (oldArr.length > 0) {
+        var newlist = [...oldArr, group[0]?.gID];
+      } else {
+        var newlist = [group[0]?.gID];
+      }
       let update = await executeQuery(
         `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
         []
