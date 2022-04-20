@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 
 function signupPage() {
   return (
-    <div>
+    <div style={{ overflowY: "auto" }}>
       <Header />
       <SignUp />
     </div>
