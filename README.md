@@ -4,8 +4,8 @@ Whatsapp Web Application made using NextJS and MySQL.
 The app has several features including -
 
 1. Signup and Login using Mobile Number
-2. Creating Private Chats known as DMs with People/ mobile Numbers .
-3. Creating Group Chats with more than 3 people!
+2. Create Private Chats known as DMs with People/ mobile Numbers .
+3. Create Group Chats with more than 3 people!
 4. Upload Stories which are global and for everyone to see.
 5. Complete your profile by changing the DP and changing your Status.
 6. Settings Tab + Block and Archive users.
