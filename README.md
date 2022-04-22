@@ -14,6 +14,8 @@ The app has several features including -
 9. No refresh's required. Works in Real time.
 10. Responsive - works on all Desktop , Tablets and Mobile.
 
+Created by Aryan Teng (2020500) , Avi Vashishta (2020500) , Atif, Nikita Kapoor
+
 NEXT JS Documentation -
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
