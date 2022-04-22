@@ -1,5 +1,21 @@
 WhatsApp Web Application
 
+Whatsapp Web Application made using NextJS and MySQL.
+The app has several features including -
+
+1. Signup and Login using Mobile Number
+2. Creating Private Chats known as DMs with People/ mobile Numbers .
+3. Creating Group Chats with more than 3 people!
+4. Upload Stories which are global and for everyone to see.
+5. Complete your profile by changing the DP and changing your Status.
+6. Settings Tab + Block and Archive users.
+7. Unsend messages on both DMs and Groups.
+8. See Contact info or Group Info
+9. No refresh's required. Works in Real time.
+10. Responsive - works on all Desktop , Tablets and Mobile.
+
+NEXT JS Documentation -
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
