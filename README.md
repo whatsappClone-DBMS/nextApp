@@ -11,7 +11,7 @@ The app has several features including -
 6. Settings Tab + Block and Archive users.
 7. Unsend messages on both DMs and Groups.
 8. See Contact info or Group Info
-9. No refresh's required. Works in Real time.
+9. No refresh required. Works in Real time.
 10. Responsive - works on all Desktop , Tablets and Mobile.
 
 Created by Aryan Teng (2020500) , Avi Vashishta (2020500) , Atif, Nikita Kapoor
