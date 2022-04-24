@@ -44,6 +44,12 @@ const createGroup = async (req, res, name, members) => {
           `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
           []
         );
+      } else {
+        newlist = [group[0]?.gID];
+        let update = await executeQuery(
+          `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
+          []
+        );
       }
     });
   }
