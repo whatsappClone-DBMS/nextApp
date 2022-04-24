@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-function SenderBubble({ message, time, mId, dmId }) {
+function SenderBubble({ message, time, mId, dmId, gId }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
   function toggle() {
@@ -14,9 +14,17 @@ function SenderBubble({ message, time, mId, dmId }) {
 
   const deleteMessage = async () => {
     setShow(!show);
-    const responseDM = await fetch(
-      `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&dmId=${dmId}`
-    );
+    var responseDM;
+    if (dmId) {
+      responseDM = await fetch(
+        `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&dmId=${dmId}`
+      );
+    } else {
+      responseDM = await fetch(
+        `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&gId=${gId}`
+      );
+    }
+
     router.reload();
     const data = await responseDM.json();
   };

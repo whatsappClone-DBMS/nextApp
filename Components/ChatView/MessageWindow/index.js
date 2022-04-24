@@ -136,6 +136,7 @@ function MessageWindow({ dmId, user, refresh, gId }) {
               time={tConvert(message?.time)}
               dmId={dmId}
               mId={message?.mID}
+              gId={gId}
               ref={endMessageRef}
             />
           ) : gId ? (
