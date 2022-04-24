@@ -30,10 +30,10 @@ function GroupsComponent({ gId }) {
         <p className={styles.name}>{group?.gName ?? "Name..."}</p>
         <p className={styles.message}>Click To Open</p>
       </div>
-      <div className={styles.timeFlex}>
+      {/* <div className={styles.timeFlex}>
         <p className={styles.time}>11:30 pm</p>
         <p className={styles.unread}>3</p>
-      </div>
+      </div> */}
     </div>
   );
 }

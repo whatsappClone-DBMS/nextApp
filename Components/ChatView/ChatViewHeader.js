@@ -121,13 +121,15 @@ function ChatViewHeader({ uid, dmId, gId }) {
         style={{ display: "flex", marginRight: "2rem", alignItems: "center" }}
       >
         <div className={styles.dropdown}>
-          <IconButton style={{ color: "#AEBAC1" }}>
-            <MoreVertIcon />
-            <div className={styles.dropdownContent}>
-              <p onClick={() => archiveUser()}>Archive</p>
-              <p onClick={() => blockUser()}>Block</p>
-            </div>
-          </IconButton>
+          {dmId && (
+            <IconButton style={{ color: "#AEBAC1" }}>
+              <MoreVertIcon />
+              <div className={styles.dropdownContent}>
+                <p onClick={() => archiveUser()}>Archive</p>
+                <p onClick={() => blockUser()}>Block</p>
+              </div>
+            </IconButton>
+          )}
         </div>
       </div>
     </div>
