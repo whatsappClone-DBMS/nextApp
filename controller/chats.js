@@ -115,18 +115,21 @@ const deleteMessage = async (req, res, dmId, mId) => {
 
 const deleteGroupMessage = async (req, res, gId, mId) => {
   let getArray = await executeQuery(
-    "SELECT chatHistory FROM userGroup WHERE gId= " + `${gId}`,
+    "SELECT chatHistory FROM userGroup WHERE gId = " + `${gId}`,
     []
   );
+  console.log("34456", getArray);
 
   var finalHistory = JSON.parse(getArray[0].chatHistory);
   var final = finalHistory.filter((item) => item != mId);
+  console.log("344567976", final);
   let putArray = await executeQuery(
     `UPDATE userGroup SET chatHistory = "${JSON.stringify(
       final
     )}" WHERE gId = ${gId}`,
     []
   );
+  console.log("lol", putArray);
   return res.status(200).send(putArray);
 };
 

@@ -20,6 +20,7 @@ function SenderBubble({ message, time, mId, dmId, gId }) {
         `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&dmId=${dmId}`
       );
     } else {
+      console.log("12344s");
       responseDM = await fetch(
         `http://localhost:3000/api/chats/deleteMessage?mId=${mId}&gId=${gId}`
       );

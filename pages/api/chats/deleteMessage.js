@@ -7,7 +7,7 @@ function Handler(req, res) {
   if (dmId && mId) {
     Handler.get(deleteMessage(req, res, dmId, mId));
   } else {
-    Handler.get(deleteGroupMessage(req, res, dmId, gId));
+    Handler.get(deleteGroupMessage(req, res, gId, mId));
   }
   return Handler;
 }

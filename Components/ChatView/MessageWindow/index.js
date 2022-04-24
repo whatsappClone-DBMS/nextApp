@@ -44,7 +44,7 @@ function MessageWindow({ dmId, user, refresh, gId }) {
         `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const DMdata = await responseDM.json();
-      const chatHistory = JSON.parse(DMdata[0].chatHistory);
+      const chatHistory = JSON.parse(DMdata[0]?.chatHistory);
       if (chatHistory) {
         chatHistory.map(async (mId) => {
           const response = await fetch(
