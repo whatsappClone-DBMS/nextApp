@@ -14,7 +14,7 @@ The app has several features including -
 9. No refresh required. Works in Real time.
 10. Responsive - works on all Desktop , Tablets and Mobile.
 
-Created by Aryan Teng (2020500) , Avi Vashishta (2020500) , Atif, Nikita Kapoor
+Created by Aryan Teng (2020500) , Avi Vashishta (2020500) , Atif (2020523), Nikita Kapoor (2020531)
 
 NEXT JS Documentation -
 
