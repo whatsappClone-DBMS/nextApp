@@ -22,8 +22,9 @@ const createGroup = async (req, res, name, members) => {
     `select gID from userGroup where gMembers = '[${members}]'`,
     []
   );
-
-  if (group[0]) {
+  console.log("atif", group);
+  if (group) {
+    console.log("atif2s", group);
     let memberArray = [members];
     memberArray.map(async (uid) => {
       let GroupArray = await executeQuery(
@@ -40,7 +41,7 @@ const createGroup = async (req, res, name, members) => {
           newlist = [group[0]?.gID];
         }
         let update = await executeQuery(
-          `UPDATE userData SET userGroups = '[${newlist}]' WHERE uID = ${uid}`,
+          `UPDATE userData SET userGroups = "[${newlist}]" WHERE uID = ${uid}`,
           []
         );
       }

@@ -117,7 +117,7 @@ function SignUp() {
             </IconButton>
           </div>
         </div>
-        <Link href="/signup">
+        <Link href="/">
           <p>
             Already Have An Account?{" "}
             <span>
