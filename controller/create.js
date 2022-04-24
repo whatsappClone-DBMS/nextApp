@@ -31,7 +31,7 @@ const createGroup = async (req, res, name, members) => {
         `select userGroups from userData where uID = ${uid}`,
         []
       );
-      if (GroupArray[0]) {
+      if (GroupArray) {
         let oldArr = JSON.parse(GroupArray[0].userGroups);
         console.log("hi", GroupArray[0].userGroups);
         var newlist;
