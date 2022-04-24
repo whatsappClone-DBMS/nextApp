@@ -12,7 +12,7 @@ function MessageWindow({ dmId, user, refresh, gId }) {
   let messagesArr = [];
   const getChats = async () => {
     setMessages([]);
-    if (dmId || dmId != "undefined") {
+    if (dmId) {
       const responseDM = await fetch(
         `http://localhost:3000/api/chats/dm?dmId=${dmId}`
       );
@@ -44,7 +44,6 @@ function MessageWindow({ dmId, user, refresh, gId }) {
         `http://localhost:3000/api/chats/groups?gId=${gId}`
       );
       const DMdata = await responseDM.json();
-
       const chatHistory = JSON.parse(DMdata[0].chatHistory);
       if (chatHistory) {
         chatHistory.map(async (mId) => {

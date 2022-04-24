@@ -22,6 +22,7 @@ const updateDmArrayGroups = async (req, res, dmId, mId) => {
     "SELECT chatHistory FROM DM WHERE dmID = " + `${dmId}`,
     []
   );
+  console.log("blah", getArray);
 
   const finalHistory = [...JSON.parse(getArray[0].chatHistory), parseInt(mId)];
   let putArray = await executeQuery(
