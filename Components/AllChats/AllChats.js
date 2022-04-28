@@ -63,38 +63,6 @@ function AllChats({ uid }) {
               setChats(myChats.reverse());
             }
           }
-        } else {
-          const responseBlocked = await fetch(
-            `http://localhost:3000/api/user/blocked?uid=${uid}`
-          );
-          const dataBlocked = await responseBlocked.json();
-          if (dataBlocked) {
-            blocked = JSON.parse(dataBlocked[0].blocked);
-            console.log("hey", blocked, archived);
-            if (
-              (blocked?.length > 0 || archived?.length > 0) &&
-              myChats?.length > 0
-            ) {
-              myChats?.map((chat, index) => {
-                var personUid = 0;
-                chat?.uid1 == uid
-                  ? (personUid = chat.uid2)
-                  : (personUid = chat.uid1);
-                console.log("person uid", personUid);
-                if (
-                  blocked.includes(personUid) ||
-                  archived.includes(personUid) ||
-                  personUid == uid
-                ) {
-                  myChats.splice(index, 1);
-                }
-              });
-              console.log("my chats after deletion", myChats);
-              setChats(myChats.reverse());
-            }
-          } else {
-            setChats(myChats.reverse());
-          }
         }
       }
     }
