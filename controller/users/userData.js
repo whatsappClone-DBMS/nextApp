@@ -92,8 +92,13 @@ const archiveUser = async (req, res, uid, uid2) => {
     []
   );
   var archivedList = [JSON.parse(archivedUsers[0].archived)];
+  var newList;
   if (uid2 && !archivedList.includes(uid2)) {
-    var newList = [...archivedList, uid2];
+    if (archivedList.length > 0) {
+      newList = [...blockedList, uid2];
+    } else {
+      newList = [uid2];
+    }
     let updateArchive = await executeQuery(
       `update userData set archived = '[${newList}]' where uID = ${uid}`,
       []
