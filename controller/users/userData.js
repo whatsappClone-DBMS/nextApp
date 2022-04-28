@@ -91,11 +91,11 @@ const archiveUser = async (req, res, uid, uid2) => {
     `select archived from userData where uID = ${uid}`,
     []
   );
-  var archivedList = [JSON.parse(archivedUsers[0].archived)];
+  var archivedList = JSON.parse(archivedUsers[0].archived);
   var newList;
-  if (uid2 && !archivedList.includes(uid2)) {
-    if (archivedList.length > 0) {
-      newList = [...blockedList, uid2];
+  if (uid2) {
+    if (!archivedList || archivedList.length > 0) {
+      newList = [...archivedList, uid2];
     } else {
       newList = [uid2];
     }
@@ -111,11 +111,11 @@ const blockedUser = async (req, res, uid, uid2) => {
     `select blocked from userData where uID = ${uid}`,
     []
   );
-  var blockedList = [JSON.parse(blockedUsers[0].blocked)];
+  var blockedList = JSON.parse(blockedUsers[0].blocked);
   var newList;
   console.log("hello", blockedList);
-  if (uid2 && !blockedList.includes(uid2)) {
-    if (blockedList.length > 0) {
+  if (uid2) {
+    if (!blockedList || blockedList.length > 0) {
       newList = [...blockedList, uid2];
     } else {
       newList = [uid2];

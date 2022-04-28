@@ -49,9 +49,11 @@ function AllChats({ uid }) {
                   ? (personUid = chat.uid2)
                   : (personUid = chat.uid1);
                 console.log("person uid", personUid);
+                console.log("block", blocked);
+                console.log("archive", archived);
                 if (
-                  blocked.includes(personUid) ||
-                  archived.includes(personUid) ||
+                  blocked?.includes(personUid) ||
+                  archived?.includes(personUid) ||
                   personUid == uid
                 ) {
                   myChats.splice(index, 1);
