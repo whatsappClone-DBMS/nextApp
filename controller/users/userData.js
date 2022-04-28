@@ -2,7 +2,8 @@ import { executeQuery } from "../../config/db";
 
 const createUserData = async (req, res, uid, name) => {
   let users = await executeQuery(
-    "INSERT into userData(uID, name)" + ` Values("${uid}", "${name}")`,
+    "INSERT into userData(uID, name, blocked, archived, userGroups)" +
+      ` Values("${uid}", "${name}","[]","[]","[]")`,
     []
   );
   let user = await executeQuery(
