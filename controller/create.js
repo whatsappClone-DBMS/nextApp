@@ -2,7 +2,7 @@ import { executeQuery } from "../config/db";
 
 const createDm = async (req, res, uid1, uid2) => {
   let insert = await executeQuery(
-    `INSERT into DM(uid1, uid2,chatHistory) Values("${uid1}", "${uid2}","[]")`,
+    `INSERT into DM(uid1, uid2, chatHistory) Values("${uid1}", "${uid2}", "[]")`,
     []
   );
   let dm = await executeQuery(
@@ -38,7 +38,7 @@ const createGroup = async (req, res, name, members) => {
         let oldArr = JSON.parse(GroupArray[0].userGroups);
         console.log("hi", GroupArray[0].userGroups);
         var newlist;
-        if (oldArr.length > 0) {
+        if (oldArr?.length > 0) {
           newlist = [...oldArr, group[group.length - 1]?.gID];
           console.log("blshdkshdekj", newlist);
         } else {

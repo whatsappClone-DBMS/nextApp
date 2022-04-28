@@ -23,11 +23,13 @@ function AllChats({ uid }) {
       var blocked = [];
       var archived = [];
       if (data) {
+        console.log("12334", data);
         const responseArchived = await fetch(
           `http://localhost:3000/api/user/archived?uid=${uid}`
         );
         const dataArchived = await responseArchived.json();
         if (dataArchived) {
+          console.log("1234", dataArchived);
           archived = JSON.parse(dataArchived[0].archived);
           const responseBlocked = await fetch(
             `http://localhost:3000/api/user/blocked?uid=${uid}`
@@ -35,10 +37,43 @@ function AllChats({ uid }) {
           const dataBlocked = await responseBlocked.json();
           if (dataBlocked) {
             blocked = JSON.parse(dataBlocked[0].blocked);
-            console.log(blocked, archived);
+            console.log("hey", blocked, archived);
             if (
-              (blocked.length > 0 || archived.length > 0) &&
-              myChats.length > 0
+              (blocked?.length > 0 || archived?.length > 0) &&
+              myChats?.length > 0
+            ) {
+              myChats?.map((chat, index) => {
+                console.log("atiffffff");
+                var personUid = 0;
+                chat?.uid1 == uid
+                  ? (personUid = chat.uid2)
+                  : (personUid = chat.uid1);
+                console.log("person uid", personUid);
+                if (
+                  blocked.includes(personUid) ||
+                  archived.includes(personUid) ||
+                  personUid == uid
+                ) {
+                  myChats.splice(index, 1);
+                }
+              });
+              console.log("my chats after deletion", myChats);
+              setChats(myChats.reverse());
+            } else {
+              setChats(myChats.reverse());
+            }
+          }
+        } else {
+          const responseBlocked = await fetch(
+            `http://localhost:3000/api/user/blocked?uid=${uid}`
+          );
+          const dataBlocked = await responseBlocked.json();
+          if (dataBlocked) {
+            blocked = JSON.parse(dataBlocked[0].blocked);
+            console.log("hey", blocked, archived);
+            if (
+              (blocked?.length > 0 || archived?.length > 0) &&
+              myChats?.length > 0
             ) {
               myChats?.map((chat, index) => {
                 var personUid = 0;
@@ -57,6 +92,8 @@ function AllChats({ uid }) {
               console.log("my chats after deletion", myChats);
               setChats(myChats.reverse());
             }
+          } else {
+            setChats(myChats.reverse());
           }
         }
       }

@@ -28,6 +28,7 @@
   color: #ffffff;
   padding-top: 0.2rem;
   font-size: 1rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .wrapper input::placeholder {
@@ -67,6 +68,7 @@
   padding-left: 5rem;
   padding-right: 5rem;
   border-radius: 10px;
+  font-family: "Poppins", sans-serif;
 }
 
 .button h3 {
