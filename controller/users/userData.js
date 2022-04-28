@@ -107,8 +107,14 @@ const blockedUser = async (req, res, uid, uid2) => {
     []
   );
   var blockedList = [JSON.parse(blockedUsers[0].blocked)];
+  var newList;
+  console.log("hello", blockedList);
   if (uid2 && !blockedList.includes(uid2)) {
-    var newList = [...blockedList, uid2];
+    if (blockedList.length > 0) {
+      newList = [...blockedList, uid2];
+    } else {
+      newList = [uid2];
+    }
     let updateBlock = await executeQuery(
       `update userData set blocked = '[${newList}]' where uID = ${uid}`,
       []
