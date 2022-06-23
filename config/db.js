@@ -1,10 +1,10 @@
 const { createPool } = require("mysql");
 const pool = createPool({
-  host: "localhost",
-  user: "root",
-  password: "password",
+  host: "remotemysql.com",
+  user: "TzepuroFCx",
+  password: "MxZwK9WpCq",
   port: 3306,
-  database: "project",
+  database: "TzepuroFCx",
 });
 
 pool.getConnection((err) => {
